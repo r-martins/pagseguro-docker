@@ -35,8 +35,7 @@
         "magento/product-community-edition": "2.4.1",
         "magento/sample-data-media": "100.4.*",
         "mageplaza/module-smtp": "^1.4",
-        "rafaelstz/traducao_magento2_pt_br": "dev-master",
-        "ricardomartins/pagseguro": "dev-master"
+        "rafaelstz/traducao_magento2_pt_br": "dev-master"
     },
     "require-dev": {
         "allure-framework/allure-phpunit": "~1.2.0",

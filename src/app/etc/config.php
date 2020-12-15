@@ -335,6 +335,7 @@ return [
         'PayPal_Braintree' => 1,
         'PayPal_BraintreeGraphQl' => 1,
         'RicardoMartins_PagSeguro' => 1,
+        'RicardoMartins_SystemInfo' => 1,
         'SystemCode_BrazilCustomerAttributes' => 1,
         'Temando_ShippingRemover' => 1,
         'Vertex_Tax' => 1,
