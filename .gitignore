@@ -2,3 +2,4 @@
 .idea
 .DS_Store
 src/app/code/RicardoMartins/PagSeguro
+src/app/code/RicardoMartins/*.zip

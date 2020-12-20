@@ -1,6 +1,6 @@
 PagSeguro com Firestore e Docker
 
-#Instalação
+# Instalação
 
 `git clone --recurse-submodules git@github.com:r-martins/pagseguro-docker.git [pastadestino]`
 
@@ -20,6 +20,10 @@ bin/magento setup:upgrade
 ### Em ambiente de produção
 ```
 cd <pasta raiz do projeto>
-composer require ricardomartins/pagseguro --no-cache
+composer require ricardomartins/pagseguro
 bin/magento setup:upgrade
 ```
+
+### Automatic cache cleaner
+O cache watcher/cleaner está disponível.<br/>
+Para executá-lo use `bin/cli vendor/bin/cache-clean.js --watch`.
