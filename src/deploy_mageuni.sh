@@ -29,6 +29,7 @@ bin/magento config:set --lock-env admin/security/password_is_forced 0
 redis-cli flushall
 bin/magento setup:di:compile
 bin/magento indexer:set-mode schedule
+bin/magento setup:upgrade
 bin/magento setup:static-content:deploy pt_BR en_US
 bin/magento maintenance:disable
 bin/magento cache:enable
