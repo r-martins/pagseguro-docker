@@ -33,4 +33,5 @@ bin/magento setup:static-content:deploy pt_BR en_US
 bin/magento maintenance:disable
 bin/magento cache:enable
 bin/magento setup:di:compile
+sudo service php7.4-fpm restart
 rm -f $deployLock
