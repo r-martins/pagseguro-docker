@@ -330,8 +330,8 @@ return [
         'Amazon_Core' => 1,
         'Amazon_Login' => 1,
         'Amazon_Payment' => 1,
-        'Dotdigitalgroup_Email' => 1,
-        'Dotdigitalgroup_Chat' => 1,
+        'Dotdigitalgroup_Email' => 0,
+        'Dotdigitalgroup_Chat' => 0,
         'Dotdigitalgroup_Sms' => 0,
         'ImaginationMedia_Correios' => 1,
         'Klarna_Core' => 1,
@@ -343,15 +343,14 @@ return [
         'Magenteiro_ConfigInfo' => 1,
         'Mageplaza_Core' => 1,
         'Mageplaza_Smtp' => 1,
-        'PayPal_Braintree' => 1,
-        'PayPal_BraintreeGraphQl' => 1,
-        'RicardoMartins_PagSeguro' => 1,
+        'PayPal_Braintree' => 0,
+        'PayPal_BraintreeGraphQl' => 0,
         'RicardoMartins_SystemInfo' => 1,
         'SystemCode_BrazilCustomerAttributes' => 1,
         'Temando_ShippingRemover' => 1,
         'Vertex_Tax' => 1,
         'Vertex_AddressValidationApi' => 1,
         'Vertex_AddressValidation' => 1,
-        'Yotpo_Yotpo' => 1
+        'Yotpo_Yotpo' => 0
     ]
 ];
