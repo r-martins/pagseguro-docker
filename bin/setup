@@ -6,7 +6,7 @@ source env/db.env
 # shellcheck source=../env/magento.env
 source env/magento.env
 
-BASE_URL=${1:-magento2.test}
+DOMAIN=${1:-magento.test}
 ES_HOST=elasticsearch
 ES_PORT=9200
 
@@ -22,7 +22,7 @@ echo "Waiting for connection to Elasticsearch..."
 bin/clinotty timeout 100 bash -c "
     until curl --silent --output /dev/null http://$ES_HOST:$ES_PORT/_cat/health?h=st; do
         printf '.'
-        sleep 5
+        sleep 2
     done"
 [ $? != 0 ] && echo "Failed to connect to Elasticsearch" && exit
 
@@ -31,8 +31,8 @@ bin/clinotty bin/magento setup:install \
   --db-name="$MYSQL_DATABASE" \
   --db-user="$MYSQL_USER" \
   --db-password="$MYSQL_PASSWORD" \
-  --base-url=https://"$BASE_URL"/ \
-  --base-url-secure=https://"$BASE_URL"/ \
+  --base-url=https://"$DOMAIN"/ \
+  --base-url-secure=https://"$DOMAIN"/ \
   --backend-frontname="$MAGENTO_ADMIN_FRONTNAME" \
   --admin-firstname="$MAGENTO_ADMIN_FIRST_NAME" \
   --admin-lastname="$MAGENTO_ADMIN_LAST_NAME" \
@@ -65,20 +65,26 @@ bin/clinotty bin/magento setup:install \
 echo "Copying files from container to host after install..."
 bin/copyfromcontainer --all
 
-echo "Turning on developer mode.."
-bin/clinotty bin/magento deploy:mode:set developer
-
 echo "Forcing deploy of static content to speed up initial requests..."
 bin/clinotty bin/magento setup:static-content:deploy -f
 
 echo "Re-indexing with Elasticsearch..."
 bin/clinotty bin/magento indexer:reindex
 
+echo "Setting basic URL and generating SSL certificate..."
+bin/setup-domain "${DOMAIN}"
+
 echo "Clearing the cache to apply updates..."
 bin/clinotty bin/magento cache:flush
 
-echo "Generating SSL certificate..."
-bin/setup-ssl "$BASE_URL"
+echo "Ensuring Composer auth.json is setup..."
+bin/setup-composer-auth
+
+echo "Installing cron (see docker-compose.yml to enable)..."
+bin/magento cron:install
+
+echo "Turning on developer mode.."
+bin/clinotty bin/magento deploy:mode:set developer
 
 echo "Docker development environment setup complete."
-echo "You may now access your Magento instance at https://${BASE_URL}/"
+echo "You may now access your Magento instance at https://${DOMAIN}/"
