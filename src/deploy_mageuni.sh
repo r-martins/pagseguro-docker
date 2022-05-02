@@ -16,7 +16,7 @@ git reset --hard origin/master
 mysql -u ricardo_user -p9erh74J5mfRvZrkZ -D magent1_db < pagseguro_exemplo_m2.sql
 mysql -u ricardo_user -p9erh74J5mfRvZrkZ -D magent1_db -e  "UPDATE core_config_data set value='localhost' where path = 'catalog/search/elasticsearch7_server_hostname';"
 rm -rf vendor
-php -dmemory_limit=-1 /usr/local/bin/composer install
+php -dmemory_limit=-1 /usr/local/bin/composer install --ignore-platform-reqs
 php -dmemory_limit=-1 /usr/local/bin/composer require ricardomartins/pagseguro --ignore-platform-reqs
 #git submodule update --recursive
 bin/magento setup:upgrade
