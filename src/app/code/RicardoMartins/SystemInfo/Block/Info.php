@@ -18,8 +18,8 @@ class Info extends Template
     private $moduleResources;
 
     public function __construct(
-        Template\Context $context, array $data = [], ProductMetadataInterface $magentoProductMeta,
-    ResourceInterface $moduleResources
+        Template\Context $context, ProductMetadataInterface $magentoProductMeta,
+    ResourceInterface $moduleResources, array $data = []
     ) {
         $this->magentoProductMeta = $magentoProductMeta;
         $this->moduleResources = $moduleResources;
