@@ -59,7 +59,6 @@ return [
         'Magento_CmsUrlRewrite' => 1,
         'Magento_CmsUrlRewriteGraphQl' => 1,
         'Magento_CompareListGraphQl' => 1,
-        'Magento_ComposerRootUpdatePlugin' => 1,
         'Magento_User' => 1,
         'Magento_Checkout' => 1,
         'Magento_Downloadable' => 1,
