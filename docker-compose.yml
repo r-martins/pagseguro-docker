@@ -21,7 +21,7 @@ services:
       - ssldata:/etc/nginx/certs
 
   phpfpm:
-    image: markoshust/magento-php:7.4-fpm-9
+    image: markoshust/magento-php:8.1-fpm-0
     links:
       - db
     volumes: *appvolumes
@@ -30,7 +30,7 @@ services:
     image: mariadb:10.4
     command: --max_allowed_packet=64M
     ports:
-      - "3306:3306"
+      - "3307:3306"
     env_file: env/db.env
     volumes:
       - dbdata:/var/lib/mysql
