@@ -1,66 +1,28 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -o errexit
 
-# shellcheck source=../env/db.env
-source env/db.env
-# shellcheck source=../env/magento.env
-source env/magento.env
+MEM_BYTES=$(docker info -f '{{.MemTotal}}')
+MEM_MB=$(( MEM_BYTES / 1000000 ))
+# When Docker Desktop is set to 6GB in the GUI, it is reported as 6227 MB
+(( MEM_MB < 6227 )) && echo "There must be at least 6GB of RAM allocated to Docker in order to continue." && exit
 
 DOMAIN=${1:-magento.test}
-ES_HOST=elasticsearch
-ES_PORT=9200
 
 bin/stop
 
-docker-compose -f docker-compose.yml up -d
+bin/start
 [ $? != 0 ] && echo "Failed to start Docker services" && exit
 
 bin/clinotty chmod u+x bin/magento
-mv .vscode src
+#rm -rf src && mkdir src
 
-echo "Waiting for connection to Elasticsearch..."
-bin/clinotty timeout 100 bash -c "
-    until curl --silent --output /dev/null http://$ES_HOST:$ES_PORT/_cat/health?h=st; do
-        printf '.'
-        sleep 2
-    done"
-[ $? != 0 ] && echo "Failed to connect to Elasticsearch" && exit
+echo "Adding Magento modules to Composer allow-plugins directive..."
+bin/clinotty composer config --no-plugins allow-plugins.magento/magento-composer-installer true
+bin/clinotty composer config --no-plugins allow-plugins.magento/inventory-composer-installer true
+bin/clinotty composer config --no-plugins allow-plugins.laminas/laminas-dependency-plugin true
 
-bin/clinotty bin/magento setup:install \
-  --db-host="$MYSQL_HOST" \
-  --db-name="$MYSQL_DATABASE" \
-  --db-user="$MYSQL_USER" \
-  --db-password="$MYSQL_PASSWORD" \
-  --base-url=https://"$DOMAIN"/ \
-  --base-url-secure=https://"$DOMAIN"/ \
-  --backend-frontname="$MAGENTO_ADMIN_FRONTNAME" \
-  --admin-firstname="$MAGENTO_ADMIN_FIRST_NAME" \
-  --admin-lastname="$MAGENTO_ADMIN_LAST_NAME" \
-  --admin-email="$MAGENTO_ADMIN_EMAIL" \
-  --admin-user="$MAGENTO_ADMIN_USER" \
-  --admin-password="$MAGENTO_ADMIN_PASSWORD" \
-  --language="$MAGENTO_LOCALE" \
-  --currency="$MAGENTO_CURRENCY" \
-  --timezone="$MAGENTO_TIMEZONE" \
-  --amqp-host=rabbitmq \
-  --amqp-port=5672 \
-  --amqp-user=guest \
-  --amqp-password=guest \
-  --amqp-virtualhost=/ \
-  --cache-backend=redis \
-  --cache-backend-redis-server=redis \
-  --cache-backend-redis-db=0 \
-  --page-cache=redis \
-  --page-cache-redis-server=redis \
-  --page-cache-redis-db=1 \
-  --session-save=redis \
-  --session-save-redis-host=redis \
-  --session-save-redis-log-level=4 \
-  --session-save-redis-db=2 \
-  --search-engine=elasticsearch7 \
-  --elasticsearch-host=$ES_HOST \
-  --elasticsearch-port=$ES_PORT \
-  --use-rewrites=1
+echo "Running, Magento setup:install..."
+bin/setup-install "${DOMAIN}"
 
 echo "Copying files from container to host after install..."
 bin/copyfromcontainer --all
@@ -74,17 +36,20 @@ bin/clinotty bin/magento indexer:reindex
 echo "Setting basic URL and generating SSL certificate..."
 bin/setup-domain "${DOMAIN}"
 
+echo "Fixing owner and permissions..."
+bin/fixowns
+bin/fixperms
+
 echo "Clearing the cache to apply updates..."
 bin/clinotty bin/magento cache:flush
 
-echo "Ensuring Composer auth.json is setup..."
-bin/setup-composer-auth
+echo "Installing cron, run 'bin/cron start' to enable..."
+bin/clinotty bin/magento cron:install
 
-echo "Installing cron (see docker-compose.yml to enable)..."
-bin/magento cron:install
-
-echo "Turning on developer mode.."
+echo "Turning on developer mode..."
 bin/clinotty bin/magento deploy:mode:set developer
+
+cp -r .vscode src/
 
 echo "Docker development environment setup complete."
 echo "You may now access your Magento instance at https://${DOMAIN}/"
