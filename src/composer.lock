@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "675da8c0d95f7159fc1f0a6a022dc5f2",
+    "content-hash": "39fe8007d395b9819d01cdc405cad7af",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -19602,6 +19602,144 @@
                 }
             ],
             "time": "2023-05-02T15:15:43+00:00"
+        },
+        {
+            "name": "ricardomartins/brazilcustomerattributes",
+            "version": "1.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/r-martins/Magento-SystemCode_BrazilCustomerAttributes.git",
+                "reference": "17991b81434a144cb3febc25aafce5cb383e85cc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/r-martins/Magento-SystemCode_BrazilCustomerAttributes/zipball/17991b81434a144cb3febc25aafce5cb383e85cc",
+                "reference": "17991b81434a144cb3febc25aafce5cb383e85cc",
+                "shasum": ""
+            },
+            "require": {
+                "magento/framework": "100.0.*|100.1.*|101.0.*|102.0.*|103.0.*",
+                "magento/module-backend": "100.0.*|100.1.*|100.2.*|101.0.*|102.*",
+                "ricardomartins/brazilzipcode": "*"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "SystemCode\\BrazilCustomerAttributes\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Eduardo Diogo Dias",
+                    "email": "contato@systemcode.com.br",
+                    "homepage": "https://www.systemcode.com.br/",
+                    "role": "CTO"
+                },
+                {
+                    "name": "Ricardo Martins",
+                    "email": "ricardo@magenteiro.com",
+                    "homepage": "https://magenteiro.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Magento 2 module to adapt customer and address fields to brazil.",
+            "homepage": "https://www.systemcode.com.br/",
+            "keywords": [
+                "brazil fields",
+                "campos brasil",
+                "magento 2",
+                "magento2 address brazil",
+                "magento2 campos",
+                "magento2 endereço",
+                "magento2 person type",
+                "magento2 pessoa física",
+                "magento2 pessoa jurídica",
+                "magento2 tipo  pessoa"
+            ],
+            "support": {
+                "email": "contato@systemcode.com.br",
+                "issues": "https://github.com/eduardoddias/Magento-SystemCode_BrazilCustomerAttributes/issues/",
+                "source": "https://github.com/r-martins/Magento-SystemCode_BrazilCustomerAttributes/tree/1.1.7"
+            },
+            "time": "2023-05-18T06:39:22+00:00"
+        },
+        {
+            "name": "ricardomartins/brazilzipcode",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/r-martins/BrazilZipCode.git",
+                "reference": "0ec780004b48f178bbf34081a191079ae4b13d0b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/r-martins/BrazilZipCode/zipball/0ec780004b48f178bbf34081a191079ae4b13d0b",
+                "reference": "0ec780004b48f178bbf34081a191079ae4b13d0b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "MageDev\\BrazilZipCode\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Walisson Costa Ferreira",
+                    "email": "walisson@magedev.com.br",
+                    "homepage": "https://github.com/m2-magedev/BrazilZipCode",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Ricardo Martins",
+                    "email": "ricardo@magenteiro.com",
+                    "homepage": "https://magenteiro.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Magento 2 module to use brazil zipcode search services. Forked from magedev/brazilzipcode",
+            "homepage": "https://github.com/r-martins/BrazilZipCode",
+            "keywords": [
+                "brazil zipcode",
+                "cep brasil",
+                "magento 2",
+                "magento 2 cep",
+                "magento2 cep",
+                "zipcode"
+            ],
+            "support": {
+                "email": "suporte@magenteiro.com",
+                "issues": "https://github.com/r-martins/BrazilZipCode/issues",
+                "source": "https://github.com/r-martins/BrazilZipCode/tree/1.2.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/m2-magedev",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/r-martins",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-05-18T05:35:38+00:00"
         },
         {
             "name": "sabberworm/php-css-parser",

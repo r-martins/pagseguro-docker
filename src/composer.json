@@ -11,7 +11,8 @@
         "magento/product-community-edition": "^2.4",
         "composer/composer": "@alpha",
         "msp/devtools": "^1.2",
-        "rafaelstz/traducao_magento2_pt_br": "dev-master"
+        "rafaelstz/traducao_magento2_pt_br": "dev-master",
+        "ricardomartins/brazilcustomerattributes": "^1.1"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "3.2.2",
