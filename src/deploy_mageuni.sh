@@ -33,8 +33,8 @@ bin/magento config:set --lock-env customer/address/street_lines 4
 bin/magento config:set --lock-env system/smtp/disable 1
 bin/magento config:set --lock-env admin/security/password_is_forced 0
 #pagbank 4.x
-mysql -u ricardo_user -p9erh74J5mfRvZrkZ -D magent1_db -e  "INSERT INTO magent1_db.core_config_data (path, value) VALUES ('payment/ricardomartins_pagbank/public_key', 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr+ZqgD892U9/HXsa7XqBZUayPquAfh9xx4iwUbTSUAvTlmiXFQNTp0Bvt/5vK2FhMj39qSv1zi2OuBjvW38q1E374nzx6NNBL5JosV0+SDINTlCG0cmigHuBOyWzYmjgca+mtQu4WczCaApNaSuVqgb8u7Bd9GCOL4YJotvV5+81frlSwQXralhwRzGhj/A57CGPgGKiuPT+AOGmykIGEZsSD9RKkyoKIoc0OS8CPIzdBOtTQCIwrLn2FxI83Clcg55W8gkFSOS6rWNbG5qFZWMll6yl02HtunalHmUlRUL66YeGXdMDC2PuRcmZbGO5a/2tbVppW6mfSWG3NPRpgwIDAQAB');"
-mysql -u ricardo_user -p9erh74J5mfRvZrkZ -D magent1_db -e  "INSERT INTO magent1_db.core_config_data (path, value) VALUES ('payment/ricardomartins_pagbank/connect_key', 'CONSANDBOX8F1E5FEC013685993973759AC5E79F');"
+mysql -u ricardo_user -p9erh74J5mfRvZrkZ -D magent1_db -e  "INSERT INTO magent1_db.core_config_data (path, scope, scope_id, value) VALUES ('payment/ricardomartins_pagbank/public_key', 'default', 0, 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr+ZqgD892U9/HXsa7XqBZUayPquAfh9xx4iwUbTSUAvTlmiXFQNTp0Bvt/5vK2FhMj39qSv1zi2OuBjvW38q1E374nzx6NNBL5JosV0+SDINTlCG0cmigHuBOyWzYmjgca+mtQu4WczCaApNaSuVqgb8u7Bd9GCOL4YJotvV5+81frlSwQXralhwRzGhj/A57CGPgGKiuPT+AOGmykIGEZsSD9RKkyoKIoc0OS8CPIzdBOtTQCIwrLn2FxI83Clcg55W8gkFSOS6rWNbG5qFZWMll6yl02HtunalHmUlRUL66YeGXdMDC2PuRcmZbGO5a/2tbVppW6mfSWG3NPRpgwIDAQAB');"
+mysql -u ricardo_user -p9erh74J5mfRvZrkZ -D magent1_db -e  "INSERT INTO magent1_db.core_config_data (path, scope, scope_id, value) VALUES ('payment/ricardomartins_pagbank/connect_key', 'default', 0, 'CONSANDBOX8F1E5FEC013685993973759AC5E79F');"
 mysql -u ricardo_user -p9erh74J5mfRvZrkZ -D magent1_db -e  "INSERT INTO magent1_db.core_config_data (path, value) VALUES ('payment/ricardomartins_pagbank_cc/active', '1');"
 mysql -u ricardo_user -p9erh74J5mfRvZrkZ -D magent1_db -e  "INSERT INTO magent1_db.core_config_data (path, value) VALUES ('payment/ricardomartins_pagbank_boleto/active', '1');"
 mysql -u ricardo_user -p9erh74J5mfRvZrkZ -D magent1_db -e  "INSERT INTO magent1_db.core_config_data (path, value) VALUES ('payment/ricardomartins_pagbank_pix/active', '1');"
@@ -47,7 +47,6 @@ mysql -u ricardo_user -p9erh74J5mfRvZrkZ -D magent1_db -e  "INSERT INTO magent1_
 mysql -u ricardo_user -p9erh74J5mfRvZrkZ -D magent1_db -e  "INSERT INTO magent1_db.core_config_data (path, value) VALUES ('payment/ricardomartins_pagbank_cc/installments_options', 'external');"
 mysql -u ricardo_user -p9erh74J5mfRvZrkZ -D magent1_db -e  "INSERT INTO magent1_db.core_config_data (path, value) VALUES ('payment/ricardomartins_pagbank_cc/enable_installments_limit', '0');"
 
-bin/magento config:set payment/ricardomartins_pagbank/connect_key CONSANDBOX8F1E5FEC013685993973759AC5E79F
 bin/magento config:set payment/ricardomartins_pagbank_cc/active 1
 bin/magento config:set payment/ricardomartins_pagbank_boleto/active 1
 bin/magento config:set payment/ricardomartins_pagbank_pix/active 1
