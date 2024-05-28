@@ -8,7 +8,7 @@
         "AFL-3.0"
     ],
     "require": {
-        "magento/product-community-edition": "^2.4",
+        "magento/product-community-edition": "2.4.7",
         "composer/composer": "@alpha",
         "msp/devtools": "^1.2",
         "rafaelstz/traducao_magento2_pt_br": "dev-master",
