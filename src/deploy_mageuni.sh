@@ -1,6 +1,6 @@
 #!/bin/bash
-deployLock="/home/mguni_sqstudejfh/pagseguro-exemplo-m2.ricardomartins.net.br/var/.deploy.lock"
-magentoDir="/home/mguni_sqstudejfh/pagseguro-exemplo-m2.ricardomartins.net.br"
+deployLock="/home/mguni_hmuwjrnydz/pagseguro-exemplo-m2.ricardomartins.net.br/var/.deploy.lock"
+magentoDir="/home/mguni_hmuwjrnydz/pagseguro-exemplo-m2.ricardomartins.net.br"
 if [ -f $deployLock ]
 then
 	echo "Deploy is locked by another process."
