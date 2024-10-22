@@ -26,6 +26,7 @@ bin/magento module:disable Magento_AdminNotification Klarna_KpGraphQl Klarna_Ons
 bin/magento config:set payment/rm_pagseguro/merchant_email testepagseguro2@ricardomartins.net.br
 bin/magento config:set payment/rm_pagseguro/token d6e45405-cd1f-4a49-a9cd-ab696747a2459b60bdb1448ea31d4c487f2d9e3f85c1eb10-82f3-4302-bef5-9ca73ac0ea12
 bin/magento config:set payment/rm_pagseguro/key PUBD5921FCBD1454F7B9C8E6D1566566FF6
+bin/magento config:set payment/ricardomartins_pagbank/connect_key CONSANDBOXCA0E5C9805C352E75F211CA87BF1EB
 bin/magento config:set --lock-env web/unsecure/base_url https://pagseguro-exemplo-m2.ricardomartins.net.br/
 bin/magento config:set --lock-env web/secure/base_url https://pagseguro-exemplo-m2.ricardomartins.net.br/
 bin/magento config:set --lock-env web/cookie/cookie_domain pagseguro-exemplo-m2.ricardomartins.net.br
