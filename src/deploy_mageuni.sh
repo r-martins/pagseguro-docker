@@ -18,7 +18,7 @@ mysql -u ricardo_user -p9erh74J5mfRvZrkZ -D magent1_db -e  "UPDATE core_config_d
 mysql -u ricardo_user -p9erh74J5mfRvZrkZ -D magent1_db -e  "INSERT INTO core_config_data (path, value) VALUES ('catalog/search/engine','elasticsearch7');"
 rm -rf vendor
 php -dmemory_limit=-1 ~/bin/composer.phar install --ignore-platform-reqs
-php -dmemory_limit=-1 ~/bin/composer.phar require ricardomartins/pagseguro ricardomartins/pagbank-magento2 --ignore-platform-reqs
+php -dmemory_limit=-1 ~/bin/composer.phar require ricardomartins/pagbank-magento2 --ignore-platform-reqs
 #git submodule update --recursive
 bin/magento setup:upgrade
 bin/magento deploy:mode:set --skip-compilation production
