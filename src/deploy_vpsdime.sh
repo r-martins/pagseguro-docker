@@ -24,7 +24,7 @@ bin/magento cache:flush 2>/dev/null || true
 
 rm -rf vendor
 /usr/bin/php8.3 -dmemory_limit=-1 /usr/local/bin/composer install --ignore-platform-reqs
-/usr/bin/php8.3 -dmemory_limit=-1 /usr/local/bin/composer require ricardomartins/pagbank-magento2 --ignore-platform-reqs
+/usr/bin/php8.3 -dmemory_limit=-1 /usr/local/bin/composer require ricardomartins/pagbank-magento2 --ignore-platform-reqs --no-cache
 #git submodule update --recursive
 /usr/bin/php8.3 bin/magento setup:upgrade
 bin/magento deploy:mode:set --skip-compilation production
