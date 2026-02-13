@@ -28,12 +28,14 @@ rm -rf vendor
 #git submodule update --recursive
 /usr/bin/php8.3 bin/magento setup:upgrade
 bin/magento deploy:mode:set --skip-compilation production
-bin/magento module:disable Magento_AdminNotification Klarna_KpGraphQl Klarna_Onsitemessaging Amazon_Core Klarna_Core Vertex_AddressValidation Magento_NewRelicReporting Magento_GoogleAnalytics Magento_GoogleAdwords Magento_Fedex Amazon_Login Amazon_Payment Klarna_Ordermanagement Magento_SwaggerWebapi Magento_SwaggerWebapiAsync Magento_Swagger Vertex_Tax Magento_GoogleOptimizer Klarna_Kp Magento_TwoFactorAuth Yotpo_Yotpo PayPal_Braintree
+bin/magento module:disable Magento_AdminNotification Magento_NewRelicReporting Magento_GoogleAnalytics Magento_GoogleAdwords Magento_Fedex Magento_SwaggerWebapi Magento_SwaggerWebapiAsync Magento_Swagger Magento_GoogleOptimizer Magento_TwoFactorAuth PayPal_Braintree
 bin/magento config:set --lock-env web/unsecure/base_url https://pagbank-exemplo-m2.pbintegracoes.com/
 bin/magento config:set --lock-env web/secure/base_url https://pagbank-exemplo-m2.pbintegracoes.com/
 bin/magento config:set --lock-env web/cookie/cookie_domain pagbank-exemplo-m2.pbintegracoes.com
 # Force update base URLs in all scopes (website/store) to avoid old values from dump
 mysql -u pagbank_m2 -ppagbank_m2_pass -D pagbank_m2 -e "UPDATE core_config_data SET value='https://pagbank-exemplo-m2.pbintegracoes.com/' WHERE path IN ('web/unsecure/base_url', 'web/secure/base_url');"
+# Replace {{MEDIA_URL}} placeholder in design/head/includes (dump has literal placeholder that isn't resolved)
+mysql -u pagbank_m2 -ppagbank_m2_pass -D pagbank_m2 -e "UPDATE core_config_data SET value = REPLACE(value, '{{MEDIA_URL}}', 'https://pagbank-exemplo-m2.pbintegracoes.com/media/') WHERE path = 'design/head/includes' AND value LIKE '%{{MEDIA_URL}}%';"
 bin/magento config:set --lock-env customer/address/street_lines 4
 bin/magento config:set --lock-env system/smtp/disable 1
 bin/magento config:set --lock-env admin/security/password_is_forced 0
