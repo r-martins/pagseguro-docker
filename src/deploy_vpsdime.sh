@@ -68,6 +68,10 @@ bin/magento setup:di:compile
 # Remove old static files to avoid wrong baseUrl in requirejs-config.js
 rm -rf pub/static/frontend pub/static/_cache pub/static/_requirejs
 bin/magento setup:static-content:deploy pt_BR en_US --force
+# Remove old product image cache (wrong version) so images use correct paths
+rm -rf pub/media/catalog/product/cache
+# Regenerate product images with correct cache version
+bin/magento catalog:images:resize -a
 bin/magento maintenance:disable
 bin/magento cache:enable
 # Reset OPcache (no sudo: clears CLI opcache; FPM workers keep their cache until restart)
