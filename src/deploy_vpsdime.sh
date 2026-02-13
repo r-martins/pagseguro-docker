@@ -32,6 +32,8 @@ bin/magento module:disable Magento_AdminNotification Magento_NewRelicReporting M
 bin/magento config:set --lock-env web/unsecure/base_url https://pagbank-exemplo-m2.pbintegracoes.com/
 bin/magento config:set --lock-env web/secure/base_url https://pagbank-exemplo-m2.pbintegracoes.com/
 bin/magento config:set --lock-env web/cookie/cookie_domain pagbank-exemplo-m2.pbintegracoes.com
+bin/magento config:set checkout/options/guest_checkout 1
+bin/magento config:set checkout/options/enable_guest_checkout_login 1
 # Force update base URLs in all scopes (website/store) to avoid old values from dump
 mysql -u pagbank_m2 -ppagbank_m2_pass -D pagbank_m2 -e "UPDATE core_config_data SET value='https://pagbank-exemplo-m2.pbintegracoes.com/' WHERE path IN ('web/unsecure/base_url', 'web/secure/base_url');"
 # Replace {{MEDIA_URL}} placeholder in design/head/includes (dump has literal placeholder that isn't resolved)
