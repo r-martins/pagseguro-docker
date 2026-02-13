@@ -35,7 +35,7 @@ CREATE TABLE `admin_adobe_ims_webapi` (
   UNIQUE KEY `ADMIN_ADOBE_IMS_WEBAPI_ACCESS_TOKEN_HASH` (`access_token_hash`),
   KEY `ADMIN_ADOBE_IMS_WEBAPI_ADMIN_USER_ID` (`admin_user_id`),
   CONSTRAINT `ADMIN_ADOBE_IMS_WEBAPI_ADMIN_USER_ID_ADMIN_USER_USER_ID` FOREIGN KEY (`admin_user_id`) REFERENCES `admin_user` (`user_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Admin Adobe IMS Webapi';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Admin Adobe IMS Webapi';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -59,7 +59,7 @@ CREATE TABLE `admin_analytics_usage_version_log` (
   `last_viewed_in_version` varchar(50) NOT NULL COMMENT 'Viewer last viewed on product version',
   PRIMARY KEY (`id`),
   UNIQUE KEY `ADMIN_ANALYTICS_USAGE_VERSION_LOG_LAST_VIEWED_IN_VERSION` (`last_viewed_in_version`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Admin Notification Viewer Log Table';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Admin Notification Viewer Log Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -89,7 +89,7 @@ CREATE TABLE `admin_passwords` (
   PRIMARY KEY (`password_id`),
   KEY `ADMIN_PASSWORDS_USER_ID` (`user_id`),
   CONSTRAINT `ADMIN_PASSWORDS_USER_ID_ADMIN_USER_USER_ID` FOREIGN KEY (`user_id`) REFERENCES `admin_user` (`user_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Admin Passwords';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Admin Passwords';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,7 +121,7 @@ CREATE TABLE `admin_system_messages` (
   `severity` smallint(5) unsigned NOT NULL DEFAULT 0 COMMENT 'Problem type',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Create date',
   PRIMARY KEY (`identity`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Admin System Messages';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Admin System Messages';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -162,10 +162,10 @@ CREATE TABLE `admin_user` (
   `failures_num` smallint(6) DEFAULT 0 COMMENT 'Failure Number',
   `first_failure` timestamp NULL DEFAULT NULL COMMENT 'First Failure',
   `lock_expires` timestamp NULL DEFAULT NULL COMMENT 'Expiration Lock Dates',
-  `refresh_token` text DEFAULT NULL COMMENT 'Email connector refresh token',
+  `refresh_token` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'Email connector refresh token',
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `ADMIN_USER_USERNAME` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Admin User Table';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Admin User Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,7 +175,7 @@ CREATE TABLE `admin_user` (
 LOCK TABLES `admin_user` WRITE;
 /*!40000 ALTER TABLE `admin_user` DISABLE KEYS */;
 INSERT INTO `admin_user` VALUES
-(1,'Magenteiro','Admin','admin@provedor.com','martins','eda8d58169c42e298c2cdee00465ad4381329febdd025f0661c4de337a035a49:RY4l1TS8U4q6ZTgfxHrTL7IU28ib6KQX:3_32_2_67108864','2020-07-29 06:11:06','2025-11-10 22:25:14','2025-11-10 22:25:14',32,0,1,'{\"configState\":{\"catalog_search\":\"1\",\"general_country\":\"1\",\"general_region\":\"1\",\"general_locale\":\"1\",\"general_store_information\":\"1\",\"general_single_store_mode\":\"1\",\"web_seo\":\"1\",\"currency_options\":\"1\",\"recaptcha_backend_type_recaptcha_v3\":\"1\",\"login_as_customer_general\":\"1\",\"dev_debug\":\"1\",\"dev_front_end_development_workflow\":\"1\",\"dev_restrict\":\"1\",\"dev_css\":\"1\",\"dev_js\":\"1\",\"dev_translate_inline\":\"1\",\"dev_template\":\"1\",\"dev_caching\":\"1\",\"dev_static\":\"1\",\"dev_grid\":\"1\",\"dev_image\":\"1\",\"system_smtp\":\"1\",\"system_currency\":\"1\",\"system_full_page_cache\":\"1\",\"system_media_gallery\":\"1\",\"system_upload_configuration\":\"1\",\"system_media_storage_configuration\":\"0\",\"system_adminnotification\":\"1\",\"system_backup\":\"1\",\"system_cron\":\"1\",\"system_mysqlmq\":\"1\",\"admin_emails\":\"1\",\"admin_startup\":\"1\",\"admin_url\":\"1\",\"admin_security\":\"1\",\"admin_dashboard\":\"1\",\"admin_captcha\":\"1\",\"admin_usage\":\"1\",\"brazilcustomerattributes_general\":\"1\",\"brazilcustomerattributes_cpf\":\"1\",\"brazilcustomerattributes_cnpj\":\"1\",\"customer_startup\":\"1\",\"customer_address_templates\":\"1\",\"customer_address\":\"1\",\"customer_online_customers\":\"0\",\"customer_create_account\":\"0\",\"customer_password\":\"0\",\"customer_account_information\":\"0\",\"customer_captcha\":\"0\",\"checkout_options\":\"1\",\"analytics_general\":\"1\",\"newrelicreporting_general\":\"1\",\"newrelicreporting_cron\":\"1\",\"reports_dashboard\":\"1\",\"reports_options\":\"1\",\"checkout_cart\":\"0\",\"checkout_cart_link\":\"0\",\"checkout_sidebar\":\"0\",\"checkout_payment_failed\":\"0\",\"web_unsecure\":\"1\",\"web_secure\":\"1\",\"web_session\":\"1\",\"web_url\":\"0\",\"web_default\":\"1\",\"web_default_layouts\":\"1\",\"web_cookie\":\"1\",\"web_browser_capabilities\":\"0\",\"carriers_imaginationmedia_correios\":\"1\",\"carriers_instore\":\"1\",\"carriers_tablerate\":\"1\",\"carriers_flatrate\":\"0\",\"carriers_freeshipping\":\"0\",\"carriers_ups\":\"0\",\"carriers_usps\":\"0\",\"carriers_fedex\":\"0\",\"carriers_dhl\":\"0\",\"shipping_origin\":\"1\",\"shipping_shipping_policy\":\"1\",\"payment_other_rm_pagseguro\":\"1\",\"payment_other_rm_pagseguro_boleto\":\"1\",\"payment_other_rm_pagseguro_cc\":\"1\",\"payment_other_rm_pagseguro_tef\":\"1\",\"payment_other_rm_pagseguro_pagar_no_pagseguro\":\"1\",\"payment_other_account\":\"1\",\"payment_other_recommended_solutions\":\"1\",\"payment_other_express_checkout_other\":\"0\",\"payment_other_other_paypal_payment_solutions\":\"1\",\"payment_other_paypal_group_all_in_one\":\"1\",\"payment_other_other_payment_methods\":\"1\",\"payment_other_klarna_section\":\"0\",\"payment_other_amazon_payment\":\"0\",\"payment_other_checkmo\":\"0\",\"payment_other_cashondelivery\":\"0\",\"payment_other_banktransfer\":\"0\",\"payment_other_free\":\"0\",\"payment_other_purchaseorder\":\"0\",\"yotpo_sync_settings\":\"1\",\"yotpo_settings\":\"1\",\"yotpo_widget_settings\":\"0\",\"connector_developer_settings_sync_settings\":\"1\",\"magento_securitytxt_securitytxt_general\":\"1\",\"magento_securitytxt_securitytxt_contact_information\":\"1\",\"magento_securitytxt_securitytxt_other_information\":\"1\",\"smtp_general\":\"1\",\"smtp_configuration_option\":\"1\",\"smtp_abandoned_cart\":\"1\",\"smtp_developer\":\"1\",\"smtp_module\":\"1\",\"catalog_frontend\":\"1\",\"catalog_placeholder\":\"1\",\"google_analytics\":\"1\",\"google_adwords\":\"0\",\"payment_other_ricardomartins_pagbank\":\"1\"}}',NULL,NULL,'pt_BR',0,NULL,NULL,NULL),
+(1,'Magenteiro','Admin','admin@provedor.com','martins','eda8d58169c42e298c2cdee00465ad4381329febdd025f0661c4de337a035a49:RY4l1TS8U4q6ZTgfxHrTL7IU28ib6KQX:3_32_2_67108864','2020-07-29 06:11:06','2026-02-13 00:52:11','2026-02-13 00:52:11',34,0,1,'{\"configState\":{\"catalog_search\":\"1\",\"general_country\":\"1\",\"general_region\":\"1\",\"general_locale\":\"1\",\"general_store_information\":\"1\",\"general_single_store_mode\":\"1\",\"web_seo\":\"1\",\"currency_options\":\"1\",\"recaptcha_backend_type_recaptcha_v3\":\"1\",\"login_as_customer_general\":\"1\",\"dev_debug\":\"1\",\"dev_front_end_development_workflow\":\"1\",\"dev_restrict\":\"1\",\"dev_css\":\"1\",\"dev_js\":\"1\",\"dev_translate_inline\":\"1\",\"dev_template\":\"1\",\"dev_caching\":\"1\",\"dev_static\":\"1\",\"dev_grid\":\"1\",\"dev_image\":\"1\",\"system_smtp\":\"1\",\"system_currency\":\"1\",\"system_full_page_cache\":\"1\",\"system_media_gallery\":\"1\",\"system_upload_configuration\":\"1\",\"system_media_storage_configuration\":\"0\",\"system_adminnotification\":\"1\",\"system_backup\":\"1\",\"system_cron\":\"1\",\"system_mysqlmq\":\"1\",\"admin_emails\":\"1\",\"admin_startup\":\"1\",\"admin_url\":\"1\",\"admin_security\":\"1\",\"admin_dashboard\":\"1\",\"admin_captcha\":\"1\",\"admin_usage\":\"1\",\"brazilcustomerattributes_general\":\"1\",\"brazilcustomerattributes_cpf\":\"1\",\"brazilcustomerattributes_cnpj\":\"1\",\"customer_startup\":\"1\",\"customer_address_templates\":\"1\",\"customer_address\":\"1\",\"customer_online_customers\":\"0\",\"customer_create_account\":\"0\",\"customer_password\":\"0\",\"customer_account_information\":\"0\",\"customer_captcha\":\"0\",\"checkout_options\":\"1\",\"analytics_general\":\"1\",\"newrelicreporting_general\":\"1\",\"newrelicreporting_cron\":\"1\",\"reports_dashboard\":\"1\",\"reports_options\":\"1\",\"checkout_cart\":\"0\",\"checkout_cart_link\":\"0\",\"checkout_sidebar\":\"0\",\"checkout_payment_failed\":\"0\",\"web_unsecure\":\"1\",\"web_secure\":\"1\",\"web_session\":\"1\",\"web_url\":\"0\",\"web_default\":\"1\",\"web_default_layouts\":\"1\",\"web_cookie\":\"1\",\"web_browser_capabilities\":\"0\",\"carriers_imaginationmedia_correios\":\"1\",\"carriers_instore\":\"1\",\"carriers_tablerate\":\"1\",\"carriers_flatrate\":\"0\",\"carriers_freeshipping\":\"0\",\"carriers_ups\":\"0\",\"carriers_usps\":\"0\",\"carriers_fedex\":\"0\",\"carriers_dhl\":\"0\",\"shipping_origin\":\"1\",\"shipping_shipping_policy\":\"1\",\"payment_other_rm_pagseguro\":\"1\",\"payment_other_rm_pagseguro_boleto\":\"1\",\"payment_other_rm_pagseguro_cc\":\"1\",\"payment_other_rm_pagseguro_tef\":\"1\",\"payment_other_rm_pagseguro_pagar_no_pagseguro\":\"1\",\"payment_other_account\":\"1\",\"payment_other_recommended_solutions\":\"1\",\"payment_other_express_checkout_other\":\"0\",\"payment_other_other_paypal_payment_solutions\":\"1\",\"payment_other_paypal_group_all_in_one\":\"1\",\"payment_other_other_payment_methods\":\"1\",\"payment_other_klarna_section\":\"0\",\"payment_other_amazon_payment\":\"0\",\"payment_other_checkmo\":\"0\",\"payment_other_cashondelivery\":\"0\",\"payment_other_banktransfer\":\"0\",\"payment_other_free\":\"0\",\"payment_other_purchaseorder\":\"0\",\"yotpo_sync_settings\":\"1\",\"yotpo_settings\":\"1\",\"yotpo_widget_settings\":\"0\",\"connector_developer_settings_sync_settings\":\"1\",\"magento_securitytxt_securitytxt_general\":\"1\",\"magento_securitytxt_securitytxt_contact_information\":\"1\",\"magento_securitytxt_securitytxt_other_information\":\"1\",\"smtp_general\":\"1\",\"smtp_configuration_option\":\"1\",\"smtp_abandoned_cart\":\"1\",\"smtp_developer\":\"1\",\"smtp_module\":\"1\",\"catalog_frontend\":\"1\",\"catalog_placeholder\":\"1\",\"google_analytics\":\"1\",\"google_adwords\":\"0\",\"payment_other_ricardomartins_pagbank\":\"1\"}}',NULL,NULL,'pt_BR',0,NULL,NULL,NULL),
 (2,'Demo','Pagseguro','demo@example.com','demo','09fed039b7726fa89f7cea2eeeab5c86b38ca8be12916ba85e001e185ba0ab92:5CQhKs2TkJ98OGU6:2','2020-12-15 03:50:30','2020-12-15 05:30:09',NULL,0,1,1,'null',NULL,NULL,'pt_BR',0,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `admin_user` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -192,7 +192,7 @@ CREATE TABLE `admin_user_expiration` (
   `expires_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'User Expiration Date',
   PRIMARY KEY (`user_id`),
   CONSTRAINT `ADMIN_USER_EXPIRATION_USER_ID_ADMIN_USER_USER_ID` FOREIGN KEY (`user_id`) REFERENCES `admin_user` (`user_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Admin User expiration dates table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Admin User expiration dates table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -223,7 +223,7 @@ CREATE TABLE `admin_user_session` (
   KEY `ADMIN_USER_SESSION_SESSION_ID` (`session_id`),
   KEY `ADMIN_USER_SESSION_USER_ID` (`user_id`),
   CONSTRAINT `ADMIN_USER_SESSION_USER_ID_ADMIN_USER_USER_ID` FOREIGN KEY (`user_id`) REFERENCES `admin_user` (`user_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Admin User sessions table';
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Admin User sessions table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -251,7 +251,9 @@ INSERT INTO `admin_user_session` VALUES
 (27,NULL,1,2,'2023-07-04 01:30:24','2023-07-04 01:45:32','172.24.0.1'),
 (28,NULL,1,1,'2023-07-04 01:45:32','2023-07-04 03:05:49','172.24.0.1'),
 (29,NULL,1,1,'2025-04-15 01:26:36','2025-04-15 02:10:19','192.168.65.1'),
-(30,NULL,1,1,'2025-11-10 22:25:14','2025-11-10 22:25:52','192.168.65.1');
+(30,NULL,1,1,'2025-11-10 22:25:14','2025-11-10 22:31:07','192.168.65.1'),
+(31,NULL,1,1,'2026-02-12 04:08:52','2026-02-12 04:08:52','192.168.65.1'),
+(32,NULL,1,1,'2026-02-13 00:52:11','2026-02-13 00:55:29','192.168.65.1');
 /*!40000 ALTER TABLE `admin_user_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -275,7 +277,7 @@ CREATE TABLE `adminnotification_inbox` (
   KEY `ADMINNOTIFICATION_INBOX_SEVERITY` (`severity`),
   KEY `ADMINNOTIFICATION_INBOX_IS_READ` (`is_read`),
   KEY `ADMINNOTIFICATION_INBOX_IS_REMOVE` (`is_remove`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Adminnotification Inbox';
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Adminnotification Inbox';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -328,7 +330,7 @@ CREATE TABLE `adobe_stock_asset` (
   CONSTRAINT `ADOBE_STOCK_ASSET_CATEGORY_ID_ADOBE_STOCK_CATEGORY_ID` FOREIGN KEY (`category_id`) REFERENCES `adobe_stock_category` (`id`) ON DELETE SET NULL,
   CONSTRAINT `ADOBE_STOCK_ASSET_CREATOR_ID_ADOBE_STOCK_CREATOR_ID` FOREIGN KEY (`creator_id`) REFERENCES `adobe_stock_creator` (`id`) ON DELETE SET NULL,
   CONSTRAINT `ADOBE_STOCK_ASSET_MEDIA_GALLERY_ID_MEDIA_GALLERY_ASSET_ID` FOREIGN KEY (`media_gallery_id`) REFERENCES `media_gallery_asset` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Adobe Stock Asset';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Adobe Stock Asset';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -352,7 +354,7 @@ CREATE TABLE `adobe_stock_category` (
   `name` varchar(255) DEFAULT NULL COMMENT 'Name',
   PRIMARY KEY (`id`),
   KEY `ADOBE_STOCK_CATEGORY_ID` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Adobe Stock Category';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Adobe Stock Category';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -376,7 +378,7 @@ CREATE TABLE `adobe_stock_creator` (
   `name` varchar(255) DEFAULT NULL COMMENT 'Asset creator''s name',
   PRIMARY KEY (`id`),
   KEY `ADOBE_STOCK_CREATOR_ID` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Adobe Stock Creator';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Adobe Stock Creator';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -412,7 +414,7 @@ CREATE TABLE `adobe_user_profile` (
   KEY `ADOBE_USER_PROFILE_ID` (`id`),
   KEY `ADOBE_USER_PROFILE_ADMIN_USER_ID` (`admin_user_id`),
   CONSTRAINT `ADOBE_USER_PROFILE_ADMIN_USER_ID_ADMIN_USER_USER_ID` FOREIGN KEY (`admin_user_id`) REFERENCES `admin_user` (`user_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Adobe IMS User Profile';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Adobe IMS User Profile';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -609,7 +611,7 @@ CREATE TABLE `authorization_role` (
   PRIMARY KEY (`role_id`),
   KEY `AUTHORIZATION_ROLE_PARENT_ID_SORT_ORDER` (`parent_id`,`sort_order`),
   KEY `AUTHORIZATION_ROLE_TREE_LEVEL` (`tree_level`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Admin Role Table';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Admin Role Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -644,7 +646,7 @@ CREATE TABLE `authorization_rule` (
   KEY `AUTHORIZATION_RULE_RESOURCE_ID_ROLE_ID` (`resource_id`,`role_id`),
   KEY `AUTHORIZATION_RULE_ROLE_ID_RESOURCE_ID` (`role_id`,`resource_id`),
   CONSTRAINT `AUTHORIZATION_RULE_ROLE_ID_AUTHORIZATION_ROLE_ROLE_ID` FOREIGN KEY (`role_id`) REFERENCES `authorization_role` (`role_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7587 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Admin Rule Table';
+) ENGINE=InnoDB AUTO_INCREMENT=7587 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Admin Rule Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1222,62 +1224,6 @@ INSERT INTO `authorization_rule` VALUES
 UNLOCK TABLES;
 
 --
--- Table structure for table `braintree_credit_prices`
---
-
-DROP TABLE IF EXISTS `braintree_credit_prices`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `braintree_credit_prices` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Row ID',
-  `product_id` int(10) unsigned NOT NULL COMMENT 'Product Id',
-  `term` int(11) NOT NULL COMMENT 'Credit Term',
-  `monthly_payment` decimal(12,2) NOT NULL COMMENT 'Monthly Payment',
-  `instalment_rate` decimal(12,2) NOT NULL COMMENT 'Instalment Rate',
-  `cost_of_purchase` decimal(12,2) NOT NULL COMMENT 'Cost of purchase',
-  `total_inc_interest` decimal(12,2) NOT NULL COMMENT 'Total Inc Interest',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `BRAINTREE_CREDIT_PRICES_PRODUCT_ID_TERM` (`product_id`,`term`),
-  KEY `BRAINTREE_CREDIT_PRICES_PRODUCT_ID` (`product_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Braintree credit rates';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `braintree_credit_prices`
---
-
-LOCK TABLES `braintree_credit_prices` WRITE;
-/*!40000 ALTER TABLE `braintree_credit_prices` DISABLE KEYS */;
-/*!40000 ALTER TABLE `braintree_credit_prices` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `braintree_transaction_details`
---
-
-DROP TABLE IF EXISTS `braintree_transaction_details`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `braintree_transaction_details` (
-  `entity_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Entity ID',
-  `order_id` int(10) unsigned NOT NULL COMMENT 'Order Id',
-  `transaction_source` varchar(12) DEFAULT NULL COMMENT 'Transaction Source',
-  PRIMARY KEY (`entity_id`),
-  KEY `BRAINTREE_TRANSACTION_DETAILS_ORDER_ID` (`order_id`),
-  CONSTRAINT `BRAINTREE_TRANSACTION_DETAILS_ORDER_ID_SALES_ORDER_ENTITY_ID` FOREIGN KEY (`order_id`) REFERENCES `sales_order` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Braintree transaction details table';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `braintree_transaction_details`
---
-
-LOCK TABLES `braintree_transaction_details` WRITE;
-/*!40000 ALTER TABLE `braintree_transaction_details` DISABLE KEYS */;
-/*!40000 ALTER TABLE `braintree_transaction_details` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `cache`
 --
 
@@ -1285,14 +1231,14 @@ DROP TABLE IF EXISTS `cache`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cache` (
-  `id` varchar(200) NOT NULL COMMENT 'Cache Id',
+  `id` varchar(200) NOT NULL,
   `data` mediumblob DEFAULT NULL COMMENT 'Cache Data',
   `create_time` int(11) DEFAULT NULL COMMENT 'Cache Creation Time',
   `update_time` int(11) DEFAULT NULL COMMENT 'Time of Cache Updating',
   `expire_time` int(11) DEFAULT NULL COMMENT 'Cache Expiration Time',
   PRIMARY KEY (`id`),
   KEY `CACHE_EXPIRE_TIME` (`expire_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Caches';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Caches';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1312,11 +1258,11 @@ DROP TABLE IF EXISTS `cache_tag`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cache_tag` (
-  `tag` varchar(100) NOT NULL COMMENT 'Tag',
-  `cache_id` varchar(200) NOT NULL COMMENT 'Cache Id',
+  `tag` varchar(100) NOT NULL,
+  `cache_id` varchar(200) NOT NULL,
   PRIMARY KEY (`tag`,`cache_id`),
   KEY `CACHE_TAG_CACHE_ID` (`cache_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Tag Caches';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Tag Caches';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1341,7 +1287,7 @@ CREATE TABLE `captcha_log` (
   `count` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'Count',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Update Time',
   PRIMARY KEY (`type`,`value`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Count Login Attempts';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Count Login Attempts';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1373,7 +1319,7 @@ CREATE TABLE `catalog_category_entity` (
   PRIMARY KEY (`entity_id`),
   KEY `CATALOG_CATEGORY_ENTITY_LEVEL` (`level`),
   KEY `CATALOG_CATEGORY_ENTITY_PATH` (`path`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Category Table';
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Category Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1448,7 +1394,7 @@ CREATE TABLE `catalog_category_entity_datetime` (
   CONSTRAINT `CATALOG_CATEGORY_ENTITY_DATETIME_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_CTGR_ENTT_DTIME_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_CTGR_ENTT_DTIME_ENTT_ID_CAT_CTGR_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_category_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Category Datetime Attribute Backend Table';
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Category Datetime Attribute Backend Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1536,7 +1482,7 @@ CREATE TABLE `catalog_category_entity_decimal` (
   CONSTRAINT `CATALOG_CATEGORY_ENTITY_DECIMAL_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_CTGR_ENTT_DEC_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_CTGR_ENTT_DEC_ENTT_ID_CAT_CTGR_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_category_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Category Decimal Attribute Backend Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Category Decimal Attribute Backend Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1569,7 +1515,7 @@ CREATE TABLE `catalog_category_entity_int` (
   CONSTRAINT `CATALOG_CATEGORY_ENTITY_INT_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_CTGR_ENTT_INT_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_CTGR_ENTT_INT_ENTT_ID_CAT_CTGR_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_category_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=204 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Category Integer Attribute Backend Table';
+) ENGINE=InnoDB AUTO_INCREMENT=204 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Category Integer Attribute Backend Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1806,7 +1752,7 @@ CREATE TABLE `catalog_category_entity_text` (
   CONSTRAINT `CATALOG_CATEGORY_ENTITY_TEXT_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_CTGR_ENTT_TEXT_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_CTGR_ENTT_TEXT_ENTT_ID_CAT_CTGR_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_category_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Category Text Attribute Backend Table';
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Category Text Attribute Backend Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1921,7 +1867,7 @@ CREATE TABLE `catalog_category_entity_varchar` (
   CONSTRAINT `CATALOG_CATEGORY_ENTITY_VARCHAR_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_CTGR_ENTT_VCHR_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_CTGR_ENTT_VCHR_ENTT_ID_CAT_CTGR_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_category_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=290 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Category Varchar Attribute Backend Table';
+) ENGINE=InnoDB AUTO_INCREMENT=290 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Category Varchar Attribute Backend Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2315,7 +2261,7 @@ CREATE TABLE `catalog_category_product` (
   KEY `CATALOG_CATEGORY_PRODUCT_PRODUCT_ID` (`product_id`),
   CONSTRAINT `CAT_CTGR_PRD_CTGR_ID_CAT_CTGR_ENTT_ENTT_ID` FOREIGN KEY (`category_id`) REFERENCES `catalog_category_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_CTGR_PRD_PRD_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5223 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product To Category Linkage Table';
+) ENGINE=InnoDB AUTO_INCREMENT=5223 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product To Category Linkage Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7561,7 +7507,7 @@ CREATE TABLE `catalog_category_product_index` (
   PRIMARY KEY (`category_id`,`product_id`,`store_id`),
   KEY `CAT_CTGR_PRD_IDX_PRD_ID_STORE_ID_CTGR_ID_VISIBILITY` (`product_id`,`store_id`,`category_id`,`visibility`),
   KEY `CAT_CTGR_PRD_IDX_STORE_ID_CTGR_ID_VISIBILITY_IS_PARENT_POSITION` (`store_id`,`category_id`,`visibility`,`is_parent`,`position`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Category Product Index';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Category Product Index';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7590,7 +7536,7 @@ CREATE TABLE `catalog_category_product_index_replica` (
   PRIMARY KEY (`category_id`,`product_id`,`store_id`),
   KEY `CAT_CTGR_PRD_IDX_PRD_ID_STORE_ID_CTGR_ID_VISIBILITY` (`product_id`,`store_id`,`category_id`,`visibility`),
   KEY `CAT_CTGR_PRD_IDX_STORE_ID_CTGR_ID_VISIBILITY_IS_PARENT_POSITION` (`store_id`,`category_id`,`visibility`,`is_parent`,`position`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Category Product Index';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Category Product Index';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9200,7 +9146,7 @@ CREATE TABLE `catalog_category_product_index_tmp` (
   `visibility` smallint(5) unsigned NOT NULL COMMENT 'Visibility',
   PRIMARY KEY (`category_id`,`product_id`,`store_id`),
   KEY `CAT_CTGR_PRD_IDX_TMP_PRD_ID_CTGR_ID_STORE_ID` (`product_id`,`category_id`,`store_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Category Product Indexer temporary table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Category Product Indexer temporary table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9236,7 +9182,7 @@ CREATE TABLE `catalog_compare_item` (
   CONSTRAINT `CATALOG_COMPARE_ITEM_LIST_ID_CATALOG_COMPARE_LIST_LIST_ID` FOREIGN KEY (`list_id`) REFERENCES `catalog_compare_list` (`list_id`) ON DELETE CASCADE,
   CONSTRAINT `CATALOG_COMPARE_ITEM_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `CATALOG_COMPARE_ITEM_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Compare Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Compare Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9263,7 +9209,7 @@ CREATE TABLE `catalog_compare_list` (
   UNIQUE KEY `CATALOG_COMPARE_LIST_CUSTOMER_ID` (`customer_id`),
   KEY `CATALOG_COMPARE_LIST_LIST_ID_MASK` (`list_id_mask`),
   CONSTRAINT `CATALOG_COMPARE_LIST_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Compare List with hash Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Compare List with hash Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9312,7 +9258,7 @@ CREATE TABLE `catalog_eav_attribute` (
   KEY `CATALOG_EAV_ATTRIBUTE_USED_FOR_SORT_BY` (`used_for_sort_by`),
   KEY `CATALOG_EAV_ATTRIBUTE_USED_IN_PRODUCT_LISTING` (`used_in_product_listing`),
   CONSTRAINT `CATALOG_EAV_ATTRIBUTE_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog EAV Attribute Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog EAV Attribute Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9458,7 +9404,7 @@ CREATE TABLE `catalog_product_bundle_option` (
   PRIMARY KEY (`option_id`),
   KEY `CATALOG_PRODUCT_BUNDLE_OPTION_PARENT_ID` (`parent_id`),
   CONSTRAINT `CAT_PRD_BNDL_OPT_PARENT_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`parent_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Bundle Option';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Bundle Option';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9491,7 +9437,7 @@ CREATE TABLE `catalog_product_bundle_option_value` (
   PRIMARY KEY (`value_id`),
   UNIQUE KEY `CAT_PRD_BNDL_OPT_VAL_OPT_ID_PARENT_PRD_ID_STORE_ID` (`option_id`,`parent_product_id`,`store_id`),
   CONSTRAINT `CAT_PRD_BNDL_OPT_VAL_OPT_ID_CAT_PRD_BNDL_OPT_OPT_ID` FOREIGN KEY (`option_id`) REFERENCES `catalog_product_bundle_option` (`option_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Bundle Option Value';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Bundle Option Value';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9527,7 +9473,7 @@ CREATE TABLE `catalog_product_bundle_price_index` (
   CONSTRAINT `CAT_PRD_BNDL_PRICE_IDX_CSTR_GROUP_ID_CSTR_GROUP_CSTR_GROUP_ID` FOREIGN KEY (`customer_group_id`) REFERENCES `customer_group` (`customer_group_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_BNDL_PRICE_IDX_ENTT_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_BNDL_PRICE_IDX_WS_ID_STORE_WS_WS_ID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Bundle Price Index';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Bundle Price Index';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9562,7 +9508,7 @@ CREATE TABLE `catalog_product_bundle_selection` (
   KEY `CATALOG_PRODUCT_BUNDLE_SELECTION_PRODUCT_ID` (`product_id`),
   CONSTRAINT `CAT_PRD_BNDL_SELECTION_OPT_ID_CAT_PRD_BNDL_OPT_OPT_ID` FOREIGN KEY (`option_id`) REFERENCES `catalog_product_bundle_option` (`option_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_BNDL_SELECTION_PRD_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Bundle Selection';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Bundle Selection';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9600,7 +9546,7 @@ CREATE TABLE `catalog_product_bundle_selection_price` (
   KEY `CATALOG_PRODUCT_BUNDLE_SELECTION_PRICE_WEBSITE_ID` (`website_id`),
   CONSTRAINT `CAT_PRD_BNDL_SELECTION_PRICE_WS_ID_STORE_WS_WS_ID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE CASCADE,
   CONSTRAINT `FK_DCF37523AA05D770A70AA4ED7C2616E4` FOREIGN KEY (`selection_id`) REFERENCES `catalog_product_bundle_selection` (`selection_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Bundle Selection Price';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Bundle Selection Price';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9626,7 +9572,7 @@ CREATE TABLE `catalog_product_bundle_stock_index` (
   `option_id` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'Option ID',
   `stock_status` smallint(6) DEFAULT 0 COMMENT 'Stock Status',
   PRIMARY KEY (`entity_id`,`website_id`,`stock_id`,`option_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Bundle Stock Index';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Bundle Stock Index';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9657,7 +9603,7 @@ CREATE TABLE `catalog_product_entity` (
   PRIMARY KEY (`entity_id`),
   KEY `CATALOG_PRODUCT_ENTITY_ATTRIBUTE_SET_ID` (`attribute_set_id`),
   KEY `CATALOG_PRODUCT_ENTITY_SKU` (`sku`)
-) ENGINE=InnoDB AUTO_INCREMENT=2047 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Table';
+) ENGINE=InnoDB AUTO_INCREMENT=2047 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -11736,7 +11682,7 @@ CREATE TABLE `catalog_product_entity_datetime` (
   CONSTRAINT `CATALOG_PRODUCT_ENTITY_DATETIME_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_DTIME_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_DTIME_ENTT_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Datetime Attribute Backend Table';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Datetime Attribute Backend Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -11763,7 +11709,7 @@ DROP TABLE IF EXISTS `catalog_product_entity_decimal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `catalog_product_entity_decimal` (
-  `value_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Value ID',
+  `value_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Value ID',
   `attribute_id` smallint(5) unsigned NOT NULL DEFAULT 0 COMMENT 'Attribute ID',
   `store_id` smallint(5) unsigned NOT NULL DEFAULT 0 COMMENT 'Store ID',
   `entity_id` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'Entity ID',
@@ -11775,7 +11721,7 @@ CREATE TABLE `catalog_product_entity_decimal` (
   CONSTRAINT `CATALOG_PRODUCT_ENTITY_DECIMAL_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_DEC_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_DEC_ENTT_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3927 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Decimal Attribute Backend Table';
+) ENGINE=InnoDB AUTO_INCREMENT=3927 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Decimal Attribute Backend Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -15735,7 +15681,7 @@ CREATE TABLE `catalog_product_entity_gallery` (
   CONSTRAINT `CATALOG_PRODUCT_ENTITY_GALLERY_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_GLR_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_GLR_ENTT_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Gallery Attribute Backend Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Gallery Attribute Backend Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -15768,7 +15714,7 @@ CREATE TABLE `catalog_product_entity_int` (
   CONSTRAINT `CATALOG_PRODUCT_ENTITY_INT_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_INT_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_INT_ENTT_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=14863 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Integer Attribute Backend Table';
+) ENGINE=InnoDB AUTO_INCREMENT=14863 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Integer Attribute Backend Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -30599,7 +30545,7 @@ CREATE TABLE `catalog_product_entity_media_gallery` (
   PRIMARY KEY (`value_id`),
   KEY `CATALOG_PRODUCT_ENTITY_MEDIA_GALLERY_ATTRIBUTE_ID` (`attribute_id`),
   CONSTRAINT `CAT_PRD_ENTT_MDA_GLR_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3423 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Media Gallery Attribute Backend Table';
+) ENGINE=InnoDB AUTO_INCREMENT=3423 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Media Gallery Attribute Backend Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -34057,7 +34003,7 @@ CREATE TABLE `catalog_product_entity_media_gallery_value` (
   CONSTRAINT `CAT_PRD_ENTT_MDA_GLR_VAL_ENTT_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_MDA_GLR_VAL_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_MDA_GLR_VAL_VAL_ID_CAT_PRD_ENTT_MDA_GLR_VAL_ID` FOREIGN KEY (`value_id`) REFERENCES `catalog_product_entity_media_gallery` (`value_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3433 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Media Gallery Attribute Value Table';
+) ENGINE=InnoDB AUTO_INCREMENT=3433 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Media Gallery Attribute Value Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37506,7 +37452,7 @@ CREATE TABLE `catalog_product_entity_media_gallery_value_to_entity` (
   KEY `CAT_PRD_ENTT_MDA_GLR_VAL_TO_ENTT_ENTT_ID_CAT_PRD_ENTT_ENTT_ID` (`entity_id`),
   CONSTRAINT `CAT_PRD_ENTT_MDA_GLR_VAL_TO_ENTT_ENTT_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `FK_A6C6C8FAA386736921D3A7C4B50B1185` FOREIGN KEY (`value_id`) REFERENCES `catalog_product_entity_media_gallery` (`value_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Link Media value to Product entity table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Link Media value to Product entity table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40960,7 +40906,7 @@ CREATE TABLE `catalog_product_entity_media_gallery_value_video` (
   KEY `CAT_PRD_ENTT_MDA_GLR_VAL_VIDEO_STORE_ID_STORE_STORE_ID` (`store_id`),
   CONSTRAINT `CAT_PRD_ENTT_MDA_GLR_VAL_VIDEO_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `FK_6FDF205946906B0E653E60AA769899F8` FOREIGN KEY (`value_id`) REFERENCES `catalog_product_entity_media_gallery` (`value_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Video Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Video Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40992,7 +40938,7 @@ CREATE TABLE `catalog_product_entity_text` (
   CONSTRAINT `CATALOG_PRODUCT_ENTITY_TEXT_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_TEXT_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_TEXT_ENTT_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9028 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Text Attribute Backend Table';
+) ENGINE=InnoDB AUTO_INCREMENT=9028 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Text Attribute Backend Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45899,7 +45845,7 @@ CREATE TABLE `catalog_product_entity_tier_price` (
   CONSTRAINT `CAT_PRD_ENTT_TIER_PRICE_CSTR_GROUP_ID_CSTR_GROUP_CSTR_GROUP_ID` FOREIGN KEY (`customer_group_id`) REFERENCES `customer_group` (`customer_group_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_TIER_PRICE_ENTT_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_TIER_PRICE_WS_ID_STORE_WS_WS_ID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Tier Price Attribute Backend Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Tier Price Attribute Backend Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45931,7 +45877,7 @@ CREATE TABLE `catalog_product_entity_varchar` (
   CONSTRAINT `CATALOG_PRODUCT_ENTITY_VARCHAR_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_VCHR_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_VCHR_ENTT_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=15163 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Varchar Attribute Backend Table';
+) ENGINE=InnoDB AUTO_INCREMENT=15163 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Varchar Attribute Backend Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -62481,7 +62427,7 @@ CREATE TABLE `catalog_product_frontend_action` (
   KEY `CAT_PRD_FRONTEND_ACTION_PRD_ID_CAT_PRD_ENTT_ENTT_ID` (`product_id`),
   CONSTRAINT `CAT_PRD_FRONTEND_ACTION_CSTR_ID_CSTR_ENTT_ENTT_ID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_FRONTEND_ACTION_PRD_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Frontend Action Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Frontend Action Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -62510,7 +62456,7 @@ CREATE TABLE `catalog_product_index_eav` (
   KEY `CATALOG_PRODUCT_INDEX_EAV_ATTRIBUTE_ID` (`attribute_id`),
   KEY `CATALOG_PRODUCT_INDEX_EAV_STORE_ID` (`store_id`),
   KEY `CATALOG_PRODUCT_INDEX_EAV_VALUE` (`value`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product EAV Index Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product EAV Index Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70897,7 +70843,7 @@ CREATE TABLE `catalog_product_index_eav_decimal` (
   KEY `CATALOG_PRODUCT_INDEX_EAV_DECIMAL_ATTRIBUTE_ID` (`attribute_id`),
   KEY `CATALOG_PRODUCT_INDEX_EAV_DECIMAL_STORE_ID` (`store_id`),
   KEY `CATALOG_PRODUCT_INDEX_EAV_DECIMAL_VALUE` (`value`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product EAV Decimal Index Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product EAV Decimal Index Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70926,7 +70872,7 @@ CREATE TABLE `catalog_product_index_eav_decimal_idx` (
   KEY `CATALOG_PRODUCT_INDEX_EAV_DECIMAL_IDX_ATTRIBUTE_ID` (`attribute_id`),
   KEY `CATALOG_PRODUCT_INDEX_EAV_DECIMAL_IDX_STORE_ID` (`store_id`),
   KEY `CATALOG_PRODUCT_INDEX_EAV_DECIMAL_IDX_VALUE` (`value`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product EAV Decimal Indexer Index Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product EAV Decimal Indexer Index Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70955,7 +70901,7 @@ CREATE TABLE `catalog_product_index_eav_decimal_replica` (
   KEY `CATALOG_PRODUCT_INDEX_EAV_DECIMAL_ATTRIBUTE_ID` (`attribute_id`),
   KEY `CATALOG_PRODUCT_INDEX_EAV_DECIMAL_STORE_ID` (`store_id`),
   KEY `CATALOG_PRODUCT_INDEX_EAV_DECIMAL_VALUE` (`value`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product EAV Decimal Index Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product EAV Decimal Index Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70984,7 +70930,7 @@ CREATE TABLE `catalog_product_index_eav_decimal_tmp` (
   KEY `CATALOG_PRODUCT_INDEX_EAV_DECIMAL_TMP_ATTRIBUTE_ID` (`attribute_id`),
   KEY `CATALOG_PRODUCT_INDEX_EAV_DECIMAL_TMP_STORE_ID` (`store_id`),
   KEY `CATALOG_PRODUCT_INDEX_EAV_DECIMAL_TMP_VALUE` (`value`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product EAV Decimal Indexer Temp Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product EAV Decimal Indexer Temp Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71013,7 +70959,7 @@ CREATE TABLE `catalog_product_index_eav_idx` (
   KEY `CATALOG_PRODUCT_INDEX_EAV_IDX_ATTRIBUTE_ID` (`attribute_id`),
   KEY `CATALOG_PRODUCT_INDEX_EAV_IDX_STORE_ID` (`store_id`),
   KEY `CATALOG_PRODUCT_INDEX_EAV_IDX_VALUE` (`value`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product EAV Indexer Index Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product EAV Indexer Index Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71042,7 +70988,7 @@ CREATE TABLE `catalog_product_index_eav_replica` (
   KEY `CATALOG_PRODUCT_INDEX_EAV_ATTRIBUTE_ID` (`attribute_id`),
   KEY `CATALOG_PRODUCT_INDEX_EAV_STORE_ID` (`store_id`),
   KEY `CATALOG_PRODUCT_INDEX_EAV_VALUE` (`value`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product EAV Index Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product EAV Index Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79429,7 +79375,7 @@ CREATE TABLE `catalog_product_index_eav_tmp` (
   KEY `CATALOG_PRODUCT_INDEX_EAV_TMP_ATTRIBUTE_ID` (`attribute_id`),
   KEY `CATALOG_PRODUCT_INDEX_EAV_TMP_STORE_ID` (`store_id`),
   KEY `CATALOG_PRODUCT_INDEX_EAV_TMP_VALUE` (`value`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product EAV Indexer Temp Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product EAV Indexer Temp Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79462,7 +79408,7 @@ CREATE TABLE `catalog_product_index_price` (
   KEY `CATALOG_PRODUCT_INDEX_PRICE_CUSTOMER_GROUP_ID` (`customer_group_id`),
   KEY `CATALOG_PRODUCT_INDEX_PRICE_MIN_PRICE` (`min_price`),
   KEY `CAT_PRD_IDX_PRICE_WS_ID_CSTR_GROUP_ID_MIN_PRICE` (`website_id`,`customer_group_id`,`min_price`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Price Index Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Price Index Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87681,7 +87627,7 @@ CREATE TABLE `catalog_product_index_price_bundle_idx` (
   `tier_price` decimal(20,6) DEFAULT NULL COMMENT 'Tier Price',
   `base_tier` decimal(20,6) DEFAULT NULL COMMENT 'Base Tier',
   PRIMARY KEY (`entity_id`,`customer_group_id`,`website_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Index Price Bundle Idx';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Index Price Bundle Idx';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87711,7 +87657,7 @@ CREATE TABLE `catalog_product_index_price_bundle_opt_idx` (
   `tier_price` decimal(20,6) DEFAULT NULL COMMENT 'Tier Price',
   `alt_tier_price` decimal(20,6) DEFAULT NULL COMMENT 'Alt Tier Price',
   PRIMARY KEY (`entity_id`,`customer_group_id`,`website_id`,`option_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Index Price Bundle Opt Idx';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Index Price Bundle Opt Idx';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87741,7 +87687,7 @@ CREATE TABLE `catalog_product_index_price_bundle_opt_tmp` (
   `tier_price` decimal(20,6) DEFAULT NULL COMMENT 'Tier Price',
   `alt_tier_price` decimal(20,6) DEFAULT NULL COMMENT 'Alt Tier Price',
   PRIMARY KEY (`entity_id`,`customer_group_id`,`website_id`,`option_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Index Price Bundle Opt Tmp';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Index Price Bundle Opt Tmp';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87788,7 +87734,7 @@ CREATE TABLE `catalog_product_index_price_bundle_sel_idx` (
   `price` decimal(20,6) DEFAULT NULL COMMENT 'Price',
   `tier_price` decimal(20,6) DEFAULT NULL COMMENT 'Tier Price',
   PRIMARY KEY (`entity_id`,`customer_group_id`,`website_id`,`option_id`,`selection_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Index Price Bundle Sel Idx';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Index Price Bundle Sel Idx';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87818,7 +87764,7 @@ CREATE TABLE `catalog_product_index_price_bundle_sel_tmp` (
   `price` decimal(20,6) DEFAULT NULL COMMENT 'Price',
   `tier_price` decimal(20,6) DEFAULT NULL COMMENT 'Tier Price',
   PRIMARY KEY (`entity_id`,`customer_group_id`,`website_id`,`option_id`,`selection_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Index Price Bundle Sel Tmp';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Index Price Bundle Sel Tmp';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87885,7 +87831,7 @@ CREATE TABLE `catalog_product_index_price_bundle_tmp` (
   `tier_price` decimal(20,6) DEFAULT NULL COMMENT 'Tier Price',
   `base_tier` decimal(20,6) DEFAULT NULL COMMENT 'Base Tier',
   PRIMARY KEY (`entity_id`,`customer_group_id`,`website_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Index Price Bundle Tmp';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Index Price Bundle Tmp';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87917,7 +87863,7 @@ CREATE TABLE `catalog_product_index_price_cfg_opt_agr_idx` (
   `price` decimal(20,6) DEFAULT NULL COMMENT 'Price',
   `tier_price` decimal(20,6) DEFAULT NULL COMMENT 'Tier Price',
   PRIMARY KEY (`parent_id`,`child_id`,`customer_group_id`,`website_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Price Indexer Config Option Aggregate Index Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Price Indexer Config Option Aggregate Index Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87944,7 +87890,7 @@ CREATE TABLE `catalog_product_index_price_cfg_opt_agr_tmp` (
   `price` decimal(20,6) DEFAULT NULL COMMENT 'Price',
   `tier_price` decimal(20,6) DEFAULT NULL COMMENT 'Tier Price',
   PRIMARY KEY (`parent_id`,`child_id`,`customer_group_id`,`website_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Price Indexer Config Option Aggregate Temp Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Price Indexer Config Option Aggregate Temp Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87971,7 +87917,7 @@ CREATE TABLE `catalog_product_index_price_cfg_opt_idx` (
   `max_price` decimal(20,6) DEFAULT NULL COMMENT 'Max Price',
   `tier_price` decimal(20,6) DEFAULT NULL COMMENT 'Tier Price',
   PRIMARY KEY (`entity_id`,`customer_group_id`,`website_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Price Indexer Config Option Index Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Price Indexer Config Option Index Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87998,7 +87944,7 @@ CREATE TABLE `catalog_product_index_price_cfg_opt_tmp` (
   `max_price` decimal(20,6) DEFAULT NULL COMMENT 'Max Price',
   `tier_price` decimal(20,6) DEFAULT NULL COMMENT 'Tier Price',
   PRIMARY KEY (`entity_id`,`customer_group_id`,`website_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Price Indexer Config Option Temp Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Price Indexer Config Option Temp Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88024,7 +87970,7 @@ CREATE TABLE `catalog_product_index_price_downlod_idx` (
   `min_price` decimal(20,6) NOT NULL DEFAULT 0.000000 COMMENT 'Minimum price',
   `max_price` decimal(20,6) NOT NULL DEFAULT 0.000000 COMMENT 'Maximum price',
   PRIMARY KEY (`entity_id`,`customer_group_id`,`website_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Indexer Table for price of downloadable products';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Indexer Table for price of downloadable products';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88050,7 +87996,7 @@ CREATE TABLE `catalog_product_index_price_downlod_tmp` (
   `min_price` decimal(20,6) NOT NULL DEFAULT 0.000000 COMMENT 'Minimum price',
   `max_price` decimal(20,6) NOT NULL DEFAULT 0.000000 COMMENT 'Maximum price',
   PRIMARY KEY (`entity_id`,`customer_group_id`,`website_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Temporary Indexer Table for price of downloadable products';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Temporary Indexer Table for price of downloadable products';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88081,7 +88027,7 @@ CREATE TABLE `catalog_product_index_price_final_idx` (
   `tier_price` decimal(20,6) DEFAULT NULL COMMENT 'Tier Price',
   `base_tier` decimal(20,6) DEFAULT NULL COMMENT 'Base Tier',
   PRIMARY KEY (`entity_id`,`customer_group_id`,`website_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Price Indexer Final Index Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Price Indexer Final Index Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88112,7 +88058,7 @@ CREATE TABLE `catalog_product_index_price_final_tmp` (
   `tier_price` decimal(20,6) DEFAULT NULL COMMENT 'Tier Price',
   `base_tier` decimal(20,6) DEFAULT NULL COMMENT 'Base Tier',
   PRIMARY KEY (`entity_id`,`customer_group_id`,`website_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Price Indexer Final Temp Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Price Indexer Final Temp Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88145,7 +88091,7 @@ CREATE TABLE `catalog_product_index_price_idx` (
   KEY `CATALOG_PRODUCT_INDEX_PRICE_IDX_CUSTOMER_GROUP_ID` (`customer_group_id`),
   KEY `CATALOG_PRODUCT_INDEX_PRICE_IDX_WEBSITE_ID` (`website_id`),
   KEY `CATALOG_PRODUCT_INDEX_PRICE_IDX_MIN_PRICE` (`min_price`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Price Indexer Index Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Price Indexer Index Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88173,7 +88119,7 @@ CREATE TABLE `catalog_product_index_price_opt_agr_idx` (
   `max_price` decimal(20,6) DEFAULT NULL COMMENT 'Max Price',
   `tier_price` decimal(20,6) DEFAULT NULL COMMENT 'Tier Price',
   PRIMARY KEY (`entity_id`,`customer_group_id`,`website_id`,`option_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Price Indexer Option Aggregate Index Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Price Indexer Option Aggregate Index Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88201,7 +88147,7 @@ CREATE TABLE `catalog_product_index_price_opt_agr_tmp` (
   `max_price` decimal(20,6) DEFAULT NULL COMMENT 'Max Price',
   `tier_price` decimal(20,6) DEFAULT NULL COMMENT 'Tier Price',
   PRIMARY KEY (`entity_id`,`customer_group_id`,`website_id`,`option_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Price Indexer Option Aggregate Temp Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Price Indexer Option Aggregate Temp Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88228,7 +88174,7 @@ CREATE TABLE `catalog_product_index_price_opt_idx` (
   `max_price` decimal(20,6) DEFAULT NULL COMMENT 'Max Price',
   `tier_price` decimal(20,6) DEFAULT NULL COMMENT 'Tier Price',
   PRIMARY KEY (`entity_id`,`customer_group_id`,`website_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Price Indexer Option Index Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Price Indexer Option Index Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88255,7 +88201,7 @@ CREATE TABLE `catalog_product_index_price_opt_tmp` (
   `max_price` decimal(20,6) DEFAULT NULL COMMENT 'Max Price',
   `tier_price` decimal(20,6) DEFAULT NULL COMMENT 'Tier Price',
   PRIMARY KEY (`entity_id`,`customer_group_id`,`website_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Price Indexer Option Temp Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Price Indexer Option Temp Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88288,7 +88234,7 @@ CREATE TABLE `catalog_product_index_price_replica` (
   KEY `CATALOG_PRODUCT_INDEX_PRICE_CUSTOMER_GROUP_ID` (`customer_group_id`),
   KEY `CATALOG_PRODUCT_INDEX_PRICE_MIN_PRICE` (`min_price`),
   KEY `CAT_PRD_IDX_PRICE_WS_ID_CSTR_GROUP_ID_MIN_PRICE` (`website_id`,`customer_group_id`,`min_price`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Price Index Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Price Index Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96503,8 +96449,9 @@ CREATE TABLE `catalog_product_index_price_tmp` (
   `max_price` decimal(20,6) DEFAULT NULL COMMENT 'Max Price',
   `tier_price` decimal(20,6) DEFAULT NULL COMMENT 'Tier Price',
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Price Indexer Temp Table';
+  PRIMARY KEY (`id`),
+  KEY `CAT_PRD_IDX_PRICE_TMP_ENTT_ID_CSTR_GROUP_ID_WS_ID` (`entity_id`,`customer_group_id`,`website_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Price Indexer Temp Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96534,7 +96481,7 @@ CREATE TABLE `catalog_product_index_tier_price` (
   CONSTRAINT `CAT_PRD_IDX_TIER_PRICE_CSTR_GROUP_ID_CSTR_GROUP_CSTR_GROUP_ID` FOREIGN KEY (`customer_group_id`) REFERENCES `customer_group` (`customer_group_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_IDX_TIER_PRICE_ENTT_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_IDX_TIER_PRICE_WS_ID_STORE_WS_WS_ID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Tier Price Index Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Tier Price Index Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96561,7 +96508,7 @@ CREATE TABLE `catalog_product_index_website` (
   PRIMARY KEY (`website_id`),
   KEY `CATALOG_PRODUCT_INDEX_WEBSITE_WEBSITE_DATE` (`website_date`),
   CONSTRAINT `CAT_PRD_IDX_WS_WS_ID_STORE_WS_WS_ID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Website Index Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Website Index Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96571,7 +96518,7 @@ CREATE TABLE `catalog_product_index_website` (
 LOCK TABLES `catalog_product_index_website` WRITE;
 /*!40000 ALTER TABLE `catalog_product_index_website` DISABLE KEYS */;
 INSERT INTO `catalog_product_index_website` VALUES
-(1,1,'2022-07-14',1);
+(1,1,'2026-02-12',1);
 /*!40000 ALTER TABLE `catalog_product_index_website` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96594,7 +96541,7 @@ CREATE TABLE `catalog_product_link` (
   CONSTRAINT `CATALOG_PRODUCT_LINK_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_LNK_LNKED_PRD_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`linked_product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_LNK_LNK_TYPE_ID_CAT_PRD_LNK_TYPE_LNK_TYPE_ID` FOREIGN KEY (`link_type_id`) REFERENCES `catalog_product_link_type` (`link_type_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2887 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product To Product Linkage Table';
+) ENGINE=InnoDB AUTO_INCREMENT=2887 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product To Product Linkage Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98107,7 +98054,7 @@ CREATE TABLE `catalog_product_link_attribute` (
   PRIMARY KEY (`product_link_attribute_id`),
   KEY `CATALOG_PRODUCT_LINK_ATTRIBUTE_LINK_TYPE_ID` (`link_type_id`),
   CONSTRAINT `CAT_PRD_LNK_ATTR_LNK_TYPE_ID_CAT_PRD_LNK_TYPE_LNK_TYPE_ID` FOREIGN KEY (`link_type_id`) REFERENCES `catalog_product_link_type` (`link_type_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Link Attribute Table';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Link Attribute Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98142,7 +98089,7 @@ CREATE TABLE `catalog_product_link_attribute_decimal` (
   KEY `CATALOG_PRODUCT_LINK_ATTRIBUTE_DECIMAL_LINK_ID` (`link_id`),
   CONSTRAINT `CAT_PRD_LNK_ATTR_DEC_LNK_ID_CAT_PRD_LNK_LNK_ID` FOREIGN KEY (`link_id`) REFERENCES `catalog_product_link` (`link_id`) ON DELETE CASCADE,
   CONSTRAINT `FK_AB2EFA9A14F7BCF1D5400056203D14B6` FOREIGN KEY (`product_link_attribute_id`) REFERENCES `catalog_product_link_attribute` (`product_link_attribute_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Link Decimal Attribute Table';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Link Decimal Attribute Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98175,7 +98122,7 @@ CREATE TABLE `catalog_product_link_attribute_int` (
   KEY `CATALOG_PRODUCT_LINK_ATTRIBUTE_INT_LINK_ID` (`link_id`),
   CONSTRAINT `CAT_PRD_LNK_ATTR_INT_LNK_ID_CAT_PRD_LNK_LNK_ID` FOREIGN KEY (`link_id`) REFERENCES `catalog_product_link` (`link_id`) ON DELETE CASCADE,
   CONSTRAINT `FK_D6D878F8BA2A4282F8DDED7E6E3DE35C` FOREIGN KEY (`product_link_attribute_id`) REFERENCES `catalog_product_link_attribute` (`product_link_attribute_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2890 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Link Integer Attribute Table';
+) ENGINE=InnoDB AUTO_INCREMENT=2890 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Link Integer Attribute Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99690,7 +99637,7 @@ CREATE TABLE `catalog_product_link_attribute_varchar` (
   KEY `CATALOG_PRODUCT_LINK_ATTRIBUTE_VARCHAR_LINK_ID` (`link_id`),
   CONSTRAINT `CAT_PRD_LNK_ATTR_VCHR_LNK_ID_CAT_PRD_LNK_LNK_ID` FOREIGN KEY (`link_id`) REFERENCES `catalog_product_link` (`link_id`) ON DELETE CASCADE,
   CONSTRAINT `FK_DEE9C4DA61CFCC01DFCF50F0D79CEA51` FOREIGN KEY (`product_link_attribute_id`) REFERENCES `catalog_product_link_attribute` (`product_link_attribute_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Link Varchar Attribute Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Link Varchar Attribute Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99713,7 +99660,7 @@ CREATE TABLE `catalog_product_link_type` (
   `link_type_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Link Type ID',
   `code` varchar(32) DEFAULT NULL COMMENT 'Code',
   PRIMARY KEY (`link_type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Link Type Table';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Link Type Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99751,7 +99698,7 @@ CREATE TABLE `catalog_product_option` (
   PRIMARY KEY (`option_id`),
   KEY `CATALOG_PRODUCT_OPTION_PRODUCT_ID` (`product_id`),
   CONSTRAINT `CAT_PRD_OPT_PRD_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Option Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Option Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99781,7 +99728,7 @@ CREATE TABLE `catalog_product_option_price` (
   KEY `CATALOG_PRODUCT_OPTION_PRICE_STORE_ID` (`store_id`),
   CONSTRAINT `CATALOG_PRODUCT_OPTION_PRICE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_OPT_PRICE_OPT_ID_CAT_PRD_OPT_OPT_ID` FOREIGN KEY (`option_id`) REFERENCES `catalog_product_option` (`option_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Option Price Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Option Price Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99810,7 +99757,7 @@ CREATE TABLE `catalog_product_option_title` (
   KEY `CATALOG_PRODUCT_OPTION_TITLE_STORE_ID` (`store_id`),
   CONSTRAINT `CATALOG_PRODUCT_OPTION_TITLE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_OPT_TTL_OPT_ID_CAT_PRD_OPT_OPT_ID` FOREIGN KEY (`option_id`) REFERENCES `catalog_product_option` (`option_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Option Title Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Option Title Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99840,7 +99787,7 @@ CREATE TABLE `catalog_product_option_type_price` (
   KEY `CATALOG_PRODUCT_OPTION_TYPE_PRICE_STORE_ID` (`store_id`),
   CONSTRAINT `CATALOG_PRODUCT_OPTION_TYPE_PRICE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `FK_B523E3378E8602F376CC415825576B7F` FOREIGN KEY (`option_type_id`) REFERENCES `catalog_product_option_type_value` (`option_type_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Option Type Price Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Option Type Price Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99869,7 +99816,7 @@ CREATE TABLE `catalog_product_option_type_title` (
   KEY `CATALOG_PRODUCT_OPTION_TYPE_TITLE_STORE_ID` (`store_id`),
   CONSTRAINT `CATALOG_PRODUCT_OPTION_TYPE_TITLE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `FK_C085B9CF2C2A302E8043FDEA1937D6A2` FOREIGN KEY (`option_type_id`) REFERENCES `catalog_product_option_type_value` (`option_type_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Option Type Title Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Option Type Title Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99896,7 +99843,7 @@ CREATE TABLE `catalog_product_option_type_value` (
   PRIMARY KEY (`option_type_id`),
   KEY `CATALOG_PRODUCT_OPTION_TYPE_VALUE_OPTION_ID` (`option_id`),
   CONSTRAINT `CAT_PRD_OPT_TYPE_VAL_OPT_ID_CAT_PRD_OPT_OPT_ID` FOREIGN KEY (`option_id`) REFERENCES `catalog_product_option` (`option_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Option Type Value Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Option Type Value Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99922,7 +99869,7 @@ CREATE TABLE `catalog_product_relation` (
   KEY `CATALOG_PRODUCT_RELATION_CHILD_ID` (`child_id`),
   CONSTRAINT `CAT_PRD_RELATION_CHILD_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`child_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_RELATION_PARENT_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`parent_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Relation Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Relation Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101808,7 +101755,7 @@ CREATE TABLE `catalog_product_super_attribute` (
   PRIMARY KEY (`product_super_attribute_id`),
   UNIQUE KEY `CATALOG_PRODUCT_SUPER_ATTRIBUTE_PRODUCT_ID_ATTRIBUTE_ID` (`product_id`,`attribute_id`),
   CONSTRAINT `CAT_PRD_SPR_ATTR_PRD_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=296 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Super Attribute Table';
+) ENGINE=InnoDB AUTO_INCREMENT=296 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Super Attribute Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102133,7 +102080,7 @@ CREATE TABLE `catalog_product_super_attribute_label` (
   KEY `CATALOG_PRODUCT_SUPER_ATTRIBUTE_LABEL_STORE_ID` (`store_id`),
   CONSTRAINT `CATALOG_PRODUCT_SUPER_ATTRIBUTE_LABEL_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `FK_309442281DF7784210ED82B2CC51E5D5` FOREIGN KEY (`product_super_attribute_id`) REFERENCES `catalog_product_super_attribute` (`product_super_attribute_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=295 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Super Attribute Label Table';
+) ENGINE=InnoDB AUTO_INCREMENT=295 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Super Attribute Label Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102456,7 +102403,7 @@ CREATE TABLE `catalog_product_super_link` (
   KEY `CATALOG_PRODUCT_SUPER_LINK_PARENT_ID` (`parent_id`),
   CONSTRAINT `CAT_PRD_SPR_LNK_PARENT_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`parent_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_SPR_LNK_PRD_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2100 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product Super Link Table';
+) ENGINE=InnoDB AUTO_INCREMENT=2100 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product Super Link Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104330,7 +104277,7 @@ CREATE TABLE `catalog_product_website` (
   KEY `CATALOG_PRODUCT_WEBSITE_WEBSITE_ID` (`website_id`),
   CONSTRAINT `CATALOG_PRODUCT_WEBSITE_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_WS_PRD_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Product To Website Linkage Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Product To Website Linkage Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106407,7 +106354,7 @@ CREATE TABLE `catalog_url_rewrite_product_category` (
   CONSTRAINT `CAT_URL_REWRITE_PRD_CTGR_CTGR_ID_CAT_CTGR_ENTT_ENTT_ID` FOREIGN KEY (`category_id`) REFERENCES `catalog_category_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_URL_REWRITE_PRD_CTGR_PRD_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `FK_BB79E64705D7F17FE181F23144528FC8` FOREIGN KEY (`url_rewrite_id`) REFERENCES `url_rewrite` (`url_rewrite_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='url_rewrite_relation';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='url_rewrite_relation';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107007,7 +106954,7 @@ CREATE TABLE `cataloginventory_stock` (
   `stock_name` varchar(255) DEFAULT NULL COMMENT 'Stock Name',
   PRIMARY KEY (`stock_id`),
   KEY `CATALOGINVENTORY_STOCK_WEBSITE_ID` (`website_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Cataloginventory Stock';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Cataloginventory Stock';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107062,7 +107009,7 @@ CREATE TABLE `cataloginventory_stock_item` (
   KEY `CATALOGINVENTORY_STOCK_ITEM_STOCK_ID` (`stock_id`),
   CONSTRAINT `CATINV_STOCK_ITEM_PRD_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `CATINV_STOCK_ITEM_STOCK_ID_CATINV_STOCK_STOCK_ID` FOREIGN KEY (`stock_id`) REFERENCES `cataloginventory_stock` (`stock_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2047 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Cataloginventory Stock Item';
+) ENGINE=InnoDB AUTO_INCREMENT=2047 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Cataloginventory Stock Item';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109138,7 +109085,7 @@ CREATE TABLE `cataloginventory_stock_status` (
   KEY `CATALOGINVENTORY_STOCK_STATUS_STOCK_ID` (`stock_id`),
   KEY `CATALOGINVENTORY_STOCK_STATUS_WEBSITE_ID` (`website_id`),
   KEY `CATALOGINVENTORY_STOCK_STATUS_STOCK_STATUS` (`stock_status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Cataloginventory Stock Status';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Cataloginventory Stock Status';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -111213,7 +111160,7 @@ CREATE TABLE `cataloginventory_stock_status_idx` (
   PRIMARY KEY (`product_id`,`website_id`,`stock_id`),
   KEY `CATALOGINVENTORY_STOCK_STATUS_IDX_STOCK_ID` (`stock_id`),
   KEY `CATALOGINVENTORY_STOCK_STATUS_IDX_WEBSITE_ID` (`website_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Cataloginventory Stock Status Indexer Idx';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Cataloginventory Stock Status Indexer Idx';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -111242,7 +111189,7 @@ CREATE TABLE `cataloginventory_stock_status_replica` (
   KEY `CATALOGINVENTORY_STOCK_STATUS_STOCK_ID` (`stock_id`),
   KEY `CATALOGINVENTORY_STOCK_STATUS_WEBSITE_ID` (`website_id`),
   KEY `CATALOGINVENTORY_STOCK_STATUS_STOCK_STATUS` (`stock_status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Cataloginventory Stock Status';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Cataloginventory Stock Status';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113317,7 +113264,7 @@ CREATE TABLE `cataloginventory_stock_status_tmp` (
   PRIMARY KEY (`product_id`,`website_id`,`stock_id`),
   KEY `CATALOGINVENTORY_STOCK_STATUS_TMP_STOCK_ID` (`stock_id`),
   KEY `CATALOGINVENTORY_STOCK_STATUS_TMP_WEBSITE_ID` (`website_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Cataloginventory Stock Status Indexer Tmp';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Cataloginventory Stock Status Indexer Tmp';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113353,7 +113300,7 @@ CREATE TABLE `catalogrule` (
   `discount_amount` decimal(20,6) NOT NULL DEFAULT 0.000000 COMMENT 'Discount Amount',
   PRIMARY KEY (`rule_id`),
   KEY `CATALOGRULE_IS_ACTIVE_SORT_ORDER_TO_DATE_FROM_DATE` (`is_active`,`sort_order`,`to_date`,`from_date`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='CatalogRule';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='CatalogRule';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113381,7 +113328,7 @@ CREATE TABLE `catalogrule_customer_group` (
   KEY `CATALOGRULE_CUSTOMER_GROUP_CUSTOMER_GROUP_ID` (`customer_group_id`),
   CONSTRAINT `CATALOGRULE_CUSTOMER_GROUP_RULE_ID_CATALOGRULE_RULE_ID` FOREIGN KEY (`rule_id`) REFERENCES `catalogrule` (`rule_id`) ON DELETE CASCADE,
   CONSTRAINT `CATRULE_CSTR_GROUP_CSTR_GROUP_ID_CSTR_GROUP_CSTR_GROUP_ID` FOREIGN KEY (`customer_group_id`) REFERENCES `customer_group` (`customer_group_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Rules To Customer Groups Relations';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Rules To Customer Groups Relations';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113412,7 +113359,7 @@ CREATE TABLE `catalogrule_group_website` (
   PRIMARY KEY (`rule_id`,`customer_group_id`,`website_id`),
   KEY `CATALOGRULE_GROUP_WEBSITE_CUSTOMER_GROUP_ID` (`customer_group_id`),
   KEY `CATALOGRULE_GROUP_WEBSITE_WEBSITE_ID` (`website_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='CatalogRule Group Website';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='CatalogRule Group Website';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113443,7 +113390,7 @@ CREATE TABLE `catalogrule_group_website_replica` (
   PRIMARY KEY (`rule_id`,`customer_group_id`,`website_id`),
   KEY `CATALOGRULE_GROUP_WEBSITE_CUSTOMER_GROUP_ID` (`customer_group_id`),
   KEY `CATALOGRULE_GROUP_WEBSITE_WEBSITE_ID` (`website_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='CatalogRule Group Website';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='CatalogRule Group Website';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113481,7 +113428,7 @@ CREATE TABLE `catalogrule_product` (
   KEY `CATALOGRULE_PRODUCT_FROM_TIME` (`from_time`),
   KEY `CATALOGRULE_PRODUCT_TO_TIME` (`to_time`),
   KEY `CATALOGRULE_PRODUCT_PRODUCT_ID` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=989 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='CatalogRule Product';
+) ENGINE=InnoDB AUTO_INCREMENT=989 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='CatalogRule Product';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127781,7 +127728,7 @@ CREATE TABLE `catalogrule_product_price` (
   KEY `CATALOGRULE_PRODUCT_PRICE_CUSTOMER_GROUP_ID` (`customer_group_id`),
   KEY `CATALOGRULE_PRODUCT_PRICE_WEBSITE_ID` (`website_id`),
   KEY `CATALOGRULE_PRODUCT_PRICE_PRODUCT_ID` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2965 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='CatalogRule Product Price';
+) ENGINE=InnoDB AUTO_INCREMENT=2965 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='CatalogRule Product Price';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130779,7 +130726,7 @@ CREATE TABLE `catalogrule_product_price_replica` (
   KEY `CATALOGRULE_PRODUCT_PRICE_CUSTOMER_GROUP_ID` (`customer_group_id`),
   KEY `CATALOGRULE_PRODUCT_PRICE_WEBSITE_ID` (`website_id`),
   KEY `CATALOGRULE_PRODUCT_PRICE_PRODUCT_ID` (`product_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='CatalogRule Product Price';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='CatalogRule Product Price';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130817,7 +130764,7 @@ CREATE TABLE `catalogrule_product_replica` (
   KEY `CATALOGRULE_PRODUCT_FROM_TIME` (`from_time`),
   KEY `CATALOGRULE_PRODUCT_TO_TIME` (`to_time`),
   KEY `CATALOGRULE_PRODUCT_PRODUCT_ID` (`product_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='CatalogRule Product';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='CatalogRule Product';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130843,7 +130790,7 @@ CREATE TABLE `catalogrule_website` (
   KEY `CATALOGRULE_WEBSITE_WEBSITE_ID` (`website_id`),
   CONSTRAINT `CATALOGRULE_WEBSITE_RULE_ID_CATALOGRULE_RULE_ID` FOREIGN KEY (`rule_id`) REFERENCES `catalogrule` (`rule_id`) ON DELETE CASCADE,
   CONSTRAINT `CATALOGRULE_WEBSITE_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Catalog Rules To Websites Relations';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Catalog Rules To Websites Relations';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130873,7 +130820,7 @@ CREATE TABLE `catalogsearch_recommendations` (
   KEY `CATALOGSEARCH_RECOMMENDATIONS_RELATION_ID_SEARCH_QUERY_QUERY_ID` (`relation_id`),
   CONSTRAINT `CATALOGSEARCH_RECOMMENDATIONS_QUERY_ID_SEARCH_QUERY_QUERY_ID` FOREIGN KEY (`query_id`) REFERENCES `search_query` (`query_id`) ON DELETE CASCADE,
   CONSTRAINT `CATALOGSEARCH_RECOMMENDATIONS_RELATION_ID_SEARCH_QUERY_QUERY_ID` FOREIGN KEY (`relation_id`) REFERENCES `search_query` (`query_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Advanced Search Recommendations';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Advanced Search Recommendations';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130902,7 +130849,7 @@ CREATE TABLE `checkout_agreement` (
   `is_html` smallint(6) NOT NULL DEFAULT 0 COMMENT 'Is Html',
   `mode` smallint(6) NOT NULL DEFAULT 0 COMMENT 'Applied mode',
   PRIMARY KEY (`agreement_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Checkout Agreement';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Checkout Agreement';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130928,7 +130875,7 @@ CREATE TABLE `checkout_agreement_store` (
   KEY `CHECKOUT_AGREEMENT_STORE_STORE_ID_STORE_STORE_ID` (`store_id`),
   CONSTRAINT `CHECKOUT_AGREEMENT_STORE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `CHKT_AGRT_STORE_AGRT_ID_CHKT_AGRT_AGRT_ID` FOREIGN KEY (`agreement_id`) REFERENCES `checkout_agreement` (`agreement_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Checkout Agreement Store';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Checkout Agreement Store';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130958,7 +130905,7 @@ CREATE TABLE `cms_block` (
   PRIMARY KEY (`block_id`),
   KEY `CMS_BLOCK_IDENTIFIER` (`identifier`),
   FULLTEXT KEY `CMS_BLOCK_TITLE_IDENTIFIER_CONTENT` (`title`,`identifier`,`content`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='CMS Block Table';
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='CMS Block Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131003,7 +130950,7 @@ CREATE TABLE `cms_block_store` (
   KEY `CMS_BLOCK_STORE_STORE_ID` (`store_id`),
   CONSTRAINT `CMS_BLOCK_STORE_BLOCK_ID_CMS_BLOCK_BLOCK_ID` FOREIGN KEY (`block_id`) REFERENCES `cms_block` (`block_id`) ON DELETE CASCADE,
   CONSTRAINT `CMS_BLOCK_STORE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='CMS Block To Store Linkage Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='CMS Block To Store Linkage Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131065,7 +131012,7 @@ CREATE TABLE `cms_page` (
   PRIMARY KEY (`page_id`),
   KEY `CMS_PAGE_IDENTIFIER` (`identifier`),
   FULLTEXT KEY `CMS_PAGE_TITLE_META_KEYWORDS_META_DESCRIPTION_IDENTIFIER_CONTENT` (`title`,`meta_keywords`,`meta_description`,`identifier`,`content`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='CMS Page Table';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='CMS Page Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131098,7 +131045,7 @@ CREATE TABLE `cms_page_store` (
   KEY `CMS_PAGE_STORE_STORE_ID` (`store_id`),
   CONSTRAINT `CMS_PAGE_STORE_PAGE_ID_CMS_PAGE_PAGE_ID` FOREIGN KEY (`page_id`) REFERENCES `cms_page` (`page_id`) ON DELETE CASCADE,
   CONSTRAINT `CMS_PAGE_STORE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='CMS Page To Store Linkage Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='CMS Page To Store Linkage Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131133,7 +131080,7 @@ CREATE TABLE `core_config_data` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Updated At',
   PRIMARY KEY (`config_id`),
   UNIQUE KEY `CORE_CONFIG_DATA_SCOPE_SCOPE_ID_PATH` (`scope`,`scope_id`,`path`)
-) ENGINE=InnoDB AUTO_INCREMENT=532 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Config Data';
+) ENGINE=InnoDB AUTO_INCREMENT=532 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Config Data';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131674,7 +131621,7 @@ CREATE TABLE `cron_schedule` (
   `finished_at` timestamp NULL DEFAULT NULL COMMENT 'Finished At',
   PRIMARY KEY (`schedule_id`),
   KEY `CRON_SCHEDULE_JOB_CODE_STATUS_SCHEDULED_AT` (`job_code`,`status`,`scheduled_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=153420 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Cron Schedule';
+) ENGINE=InnoDB AUTO_INCREMENT=153420 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Cron Schedule';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -132747,7 +132694,7 @@ CREATE TABLE `customer_address_entity` (
   PRIMARY KEY (`entity_id`),
   KEY `CUSTOMER_ADDRESS_ENTITY_PARENT_ID` (`parent_id`),
   CONSTRAINT `CUSTOMER_ADDRESS_ENTITY_PARENT_ID_CUSTOMER_ENTITY_ENTITY_ID` FOREIGN KEY (`parent_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Customer Address Entity';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Customer Address Entity';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -132780,7 +132727,7 @@ CREATE TABLE `customer_address_entity_datetime` (
   KEY `CUSTOMER_ADDRESS_ENTITY_DATETIME_ENTITY_ID_ATTRIBUTE_ID_VALUE` (`entity_id`,`attribute_id`,`value`),
   CONSTRAINT `CSTR_ADDR_ENTT_DTIME_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CSTR_ADDR_ENTT_DTIME_ENTT_ID_CSTR_ADDR_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `customer_address_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Customer Address Entity Datetime';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Customer Address Entity Datetime';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -132810,7 +132757,7 @@ CREATE TABLE `customer_address_entity_decimal` (
   KEY `CUSTOMER_ADDRESS_ENTITY_DECIMAL_ENTITY_ID_ATTRIBUTE_ID_VALUE` (`entity_id`,`attribute_id`,`value`),
   CONSTRAINT `CSTR_ADDR_ENTT_DEC_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CSTR_ADDR_ENTT_DEC_ENTT_ID_CSTR_ADDR_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `customer_address_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Customer Address Entity Decimal';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Customer Address Entity Decimal';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -132840,7 +132787,7 @@ CREATE TABLE `customer_address_entity_int` (
   KEY `CUSTOMER_ADDRESS_ENTITY_INT_ENTITY_ID_ATTRIBUTE_ID_VALUE` (`entity_id`,`attribute_id`,`value`),
   CONSTRAINT `CSTR_ADDR_ENTT_INT_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CSTR_ADDR_ENTT_INT_ENTT_ID_CSTR_ADDR_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `customer_address_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Customer Address Entity Int';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Customer Address Entity Int';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -132869,7 +132816,7 @@ CREATE TABLE `customer_address_entity_text` (
   KEY `CUSTOMER_ADDRESS_ENTITY_TEXT_ATTRIBUTE_ID` (`attribute_id`),
   CONSTRAINT `CSTR_ADDR_ENTT_TEXT_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CSTR_ADDR_ENTT_TEXT_ENTT_ID_CSTR_ADDR_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `customer_address_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Customer Address Entity Text';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Customer Address Entity Text';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -132899,7 +132846,7 @@ CREATE TABLE `customer_address_entity_varchar` (
   KEY `CUSTOMER_ADDRESS_ENTITY_VARCHAR_ENTITY_ID_ATTRIBUTE_ID_VALUE` (`entity_id`,`attribute_id`,`value`),
   CONSTRAINT `CSTR_ADDR_ENTT_VCHR_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CSTR_ADDR_ENTT_VCHR_ENTT_ID_CSTR_ADDR_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `customer_address_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Customer Address Entity Varchar';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Customer Address Entity Varchar';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -132935,7 +132882,7 @@ CREATE TABLE `customer_eav_attribute` (
   PRIMARY KEY (`attribute_id`),
   KEY `CUSTOMER_EAV_ATTRIBUTE_SORT_ORDER` (`sort_order`),
   CONSTRAINT `CUSTOMER_EAV_ATTRIBUTE_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Customer Eav Attribute';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Customer Eav Attribute';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133018,7 +132965,7 @@ CREATE TABLE `customer_eav_attribute_website` (
   KEY `CUSTOMER_EAV_ATTRIBUTE_WEBSITE_WEBSITE_ID` (`website_id`),
   CONSTRAINT `CSTR_EAV_ATTR_WS_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CSTR_EAV_ATTR_WS_WS_ID_STORE_WS_WS_ID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Customer Eav Attribute Website';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Customer Eav Attribute Website';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133111,7 +133058,7 @@ CREATE TABLE `customer_entity` (
   KEY `CUSTOMER_ENTITY_LASTNAME` (`lastname`),
   CONSTRAINT `CUSTOMER_ENTITY_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL,
   CONSTRAINT `CUSTOMER_ENTITY_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Customer Entity';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Customer Entity';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133145,7 +133092,7 @@ CREATE TABLE `customer_entity_datetime` (
   KEY `CUSTOMER_ENTITY_DATETIME_ENTITY_ID_ATTRIBUTE_ID_VALUE` (`entity_id`,`attribute_id`,`value`),
   CONSTRAINT `CUSTOMER_ENTITY_DATETIME_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CUSTOMER_ENTITY_DATETIME_ENTITY_ID_CUSTOMER_ENTITY_ENTITY_ID` FOREIGN KEY (`entity_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Customer Entity Datetime';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Customer Entity Datetime';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133175,7 +133122,7 @@ CREATE TABLE `customer_entity_decimal` (
   KEY `CUSTOMER_ENTITY_DECIMAL_ENTITY_ID_ATTRIBUTE_ID_VALUE` (`entity_id`,`attribute_id`,`value`),
   CONSTRAINT `CUSTOMER_ENTITY_DECIMAL_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CUSTOMER_ENTITY_DECIMAL_ENTITY_ID_CUSTOMER_ENTITY_ENTITY_ID` FOREIGN KEY (`entity_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Customer Entity Decimal';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Customer Entity Decimal';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133205,7 +133152,7 @@ CREATE TABLE `customer_entity_int` (
   KEY `CUSTOMER_ENTITY_INT_ENTITY_ID_ATTRIBUTE_ID_VALUE` (`entity_id`,`attribute_id`,`value`),
   CONSTRAINT `CUSTOMER_ENTITY_INT_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CUSTOMER_ENTITY_INT_ENTITY_ID_CUSTOMER_ENTITY_ENTITY_ID` FOREIGN KEY (`entity_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Customer Entity Int';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Customer Entity Int';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133234,7 +133181,7 @@ CREATE TABLE `customer_entity_text` (
   KEY `CUSTOMER_ENTITY_TEXT_ATTRIBUTE_ID` (`attribute_id`),
   CONSTRAINT `CUSTOMER_ENTITY_TEXT_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CUSTOMER_ENTITY_TEXT_ENTITY_ID_CUSTOMER_ENTITY_ENTITY_ID` FOREIGN KEY (`entity_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Customer Entity Text';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Customer Entity Text';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133264,7 +133211,7 @@ CREATE TABLE `customer_entity_varchar` (
   KEY `CUSTOMER_ENTITY_VARCHAR_ENTITY_ID_ATTRIBUTE_ID_VALUE` (`entity_id`,`attribute_id`,`value`),
   CONSTRAINT `CUSTOMER_ENTITY_VARCHAR_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CUSTOMER_ENTITY_VARCHAR_ENTITY_ID_CUSTOMER_ENTITY_ENTITY_ID` FOREIGN KEY (`entity_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Customer Entity Varchar';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Customer Entity Varchar';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133291,7 +133238,7 @@ CREATE TABLE `customer_form_attribute` (
   PRIMARY KEY (`form_code`,`attribute_id`),
   KEY `CUSTOMER_FORM_ATTRIBUTE_ATTRIBUTE_ID` (`attribute_id`),
   CONSTRAINT `CUSTOMER_FORM_ATTRIBUTE_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Customer Form Attribute';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Customer Form Attribute';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133492,8 +133439,9 @@ CREATE TABLE `customer_group` (
   `customer_group_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `customer_group_code` varchar(32) NOT NULL COMMENT 'Customer Group Code',
   `tax_class_id` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'Tax Class ID',
-  PRIMARY KEY (`customer_group_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Customer Group';
+  PRIMARY KEY (`customer_group_id`),
+  KEY `CUSTOMER_GROUP_CUSTOMER_GROUP_CODE` (`customer_group_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Customer Group';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133523,7 +133471,7 @@ CREATE TABLE `customer_group_excluded_website` (
   `website_id` smallint(5) unsigned NOT NULL COMMENT 'Excluded Website ID from Customer Group',
   PRIMARY KEY (`entity_id`),
   KEY `CUSTOMER_GROUP_EXCLUDED_WEBSITE_CUSTOMER_GROUP_ID_WEBSITE_ID` (`customer_group_id`,`website_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Excluded Websites From Customer Group';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Excluded Websites From Customer Group';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133549,7 +133497,7 @@ CREATE TABLE `customer_log` (
   `last_logout_at` timestamp NULL DEFAULT NULL COMMENT 'Last Logout Time',
   PRIMARY KEY (`log_id`),
   UNIQUE KEY `CUSTOMER_LOG_CUSTOMER_ID` (`customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Customer Log Table';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Customer Log Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133580,7 +133528,7 @@ CREATE TABLE `customer_visitor` (
   PRIMARY KEY (`visitor_id`),
   KEY `CUSTOMER_VISITOR_CUSTOMER_ID` (`customer_id`),
   KEY `CUSTOMER_VISITOR_LAST_VISIT_AT` (`last_visit_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Visitor Table';
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Visitor Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133597,7 +133545,10 @@ INSERT INTO `customer_visitor` VALUES
 (23,NULL,NULL,'2022-07-15 01:51:19','2022-07-15 01:51:04'),
 (24,NULL,NULL,'2022-07-15 01:51:19','2022-07-15 01:51:04'),
 (25,NULL,NULL,'2022-07-15 01:51:19','2022-07-15 01:51:04'),
-(26,NULL,NULL,'2023-07-04 03:09:08','2023-07-04 03:09:08');
+(26,NULL,NULL,'2023-07-04 03:09:08','2023-07-04 03:09:08'),
+(27,NULL,NULL,'2026-02-12 04:07:18','2026-02-12 04:07:18'),
+(28,NULL,NULL,'2026-02-12 05:27:45','2026-02-12 05:27:45'),
+(29,NULL,NULL,'2026-02-13 00:53:35','2026-02-13 00:00:36');
 /*!40000 ALTER TABLE `customer_visitor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -133615,7 +133566,7 @@ CREATE TABLE `data_exporter_uuid` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Created At',
   PRIMARY KEY (`uuid`),
   UNIQUE KEY `DATA_EXPORTER_UUID_ENTITY_ID_TYPE` (`entity_id`,`type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Data Export Items UUID References Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Data Export Items UUID References Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133643,7 +133594,7 @@ CREATE TABLE `design_change` (
   PRIMARY KEY (`design_change_id`),
   KEY `DESIGN_CHANGE_STORE_ID` (`store_id`),
   CONSTRAINT `DESIGN_CHANGE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Design Changes';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Design Changes';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133673,7 +133624,7 @@ CREATE TABLE `design_config_grid_flat` (
   KEY `DESIGN_CONFIG_GRID_FLAT_STORE_GROUP_ID` (`store_group_id`),
   KEY `DESIGN_CONFIG_GRID_FLAT_STORE_ID` (`store_id`),
   FULLTEXT KEY `DESIGN_CONFIG_GRID_FLAT_THEME_THEME_ID` (`theme_theme_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='design_config_grid_flat';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='design_config_grid_flat';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133701,7 +133652,7 @@ CREATE TABLE `directory_country` (
   `iso2_code` varchar(2) DEFAULT NULL COMMENT 'Country ISO-2 format',
   `iso3_code` varchar(3) DEFAULT NULL COMMENT 'Country ISO-3',
   PRIMARY KEY (`country_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Directory Country';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Directory Country';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133977,7 +133928,7 @@ CREATE TABLE `directory_country_format` (
   `format` text NOT NULL COMMENT 'Country Format',
   PRIMARY KEY (`country_format_id`),
   UNIQUE KEY `DIRECTORY_COUNTRY_FORMAT_COUNTRY_ID_TYPE` (`country_id`,`type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Directory Country Format';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Directory Country Format';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -134003,7 +133954,7 @@ CREATE TABLE `directory_country_region` (
   `default_name` varchar(255) DEFAULT NULL COMMENT 'Region Name',
   PRIMARY KEY (`region_id`),
   KEY `DIRECTORY_COUNTRY_REGION_COUNTRY_ID` (`country_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1157 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Directory Country Region';
+) ENGINE=InnoDB AUTO_INCREMENT=1157 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Directory Country Region';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135186,7 +135137,7 @@ CREATE TABLE `directory_country_region_name` (
   PRIMARY KEY (`locale`,`region_id`),
   KEY `DIRECTORY_COUNTRY_REGION_NAME_REGION_ID` (`region_id`),
   CONSTRAINT `DIR_COUNTRY_REGION_NAME_REGION_ID_DIR_COUNTRY_REGION_REGION_ID` FOREIGN KEY (`region_id`) REFERENCES `directory_country_region` (`region_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Directory Country Region Name';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Directory Country Region Name';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136368,7 +136319,7 @@ CREATE TABLE `directory_currency_rate` (
   `rate` decimal(24,12) NOT NULL DEFAULT 0.000000000000 COMMENT 'Currency Conversion Rate',
   PRIMARY KEY (`currency_from`,`currency_to`),
   KEY `DIRECTORY_CURRENCY_RATE_CURRENCY_TO` (`currency_to`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Directory Currency Rate';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Directory Currency Rate';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136407,7 +136358,7 @@ CREATE TABLE `downloadable_link` (
   PRIMARY KEY (`link_id`),
   KEY `DOWNLOADABLE_LINK_PRODUCT_ID_SORT_ORDER` (`product_id`,`sort_order`),
   CONSTRAINT `DOWNLOADABLE_LINK_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Downloadable Link Table';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Downloadable Link Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136445,7 +136396,7 @@ CREATE TABLE `downloadable_link_price` (
   KEY `DOWNLOADABLE_LINK_PRICE_WEBSITE_ID` (`website_id`),
   CONSTRAINT `DOWNLOADABLE_LINK_PRICE_LINK_ID_DOWNLOADABLE_LINK_LINK_ID` FOREIGN KEY (`link_id`) REFERENCES `downloadable_link` (`link_id`) ON DELETE CASCADE,
   CONSTRAINT `DOWNLOADABLE_LINK_PRICE_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Downloadable Link Price Table';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Downloadable Link Price Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136490,7 +136441,7 @@ CREATE TABLE `downloadable_link_purchased` (
   KEY `DOWNLOADABLE_LINK_PURCHASED_CUSTOMER_ID` (`customer_id`),
   CONSTRAINT `DL_LNK_PURCHASED_CSTR_ID_CSTR_ENTT_ENTT_ID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE SET NULL,
   CONSTRAINT `DOWNLOADABLE_LINK_PURCHASED_ORDER_ID_SALES_ORDER_ENTITY_ID` FOREIGN KEY (`order_id`) REFERENCES `sales_order` (`entity_id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Downloadable Link Purchased Table';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Downloadable Link Purchased Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136534,7 +136485,7 @@ CREATE TABLE `downloadable_link_purchased_item` (
   KEY `DOWNLOADABLE_LINK_PURCHASED_ITEM_PURCHASED_ID` (`purchased_id`),
   CONSTRAINT `DL_LNK_PURCHASED_ITEM_ORDER_ITEM_ID_SALES_ORDER_ITEM_ITEM_ID` FOREIGN KEY (`order_item_id`) REFERENCES `sales_order_item` (`item_id`) ON DELETE SET NULL,
   CONSTRAINT `DL_LNK_PURCHASED_ITEM_PURCHASED_ID_DL_LNK_PURCHASED_PURCHASED_ID` FOREIGN KEY (`purchased_id`) REFERENCES `downloadable_link_purchased` (`purchased_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Downloadable Link Purchased Item Table';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Downloadable Link Purchased Item Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136565,7 +136516,7 @@ CREATE TABLE `downloadable_link_title` (
   KEY `DOWNLOADABLE_LINK_TITLE_STORE_ID` (`store_id`),
   CONSTRAINT `DOWNLOADABLE_LINK_TITLE_LINK_ID_DOWNLOADABLE_LINK_LINK_ID` FOREIGN KEY (`link_id`) REFERENCES `downloadable_link` (`link_id`) ON DELETE CASCADE,
   CONSTRAINT `DOWNLOADABLE_LINK_TITLE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Link Title Table';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Link Title Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136603,7 +136554,7 @@ CREATE TABLE `downloadable_sample` (
   PRIMARY KEY (`sample_id`),
   KEY `DOWNLOADABLE_SAMPLE_PRODUCT_ID` (`product_id`),
   CONSTRAINT `DOWNLOADABLE_SAMPLE_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Downloadable Sample Table';
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Downloadable Sample Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136651,7 +136602,7 @@ CREATE TABLE `downloadable_sample_title` (
   KEY `DOWNLOADABLE_SAMPLE_TITLE_STORE_ID` (`store_id`),
   CONSTRAINT `DL_SAMPLE_TTL_SAMPLE_ID_DL_SAMPLE_SAMPLE_ID` FOREIGN KEY (`sample_id`) REFERENCES `downloadable_sample` (`sample_id`) ON DELETE CASCADE,
   CONSTRAINT `DOWNLOADABLE_SAMPLE_TITLE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Downloadable Sample Title Table';
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Downloadable Sample Title Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136711,7 +136662,7 @@ CREATE TABLE `eav_attribute` (
   UNIQUE KEY `EAV_ATTRIBUTE_ENTITY_TYPE_ID_ATTRIBUTE_CODE` (`entity_type_id`,`attribute_code`),
   KEY `EAV_ATTRIBUTE_FRONTEND_INPUT_ENTITY_TYPE_ID_IS_USER_DEFINED` (`frontend_input`,`entity_type_id`,`is_user_defined`),
   CONSTRAINT `EAV_ATTRIBUTE_ENTITY_TYPE_ID_EAV_ENTITY_TYPE_ENTITY_TYPE_ID` FOREIGN KEY (`entity_type_id`) REFERENCES `eav_entity_type` (`entity_type_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=170 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Eav Attribute';
+) ENGINE=InnoDB AUTO_INCREMENT=170 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Eav Attribute';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136788,7 +136739,7 @@ INSERT INTO `eav_attribute` VALUES
 (65,3,'level',NULL,NULL,'static',NULL,NULL,'text','Level',NULL,NULL,0,0,NULL,0,NULL),
 (66,3,'children_count',NULL,NULL,'static',NULL,NULL,'text','Children Count',NULL,NULL,0,0,NULL,0,NULL),
 (67,3,'available_sort_by',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Backend\\Sortby','text',NULL,NULL,'multiselect','Available Product Listing Sort By',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Source\\Sortby',1,0,NULL,0,NULL),
-(68,3,'default_sort_by',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Backend\\Sortby','varchar',NULL,NULL,'select','Default Product Listing Sort By',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Source\\Sortby',1,0,NULL,0,NULL),
+(68,3,'default_sort_by',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Backend\\DefaultSortby','varchar',NULL,NULL,'select','Default Product Listing Sort By',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Source\\Sortby',1,0,NULL,0,NULL),
 (69,3,'include_in_menu',NULL,NULL,'int',NULL,NULL,'select','Include in Navigation Menu',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Source\\Boolean',1,0,'1',0,NULL),
 (70,3,'custom_use_parent_settings',NULL,NULL,'int',NULL,NULL,'select','Use Parent Category Settings',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Source\\Boolean',0,0,NULL,0,NULL),
 (71,3,'custom_apply_to_products',NULL,NULL,'int',NULL,NULL,'select','Apply To Products',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Source\\Boolean',0,0,NULL,0,NULL),
@@ -136841,7 +136792,7 @@ INSERT INTO `eav_attribute` VALUES
 (118,3,'custom_layout_update_file',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Backend\\LayoutUpdate','varchar',NULL,NULL,'select','Custom Layout Update',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Source\\LayoutUpdate',0,0,NULL,0,NULL),
 (119,3,'url_key',NULL,NULL,'varchar',NULL,NULL,'text','URL Key',NULL,NULL,0,0,NULL,0,NULL),
 (120,3,'url_path',NULL,NULL,'varchar',NULL,NULL,'text',NULL,NULL,NULL,0,0,NULL,0,NULL),
-(121,4,'url_key',NULL,NULL,'varchar',NULL,NULL,'text','URL Key','validate-trailing-hyphen',NULL,0,0,NULL,0,NULL),
+(121,4,'url_key',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Url','varchar',NULL,NULL,'text','URL Key','validate-trailing-hyphen',NULL,0,0,NULL,0,NULL),
 (122,4,'url_path',NULL,NULL,'varchar',NULL,NULL,'text',NULL,NULL,NULL,0,0,NULL,0,NULL),
 (123,4,'msrp','Magento\\Catalog\\Model\\ResourceModel\\Eav\\Attribute','Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Price','decimal',NULL,NULL,'price','Minimum Advertised Price',NULL,NULL,0,0,NULL,0,NULL),
 (124,4,'msrp_display_actual_price_type',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Boolean','varchar',NULL,NULL,'select','Display Actual Price',NULL,'Magento\\Msrp\\Model\\Product\\Attribute\\Source\\Type\\Price',0,0,'0',0,NULL),
@@ -136913,7 +136864,7 @@ CREATE TABLE `eav_attribute_group` (
   UNIQUE KEY `EAV_ATTRIBUTE_GROUP_ATTRIBUTE_SET_ID_ATTRIBUTE_GROUP_NAME` (`attribute_set_id`,`attribute_group_name`),
   KEY `EAV_ATTRIBUTE_GROUP_ATTRIBUTE_SET_ID_SORT_ORDER` (`attribute_set_id`,`sort_order`),
   CONSTRAINT `EAV_ATTR_GROUP_ATTR_SET_ID_EAV_ATTR_SET_ATTR_SET_ID` FOREIGN KEY (`attribute_set_id`) REFERENCES `eav_attribute_set` (`attribute_set_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Eav Attribute Group';
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Eav Attribute Group';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137033,7 +136984,7 @@ CREATE TABLE `eav_attribute_label` (
   KEY `EAV_ATTRIBUTE_LABEL_ATTRIBUTE_ID_STORE_ID` (`attribute_id`,`store_id`),
   CONSTRAINT `EAV_ATTRIBUTE_LABEL_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `EAV_ATTRIBUTE_LABEL_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Eav Attribute Label';
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Eav Attribute Label';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137065,7 +137016,7 @@ CREATE TABLE `eav_attribute_option` (
   PRIMARY KEY (`option_id`),
   KEY `EAV_ATTRIBUTE_OPTION_ATTRIBUTE_ID` (`attribute_id`),
   CONSTRAINT `EAV_ATTRIBUTE_OPTION_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=212 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Eav Attribute Option';
+) ENGINE=InnoDB AUTO_INCREMENT=212 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Eav Attribute Option';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137308,7 +137259,7 @@ CREATE TABLE `eav_attribute_option_swatch` (
   KEY `EAV_ATTRIBUTE_OPTION_SWATCH_SWATCH_ID` (`swatch_id`),
   CONSTRAINT `EAV_ATTRIBUTE_OPTION_SWATCH_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `EAV_ATTR_OPT_SWATCH_OPT_ID_EAV_ATTR_OPT_OPT_ID` FOREIGN KEY (`option_id`) REFERENCES `eav_attribute_option` (`option_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Magento Swatches table';
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Magento Swatches table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137386,11 +137337,12 @@ CREATE TABLE `eav_attribute_option_value` (
   `store_id` smallint(5) unsigned NOT NULL DEFAULT 0 COMMENT 'Store ID',
   `value` varchar(255) DEFAULT NULL COMMENT 'Value',
   PRIMARY KEY (`value_id`),
+  UNIQUE KEY `EAV_ATTRIBUTE_OPTION_VALUE_STORE_ID_OPTION_ID` (`store_id`,`option_id`),
   KEY `EAV_ATTRIBUTE_OPTION_VALUE_OPTION_ID` (`option_id`),
   KEY `EAV_ATTRIBUTE_OPTION_VALUE_STORE_ID` (`store_id`),
   CONSTRAINT `EAV_ATTRIBUTE_OPTION_VALUE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `EAV_ATTR_OPT_VAL_OPT_ID_EAV_ATTR_OPT_OPT_ID` FOREIGN KEY (`option_id`) REFERENCES `eav_attribute_option` (`option_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=239 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Eav Attribute Option Value';
+) ENGINE=InnoDB AUTO_INCREMENT=239 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Eav Attribute Option Value';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137625,7 +137577,7 @@ CREATE TABLE `eav_attribute_set` (
   UNIQUE KEY `EAV_ATTRIBUTE_SET_ENTITY_TYPE_ID_ATTRIBUTE_SET_NAME` (`entity_type_id`,`attribute_set_name`),
   KEY `EAV_ATTRIBUTE_SET_ENTITY_TYPE_ID_SORT_ORDER` (`entity_type_id`,`sort_order`),
   CONSTRAINT `EAV_ATTRIBUTE_SET_ENTITY_TYPE_ID_EAV_ENTITY_TYPE_ENTITY_TYPE_ID` FOREIGN KEY (`entity_type_id`) REFERENCES `eav_entity_type` (`entity_type_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Eav Attribute Set';
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Eav Attribute Set';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137675,7 +137627,7 @@ CREATE TABLE `eav_entity` (
   KEY `EAV_ENTITY_STORE_ID` (`store_id`),
   CONSTRAINT `EAV_ENTITY_ENTITY_TYPE_ID_EAV_ENTITY_TYPE_ENTITY_TYPE_ID` FOREIGN KEY (`entity_type_id`) REFERENCES `eav_entity_type` (`entity_type_id`) ON DELETE CASCADE,
   CONSTRAINT `EAV_ENTITY_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Eav Entity';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Eav Entity';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137708,7 +137660,7 @@ CREATE TABLE `eav_entity_attribute` (
   KEY `EAV_ENTITY_ATTRIBUTE_ATTRIBUTE_ID` (`attribute_id`),
   CONSTRAINT `EAV_ENTITY_ATTRIBUTE_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `EAV_ENTT_ATTR_ATTR_GROUP_ID_EAV_ATTR_GROUP_ATTR_GROUP_ID` FOREIGN KEY (`attribute_group_id`) REFERENCES `eav_attribute_group` (`attribute_group_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=732 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Eav Entity Attributes';
+) ENGINE=InnoDB AUTO_INCREMENT=732 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Eav Entity Attributes';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138399,7 +138351,7 @@ CREATE TABLE `eav_entity_datetime` (
   CONSTRAINT `EAV_ENTITY_DATETIME_ENTITY_ID_EAV_ENTITY_ENTITY_ID` FOREIGN KEY (`entity_id`) REFERENCES `eav_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `EAV_ENTITY_DATETIME_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `EAV_ENTT_DTIME_ENTT_TYPE_ID_EAV_ENTT_TYPE_ENTT_TYPE_ID` FOREIGN KEY (`entity_type_id`) REFERENCES `eav_entity_type` (`entity_type_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Eav Entity Value Prefix';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Eav Entity Value Prefix';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138433,7 +138385,7 @@ CREATE TABLE `eav_entity_decimal` (
   CONSTRAINT `EAV_ENTITY_DECIMAL_ENTITY_ID_EAV_ENTITY_ENTITY_ID` FOREIGN KEY (`entity_id`) REFERENCES `eav_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `EAV_ENTITY_DECIMAL_ENTITY_TYPE_ID_EAV_ENTITY_TYPE_ENTITY_TYPE_ID` FOREIGN KEY (`entity_type_id`) REFERENCES `eav_entity_type` (`entity_type_id`) ON DELETE CASCADE,
   CONSTRAINT `EAV_ENTITY_DECIMAL_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Eav Entity Value Prefix';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Eav Entity Value Prefix';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138467,7 +138419,7 @@ CREATE TABLE `eav_entity_int` (
   CONSTRAINT `EAV_ENTITY_INT_ENTITY_ID_EAV_ENTITY_ENTITY_ID` FOREIGN KEY (`entity_id`) REFERENCES `eav_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `EAV_ENTITY_INT_ENTITY_TYPE_ID_EAV_ENTITY_TYPE_ENTITY_TYPE_ID` FOREIGN KEY (`entity_type_id`) REFERENCES `eav_entity_type` (`entity_type_id`) ON DELETE CASCADE,
   CONSTRAINT `EAV_ENTITY_INT_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Eav Entity Value Prefix';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Eav Entity Value Prefix';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138497,7 +138449,7 @@ CREATE TABLE `eav_entity_store` (
   KEY `EAV_ENTITY_STORE_STORE_ID` (`store_id`),
   CONSTRAINT `EAV_ENTITY_STORE_ENTITY_TYPE_ID_EAV_ENTITY_TYPE_ENTITY_TYPE_ID` FOREIGN KEY (`entity_type_id`) REFERENCES `eav_entity_type` (`entity_type_id`) ON DELETE CASCADE,
   CONSTRAINT `EAV_ENTITY_STORE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Eav Entity Store';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Eav Entity Store';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138531,7 +138483,7 @@ CREATE TABLE `eav_entity_text` (
   CONSTRAINT `EAV_ENTITY_TEXT_ENTITY_ID_EAV_ENTITY_ENTITY_ID` FOREIGN KEY (`entity_id`) REFERENCES `eav_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `EAV_ENTITY_TEXT_ENTITY_TYPE_ID_EAV_ENTITY_TYPE_ENTITY_TYPE_ID` FOREIGN KEY (`entity_type_id`) REFERENCES `eav_entity_type` (`entity_type_id`) ON DELETE CASCADE,
   CONSTRAINT `EAV_ENTITY_TEXT_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Eav Entity Value Prefix';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Eav Entity Value Prefix';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138569,7 +138521,7 @@ CREATE TABLE `eav_entity_type` (
   `entity_attribute_collection` varchar(255) DEFAULT NULL COMMENT 'Entity Attribute Collection',
   PRIMARY KEY (`entity_type_id`),
   KEY `EAV_ENTITY_TYPE_ENTITY_TYPE_CODE` (`entity_type_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Eav Entity Type';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Eav Entity Type';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138612,7 +138564,7 @@ CREATE TABLE `eav_entity_varchar` (
   CONSTRAINT `EAV_ENTITY_VARCHAR_ENTITY_ID_EAV_ENTITY_ENTITY_ID` FOREIGN KEY (`entity_id`) REFERENCES `eav_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `EAV_ENTITY_VARCHAR_ENTITY_TYPE_ID_EAV_ENTITY_TYPE_ENTITY_TYPE_ID` FOREIGN KEY (`entity_type_id`) REFERENCES `eav_entity_type` (`entity_type_id`) ON DELETE CASCADE,
   CONSTRAINT `EAV_ENTITY_VARCHAR_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Eav Entity Value Prefix';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Eav Entity Value Prefix';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138644,7 +138596,7 @@ CREATE TABLE `eav_form_element` (
   CONSTRAINT `EAV_FORM_ELEMENT_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `EAV_FORM_ELEMENT_FIELDSET_ID_EAV_FORM_FIELDSET_FIELDSET_ID` FOREIGN KEY (`fieldset_id`) REFERENCES `eav_form_fieldset` (`fieldset_id`) ON DELETE SET NULL,
   CONSTRAINT `EAV_FORM_ELEMENT_TYPE_ID_EAV_FORM_TYPE_TYPE_ID` FOREIGN KEY (`type_id`) REFERENCES `eav_form_type` (`type_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Eav Form Element';
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Eav Form Element';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138714,7 +138666,7 @@ CREATE TABLE `eav_form_fieldset` (
   PRIMARY KEY (`fieldset_id`),
   UNIQUE KEY `EAV_FORM_FIELDSET_TYPE_ID_CODE` (`type_id`,`code`),
   CONSTRAINT `EAV_FORM_FIELDSET_TYPE_ID_EAV_FORM_TYPE_TYPE_ID` FOREIGN KEY (`type_id`) REFERENCES `eav_form_type` (`type_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Eav Form Fieldset';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Eav Form Fieldset';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138741,7 +138693,7 @@ CREATE TABLE `eav_form_fieldset_label` (
   KEY `EAV_FORM_FIELDSET_LABEL_STORE_ID` (`store_id`),
   CONSTRAINT `EAV_FORM_FIELDSET_LABEL_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `EAV_FORM_FSET_LBL_FSET_ID_EAV_FORM_FSET_FSET_ID` FOREIGN KEY (`fieldset_id`) REFERENCES `eav_form_fieldset` (`fieldset_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Eav Form Fieldset Label';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Eav Form Fieldset Label';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138771,7 +138723,7 @@ CREATE TABLE `eav_form_type` (
   UNIQUE KEY `EAV_FORM_TYPE_CODE_THEME_STORE_ID` (`code`,`theme`,`store_id`),
   KEY `EAV_FORM_TYPE_STORE_ID` (`store_id`),
   CONSTRAINT `EAV_FORM_TYPE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Eav Form Type';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Eav Form Type';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138802,7 +138754,7 @@ CREATE TABLE `eav_form_type_entity` (
   KEY `EAV_FORM_TYPE_ENTITY_ENTITY_TYPE_ID` (`entity_type_id`),
   CONSTRAINT `EAV_FORM_TYPE_ENTITY_TYPE_ID_EAV_FORM_TYPE_TYPE_ID` FOREIGN KEY (`type_id`) REFERENCES `eav_form_type` (`type_id`) ON DELETE CASCADE,
   CONSTRAINT `EAV_FORM_TYPE_ENTT_ENTT_TYPE_ID_EAV_ENTT_TYPE_ENTT_TYPE_ID` FOREIGN KEY (`entity_type_id`) REFERENCES `eav_entity_type` (`entity_type_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Eav Form Type Entity';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Eav Form Type Entity';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141331,7 +141283,7 @@ CREATE TABLE `email_template` (
   UNIQUE KEY `EMAIL_TEMPLATE_TEMPLATE_CODE` (`template_code`),
   KEY `EMAIL_TEMPLATE_ADDED_AT` (`added_at`),
   KEY `EMAIL_TEMPLATE_MODIFIED_AT` (`modified_at`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Email Templates';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Email Templates';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141392,13 +141344,13 @@ DROP TABLE IF EXISTS `flag`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `flag` (
   `flag_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Flag Id',
-  `flag_code` varchar(255) NOT NULL COMMENT 'Flag Code',
+  `flag_code` varchar(255) NOT NULL,
   `state` smallint(5) unsigned NOT NULL DEFAULT 0 COMMENT 'Flag State',
-  `flag_data` mediumtext DEFAULT NULL COMMENT 'Flag Data',
+  `flag_data` mediumtext DEFAULT NULL,
   `last_update` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Date of Last Flag Update',
   PRIMARY KEY (`flag_id`),
   KEY `FLAG_LAST_UPDATE` (`last_update`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Flag';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Flag';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141434,7 +141386,7 @@ CREATE TABLE `gift_message` (
   `recipient` varchar(255) DEFAULT NULL COMMENT 'Registrant',
   `message` text DEFAULT NULL COMMENT 'Message',
   PRIMARY KEY (`gift_message_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Gift Message';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Gift Message';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141462,7 +141414,7 @@ CREATE TABLE `import_history` (
   `summary` varchar(255) DEFAULT NULL COMMENT 'Summary',
   `error_file` varchar(255) NOT NULL COMMENT 'Imported file with errors',
   PRIMARY KEY (`history_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Import history table';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Import history table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141491,7 +141443,7 @@ CREATE TABLE `importexport_importdata` (
   `is_processed` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'Is Row Processed',
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'timestamp of last update',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Import Data Table';
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Import Data Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141545,7 +141497,7 @@ CREATE TABLE `indexer_state` (
   `hash_config` varchar(32) NOT NULL COMMENT 'Hash of indexer config',
   PRIMARY KEY (`state_id`),
   KEY `INDEXER_STATE_INDEXER_ID` (`indexer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Indexer State';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Indexer State';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141555,7 +141507,7 @@ CREATE TABLE `indexer_state` (
 LOCK TABLES `indexer_state` WRITE;
 /*!40000 ALTER TABLE `indexer_state` DISABLE KEYS */;
 INSERT INTO `indexer_state` VALUES
-(1,'design_config_grid','valid','2025-04-15 02:09:42','487c53abbb6c648f7a4aa808dbc31aba'),
+(1,'design_config_grid','valid','2026-02-13 00:50:04','487c53abbb6c648f7a4aa808dbc31aba'),
 (2,'customer_grid','valid','2023-07-04 01:50:48','b9b2767402f96e4d44bc53785d0d44cf'),
 (3,'catalog_category_product','invalid','2023-07-04 01:50:47','02b374b6ccbae7e701e9a5a06d85de9a'),
 (4,'catalog_product_category','invalid','2023-07-04 01:50:47','ae86cfb5f6faedc006e144fdbd1b7819'),
@@ -141564,7 +141516,7 @@ INSERT INTO `indexer_state` VALUES
 (7,'cataloginventory_stock','invalid','2023-07-04 01:50:47','683cd76d161659237da095e65b80e592'),
 (8,'inventory','invalid','2023-07-04 01:50:47','3460c7ffaa876b46089db94b6a5d3afa'),
 (9,'catalogrule_product','invalid','2023-07-04 01:50:47','9d0ed360137f20ce8e41d09e7a4e1b8d'),
-(10,'catalog_product_price','invalid','2023-07-04 01:50:47','db822e195a7c51da6d243ec43dc57a8f'),
+(10,'catalog_product_price','invalid','2026-02-13 00:50:03','75d04a3604d4f6a8b6472b2970e55abd'),
 (11,'catalogsearch_fulltext','invalid','2023-07-04 01:50:47','5d12e4f6ddd4f23b4e994d3da0c55b1d'),
 (12,'catalog_product_flat','valid','2020-10-16 01:00:19','2925bb103475d56b74c763410984c4bd'),
 (13,'catalog_category_flat','valid','2020-10-16 01:00:19','21c63d1655f512ec7e9660958ba4805e'),
@@ -141596,7 +141548,7 @@ CREATE TABLE `integration` (
   UNIQUE KEY `INTEGRATION_NAME` (`name`),
   UNIQUE KEY `INTEGRATION_CONSUMER_ID` (`consumer_id`),
   CONSTRAINT `INTEGRATION_CONSUMER_ID_OAUTH_CONSUMER_ENTITY_ID` FOREIGN KEY (`consumer_id`) REFERENCES `oauth_consumer` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='integration';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='integration';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141627,7 +141579,7 @@ CREATE TABLE `inventory_geoname` (
   `longitude` double NOT NULL,
   `entity_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'entity id',
   PRIMARY KEY (`entity_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141651,7 +141603,7 @@ CREATE TABLE `inventory_low_stock_notification_configuration` (
   `sku` varchar(64) NOT NULL,
   `notify_stock_qty` decimal(12,4) DEFAULT NULL,
   PRIMARY KEY (`source_code`,`sku`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141681,7 +141633,7 @@ CREATE TABLE `inventory_order_notification` (
   `send_notification` smallint(6) NOT NULL COMMENT 'Should Notification Be Send For Order',
   PRIMARY KEY (`order_id`),
   CONSTRAINT `INVENTORY_ORDER_NOTIFICATION_ORDER_ID_SALES_ORDER_ENTITY_ID` FOREIGN KEY (`order_id`) REFERENCES `sales_order` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141705,7 +141657,7 @@ CREATE TABLE `inventory_pickup_location_order` (
   `pickup_location_code` varchar(255) NOT NULL COMMENT 'Pickup Location Code',
   PRIMARY KEY (`order_id`),
   CONSTRAINT `INVENTORY_PICKUP_LOCATION_ORDER_ORDER_ID_SALES_ORDER_ENTITY_ID` FOREIGN KEY (`order_id`) REFERENCES `sales_order` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141729,7 +141681,7 @@ CREATE TABLE `inventory_pickup_location_quote_address` (
   `pickup_location_code` varchar(255) NOT NULL COMMENT 'Pickup Location Code',
   PRIMARY KEY (`address_id`),
   CONSTRAINT `INV_PICKUP_LOCATION_QUOTE_ADDR_ADDR_ID_QUOTE_ADDR_ADDR_ID` FOREIGN KEY (`address_id`) REFERENCES `quote_address` (`address_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141756,7 +141708,7 @@ CREATE TABLE `inventory_reservation` (
   `metadata` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`reservation_id`),
   KEY `INVENTORY_RESERVATION_STOCK_ID_SKU_QUANTITY` (`stock_id`,`sku`,`quantity`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141767,7 +141719,13 @@ LOCK TABLES `inventory_reservation` WRITE;
 /*!40000 ALTER TABLE `inventory_reservation` DISABLE KEYS */;
 INSERT INTO `inventory_reservation` VALUES
 (1,1,'24-WB04',-1.0000,'{\"event_type\":\"order_placed\",\"object_type\":\"order\",\"object_id\":\"\",\"object_increment_id\":\"000000004\"}'),
-(2,1,'WT09-S-White',-1.0000,'{\"event_type\":\"order_placed\",\"object_type\":\"order\",\"object_id\":\"\",\"object_increment_id\":\"000000005\"}');
+(2,1,'WT09-S-White',-1.0000,'{\"event_type\":\"order_placed\",\"object_type\":\"order\",\"object_id\":\"\",\"object_increment_id\":\"000000005\"}'),
+(3,1,'24-WG02',-1.0000,'{\"event_type\":\"order_placed\",\"object_type\":\"order\",\"object_id\":\"\",\"object_increment_id\":\"000000006\"}'),
+(4,1,'24-WG02',-1.0000,'{\"event_type\":\"order_placed\",\"object_type\":\"order\",\"object_id\":\"\",\"object_increment_id\":\"000000007\"}'),
+(5,1,'24-WG02',-1.0000,'{\"event_type\":\"order_placed\",\"object_type\":\"order\",\"object_id\":\"\",\"object_increment_id\":\"000000008\"}'),
+(6,1,'24-WG02',-1.0000,'{\"event_type\":\"order_placed\",\"object_type\":\"order\",\"object_id\":\"\",\"object_increment_id\":\"000000009\"}'),
+(7,1,'24-WG02',1.0000,'{\"event_type\":\"order_place_failed\",\"object_type\":\"order\",\"object_id\":\"\",\"object_increment_id\":\"000000009\"}'),
+(8,1,'24-WG02',-1.0000,'{\"event_type\":\"order_placed\",\"object_type\":\"order\",\"object_id\":\"\",\"object_increment_id\":\"000000010\"}');
 /*!40000 ALTER TABLE `inventory_reservation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141782,7 +141740,7 @@ CREATE TABLE `inventory_shipment_source` (
   `shipment_id` int(10) unsigned NOT NULL,
   `source_code` varchar(255) NOT NULL,
   PRIMARY KEY (`shipment_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141826,7 +141784,7 @@ CREATE TABLE `inventory_source` (
   `frontend_name` varchar(255) DEFAULT '',
   `frontend_description` text DEFAULT NULL,
   PRIMARY KEY (`source_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141855,7 +141813,7 @@ CREATE TABLE `inventory_source_carrier_link` (
   PRIMARY KEY (`link_id`),
   KEY `INV_SOURCE_CARRIER_LNK_SOURCE_CODE_INV_SOURCE_SOURCE_CODE` (`source_code`),
   CONSTRAINT `INV_SOURCE_CARRIER_LNK_SOURCE_CODE_INV_SOURCE_SOURCE_CODE` FOREIGN KEY (`source_code`) REFERENCES `inventory_source` (`source_code`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141884,7 +141842,7 @@ CREATE TABLE `inventory_source_item` (
   UNIQUE KEY `INVENTORY_SOURCE_ITEM_SOURCE_CODE_SKU` (`source_code`,`sku`),
   KEY `INVENTORY_SOURCE_ITEM_SKU_SOURCE_CODE_QUANTITY` (`sku`,`source_code`,`quantity`),
   CONSTRAINT `INVENTORY_SOURCE_ITEM_SOURCE_CODE_INVENTORY_SOURCE_SOURCE_CODE` FOREIGN KEY (`source_code`) REFERENCES `inventory_source` (`source_code`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2056 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2056 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143962,7 +143920,7 @@ CREATE TABLE `inventory_source_stock_link` (
   KEY `INVENTORY_SOURCE_STOCK_LINK_STOCK_ID_PRIORITY` (`stock_id`,`priority`),
   CONSTRAINT `INVENTORY_SOURCE_STOCK_LINK_STOCK_ID_INVENTORY_STOCK_STOCK_ID` FOREIGN KEY (`stock_id`) REFERENCES `inventory_stock` (`stock_id`) ON DELETE CASCADE,
   CONSTRAINT `INV_SOURCE_STOCK_LNK_SOURCE_CODE_INV_SOURCE_SOURCE_CODE` FOREIGN KEY (`source_code`) REFERENCES `inventory_source` (`source_code`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143987,7 +143945,7 @@ CREATE TABLE `inventory_stock` (
   `stock_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`stock_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144084,7 +144042,7 @@ CREATE TABLE `inventory_stock_sales_channel` (
   PRIMARY KEY (`type`,`code`),
   KEY `INVENTORY_STOCK_SALES_CHANNEL_STOCK_ID_INVENTORY_STOCK_STOCK_ID` (`stock_id`),
   CONSTRAINT `INVENTORY_STOCK_SALES_CHANNEL_STOCK_ID_INVENTORY_STOCK_STOCK_ID` FOREIGN KEY (`stock_id`) REFERENCES `inventory_stock` (`stock_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144110,7 +144068,7 @@ CREATE TABLE `jwt_auth_revoked` (
   `user_id` int(10) unsigned NOT NULL COMMENT 'User ID',
   `revoke_before` bigint(20) unsigned NOT NULL COMMENT 'Not accepting tokens issued before this timestamp',
   PRIMARY KEY (`user_type_id`,`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Holds revoked JWT authentication data';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Holds revoked JWT authentication data';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144237,7 +144195,7 @@ CREATE TABLE `layout_link` (
   CONSTRAINT `LAYOUT_LINK_LAYOUT_UPDATE_ID_LAYOUT_UPDATE_LAYOUT_UPDATE_ID` FOREIGN KEY (`layout_update_id`) REFERENCES `layout_update` (`layout_update_id`) ON DELETE CASCADE,
   CONSTRAINT `LAYOUT_LINK_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `LAYOUT_LINK_THEME_ID_THEME_THEME_ID` FOREIGN KEY (`theme_id`) REFERENCES `theme` (`theme_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Layout Link';
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Layout Link';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144283,7 +144241,7 @@ CREATE TABLE `layout_update` (
   `updated_at` timestamp NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp() COMMENT 'Last Update Timestamp',
   PRIMARY KEY (`layout_update_id`),
   KEY `LAYOUT_UPDATE_HANDLE` (`handle`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Layout Updates';
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Layout Updates';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144328,7 +144286,7 @@ CREATE TABLE `login_as_customer` (
   `created_at` timestamp NULL DEFAULT NULL COMMENT 'Creation Time',
   PRIMARY KEY (`secret`),
   KEY `LOGIN_AS_CUSTOMER_CREATED_AT` (`created_at`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Magento Login as Customer Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Magento Login as Customer Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144351,7 +144309,7 @@ CREATE TABLE `login_as_customer_assistance_allowed` (
   `customer_id` int(10) unsigned NOT NULL COMMENT 'Customer ID',
   PRIMARY KEY (`customer_id`),
   CONSTRAINT `LOGIN_AS_CSTR_ASSISTANCE_ALLOWED_CSTR_ID_CSTR_ENTT_ENTT_ID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Magento Login as Customer Assistance Allowed Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Magento Login as Customer Assistance Allowed Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144414,7 +144372,7 @@ CREATE TABLE `magento_acknowledged_bulk` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `MAGENTO_ACKNOWLEDGED_BULK_BULK_UUID` (`bulk_uuid`),
   CONSTRAINT `MAGENTO_ACKNOWLEDGED_BULK_BULK_UUID_MAGENTO_BULK_UUID` FOREIGN KEY (`bulk_uuid`) REFERENCES `magento_bulk` (`uuid`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Bulk that was viewed by user from notification area';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Bulk that was viewed by user from notification area';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144445,7 +144403,7 @@ CREATE TABLE `magento_bulk` (
   UNIQUE KEY `MAGENTO_BULK_UUID` (`uuid`),
   KEY `MAGENTO_BULK_USER_ID` (`user_id`),
   KEY `MAGENTO_BULK_START_TIME` (`start_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Bulk entity that represents set of related asynchronous operations';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Bulk entity that represents set of related asynchronous operations';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144473,7 +144431,7 @@ CREATE TABLE `magento_login_as_customer_log` (
   `customer_email` varchar(40) DEFAULT NULL COMMENT 'Customer email',
   PRIMARY KEY (`log_id`),
   KEY `MAGENTO_LOGIN_AS_CUSTOMER_LOG_USER_ID` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Login as Customer Logging';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Login as Customer Logging';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144507,7 +144465,7 @@ CREATE TABLE `magento_operation` (
   KEY `MAGENTO_OPERATION_BULK_UUID_ERROR_CODE` (`bulk_uuid`,`error_code`),
   KEY `MAGENTO_OPERATION_STATUS_STARTED_AT` (`status`,`started_at`),
   CONSTRAINT `MAGENTO_OPERATION_BULK_UUID_MAGENTO_BULK_UUID` FOREIGN KEY (`bulk_uuid`) REFERENCES `magento_bulk` (`uuid`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Operation entity';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Operation entity';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144593,7 +144551,7 @@ CREATE TABLE `media_content_asset` (
   `field` varchar(255) NOT NULL COMMENT 'Content field',
   PRIMARY KEY (`entity_type`,`entity_id`,`field`,`asset_id`),
   KEY `MEDIA_CONTENT_ASSET_ASSET_ID` (`asset_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Relation between media content and media asset';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Relation between media content and media asset';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144630,7 +144588,7 @@ CREATE TABLE `media_gallery_asset` (
   PRIMARY KEY (`id`),
   KEY `MEDIA_GALLERY_ASSET_ID` (`id`),
   FULLTEXT KEY `MEDIA_GALLERY_ASSET_TITLE` (`title`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Media Gallery Asset';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Media Gallery Asset';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144661,7 +144619,7 @@ CREATE TABLE `media_gallery_asset_keyword` (
   KEY `MEDIA_GALLERY_ASSET_KEYWORD_KEYWORD_ID` (`keyword_id`),
   CONSTRAINT `MEDIA_GALLERY_ASSET_KEYWORD_ASSET_ID_MEDIA_GALLERY_ASSET_ID` FOREIGN KEY (`asset_id`) REFERENCES `media_gallery_asset` (`id`) ON DELETE CASCADE,
   CONSTRAINT `MEDIA_GALLERY_ASSET_KEYWORD_KEYWORD_ID_MEDIA_GALLERY_KEYWORD_ID` FOREIGN KEY (`keyword_id`) REFERENCES `media_gallery_keyword` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Media Gallery Asset Keyword';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Media Gallery Asset Keyword';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144686,7 +144644,7 @@ CREATE TABLE `media_gallery_keyword` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `MEDIA_GALLERY_KEYWORD_KEYWORD` (`keyword`),
   KEY `MEDIA_GALLERY_KEYWORD_ID` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Media Gallery Keyword';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Media Gallery Keyword';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144715,7 +144673,7 @@ CREATE TABLE `mview_state` (
   PRIMARY KEY (`state_id`),
   KEY `MVIEW_STATE_VIEW_ID` (`view_id`),
   KEY `MVIEW_STATE_MODE` (`mode`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='View State';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='View State';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144725,9 +144683,9 @@ CREATE TABLE `mview_state` (
 LOCK TABLES `mview_state` WRITE;
 /*!40000 ALTER TABLE `mview_state` DISABLE KEYS */;
 INSERT INTO `mview_state` VALUES
-(1,'store_data_exporter','enabled','idle','2025-04-15 01:25:46',NULL),
-(2,'sales_order_data_exporter','enabled','idle','2025-04-15 01:25:46',NULL),
-(3,'sales_order_status_data_exporter','enabled','idle','2025-04-15 01:25:46',NULL);
+(1,'store_data_exporter','enabled','idle','2026-02-13 00:50:03',NULL),
+(2,'sales_order_data_exporter','enabled','idle','2026-02-13 00:50:03',NULL),
+(3,'sales_order_status_data_exporter','enabled','idle','2026-02-13 00:50:03',NULL);
 /*!40000 ALTER TABLE `mview_state` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -144749,7 +144707,7 @@ CREATE TABLE `newsletter_problem` (
   KEY `NEWSLETTER_PROBLEM_QUEUE_ID` (`queue_id`),
   CONSTRAINT `NEWSLETTER_PROBLEM_QUEUE_ID_NEWSLETTER_QUEUE_QUEUE_ID` FOREIGN KEY (`queue_id`) REFERENCES `newsletter_queue` (`queue_id`) ON DELETE CASCADE,
   CONSTRAINT `NLTTR_PROBLEM_SUBSCRIBER_ID_NLTTR_SUBSCRIBER_SUBSCRIBER_ID` FOREIGN KEY (`subscriber_id`) REFERENCES `newsletter_subscriber` (`subscriber_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Newsletter Problems';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Newsletter Problems';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144783,7 +144741,7 @@ CREATE TABLE `newsletter_queue` (
   PRIMARY KEY (`queue_id`),
   KEY `NEWSLETTER_QUEUE_TEMPLATE_ID` (`template_id`),
   CONSTRAINT `NEWSLETTER_QUEUE_TEMPLATE_ID_NEWSLETTER_TEMPLATE_TEMPLATE_ID` FOREIGN KEY (`template_id`) REFERENCES `newsletter_template` (`template_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Newsletter Queue';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Newsletter Queue';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144812,7 +144770,7 @@ CREATE TABLE `newsletter_queue_link` (
   KEY `NEWSLETTER_QUEUE_LINK_QUEUE_ID_LETTER_SENT_AT` (`queue_id`,`letter_sent_at`),
   CONSTRAINT `NEWSLETTER_QUEUE_LINK_QUEUE_ID_NEWSLETTER_QUEUE_QUEUE_ID` FOREIGN KEY (`queue_id`) REFERENCES `newsletter_queue` (`queue_id`) ON DELETE CASCADE,
   CONSTRAINT `NLTTR_QUEUE_LNK_SUBSCRIBER_ID_NLTTR_SUBSCRIBER_SUBSCRIBER_ID` FOREIGN KEY (`subscriber_id`) REFERENCES `newsletter_subscriber` (`subscriber_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Newsletter Queue Link';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Newsletter Queue Link';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144838,7 +144796,7 @@ CREATE TABLE `newsletter_queue_store_link` (
   KEY `NEWSLETTER_QUEUE_STORE_LINK_STORE_ID` (`store_id`),
   CONSTRAINT `NEWSLETTER_QUEUE_STORE_LINK_QUEUE_ID_NEWSLETTER_QUEUE_QUEUE_ID` FOREIGN KEY (`queue_id`) REFERENCES `newsletter_queue` (`queue_id`) ON DELETE CASCADE,
   CONSTRAINT `NEWSLETTER_QUEUE_STORE_LINK_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Newsletter Queue Store Link';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Newsletter Queue Store Link';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144871,7 +144829,7 @@ CREATE TABLE `newsletter_subscriber` (
   KEY `NEWSLETTER_SUBSCRIBER_STORE_ID` (`store_id`),
   KEY `NEWSLETTER_SUBSCRIBER_SUBSCRIBER_EMAIL` (`subscriber_email`),
   CONSTRAINT `NEWSLETTER_SUBSCRIBER_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Newsletter Subscriber';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Newsletter Subscriber';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144907,7 +144865,7 @@ CREATE TABLE `newsletter_template` (
   KEY `NEWSLETTER_TEMPLATE_TEMPLATE_ACTUAL` (`template_actual`),
   KEY `NEWSLETTER_TEMPLATE_ADDED_AT` (`added_at`),
   KEY `NEWSLETTER_TEMPLATE_MODIFIED_AT` (`modified_at`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Newsletter Template';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Newsletter Template';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144940,7 +144898,7 @@ CREATE TABLE `oauth_consumer` (
   UNIQUE KEY `OAUTH_CONSUMER_SECRET` (`secret`),
   KEY `OAUTH_CONSUMER_CREATED_AT` (`created_at`),
   KEY `OAUTH_CONSUMER_UPDATED_AT` (`updated_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='OAuth Consumers';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='OAuth Consumers';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144969,7 +144927,7 @@ CREATE TABLE `oauth_nonce` (
   KEY `OAUTH_NONCE_CONSUMER_ID_OAUTH_CONSUMER_ENTITY_ID` (`consumer_id`),
   KEY `OAUTH_NONCE_TIMESTAMP` (`timestamp`),
   CONSTRAINT `OAUTH_NONCE_CONSUMER_ID_OAUTH_CONSUMER_ENTITY_ID` FOREIGN KEY (`consumer_id`) REFERENCES `oauth_consumer` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='OAuth Nonce';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='OAuth Nonce';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145011,7 +144969,7 @@ CREATE TABLE `oauth_token` (
   CONSTRAINT `OAUTH_TOKEN_ADMIN_ID_ADMIN_USER_USER_ID` FOREIGN KEY (`admin_id`) REFERENCES `admin_user` (`user_id`) ON DELETE CASCADE,
   CONSTRAINT `OAUTH_TOKEN_CONSUMER_ID_OAUTH_CONSUMER_ENTITY_ID` FOREIGN KEY (`consumer_id`) REFERENCES `oauth_consumer` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `OAUTH_TOKEN_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='OAuth Tokens';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='OAuth Tokens';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145040,7 +144998,7 @@ CREATE TABLE `oauth_token_request_log` (
   `lock_expires_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Lock expiration time',
   PRIMARY KEY (`log_id`),
   UNIQUE KEY `OAUTH_TOKEN_REQUEST_LOG_USER_NAME_USER_TYPE` (`user_name`,`user_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Log of token request authentication failures.';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Log of token request authentication failures.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145069,7 +145027,7 @@ CREATE TABLE `pagebuilder_template` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Update Time',
   PRIMARY KEY (`template_id`),
   FULLTEXT KEY `PAGEBUILDER_TEMPLATE_NAME` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Page Builder Templates';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Page Builder Templates';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145097,7 +145055,7 @@ CREATE TABLE `password_reset_request_event` (
   PRIMARY KEY (`id`),
   KEY `PASSWORD_RESET_REQUEST_EVENT_ACCOUNT_REFERENCE` (`account_reference`),
   KEY `PASSWORD_RESET_REQUEST_EVENT_CREATED_AT` (`created_at`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Password Reset Request Event under a security control';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Password Reset Request Event under a security control';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145120,7 +145078,7 @@ CREATE TABLE `patch_list` (
   `patch_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Patch Auto Increment',
   `patch_name` varchar(1024) NOT NULL COMMENT 'Patch Class Name',
   PRIMARY KEY (`patch_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=216 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='List of data/schema patches';
+) ENGINE=InnoDB AUTO_INCREMENT=218 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='List of data/schema patches';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145344,7 +145302,9 @@ INSERT INTO `patch_list` VALUES
 (212,'Magento\\Directory\\Setup\\Patch\\Data\\AddDataForCostaRica'),
 (213,'Magento\\Directory\\Setup\\Patch\\Data\\AddDataForUkraine'),
 (214,'Magento\\Directory\\Setup\\Patch\\Data\\AddRegionsForIndia'),
-(215,'Magento\\ServicesId\\Setup\\Patch\\Data\\RemoveKeySetEncryptedConfigFlag');
+(215,'Magento\\ServicesId\\Setup\\Patch\\Data\\RemoveKeySetEncryptedConfigFlag'),
+(216,'Magento\\Catalog\\Setup\\Patch\\Data\\UpdateDefaultSortyByBackendType'),
+(217,'Magento\\Catalog\\Setup\\Patch\\Data\\UpdateProductUrlKeyBackendModel');
 /*!40000 ALTER TABLE `patch_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145360,7 +145320,7 @@ CREATE TABLE `payment_services_order_data_production_submitted_hash` (
   `feed_hash` varchar(64) NOT NULL COMMENT 'feed_hash',
   `submitted_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Submitted At',
   PRIMARY KEY (`identifier`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Payment Services Order Feed Storage';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Payment Services Order Feed Storage';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145384,7 +145344,7 @@ CREATE TABLE `payment_services_order_data_sandbox_submitted_hash` (
   `feed_hash` varchar(64) NOT NULL COMMENT 'feed_hash',
   `submitted_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Submitted At',
   PRIMARY KEY (`identifier`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Payment Services Order Feed Storage';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Payment Services Order Feed Storage';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145408,7 +145368,7 @@ CREATE TABLE `payment_services_order_status_data_prod_submitted_hash` (
   `feed_hash` varchar(64) NOT NULL COMMENT 'feed_hash',
   `submitted_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Submitted At',
   PRIMARY KEY (`identifier`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Payment Services Order Status Feed Storage';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Payment Services Order Status Feed Storage';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145432,7 +145392,7 @@ CREATE TABLE `payment_services_order_status_data_sandbox_submitted_hash` (
   `feed_hash` varchar(64) NOT NULL COMMENT 'feed_hash',
   `submitted_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Submitted At',
   PRIMARY KEY (`identifier`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Payment Services Order Status Feed Storage';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Payment Services Order Status Feed Storage';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145456,7 +145416,7 @@ CREATE TABLE `payment_services_store_data_production_submitted_hash` (
   `feed_hash` varchar(64) NOT NULL COMMENT 'feed_hash',
   `submitted_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Submitted At',
   PRIMARY KEY (`identifier`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Payment Services Store Feed Storage';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Payment Services Store Feed Storage';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145480,7 +145440,7 @@ CREATE TABLE `payment_services_store_data_sandbox_submitted_hash` (
   `feed_hash` varchar(64) NOT NULL COMMENT 'feed_hash',
   `submitted_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Submitted At',
   PRIMARY KEY (`identifier`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Payment Services Store Feed Storage';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Payment Services Store Feed Storage';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145514,7 +145474,7 @@ CREATE TABLE `paypal_billing_agreement` (
   KEY `PAYPAL_BILLING_AGREEMENT_STORE_ID` (`store_id`),
   CONSTRAINT `PAYPAL_BILLING_AGREEMENT_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `PAYPAL_BILLING_AGREEMENT_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Billing Agreement';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Billing Agreement';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145540,7 +145500,7 @@ CREATE TABLE `paypal_billing_agreement_order` (
   KEY `PAYPAL_BILLING_AGREEMENT_ORDER_ORDER_ID` (`order_id`),
   CONSTRAINT `PAYPAL_BILLING_AGREEMENT_ORDER_ORDER_ID_SALES_ORDER_ENTITY_ID` FOREIGN KEY (`order_id`) REFERENCES `sales_order` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `PAYPAL_BILLING_AGRT_ORDER_AGRT_ID_PAYPAL_BILLING_AGRT_AGRT_ID` FOREIGN KEY (`agreement_id`) REFERENCES `paypal_billing_agreement` (`agreement_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Billing Agreement Order';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Billing Agreement Order';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145567,7 +145527,7 @@ CREATE TABLE `paypal_cert` (
   PRIMARY KEY (`cert_id`),
   KEY `PAYPAL_CERT_WEBSITE_ID` (`website_id`),
   CONSTRAINT `PAYPAL_CERT_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Paypal Certificate Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Paypal Certificate Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145593,7 +145553,7 @@ CREATE TABLE `paypal_payment_transaction` (
   `created_at` timestamp NULL DEFAULT NULL COMMENT 'Created At',
   PRIMARY KEY (`transaction_id`),
   UNIQUE KEY `PAYPAL_PAYMENT_TRANSACTION_TXN_ID` (`txn_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='PayPal Payflow Link Payment Transaction';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='PayPal Payflow Link Payment Transaction';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145620,7 +145580,7 @@ CREATE TABLE `paypal_settlement_report` (
   `last_modified` timestamp NULL DEFAULT NULL COMMENT 'Last Modified',
   PRIMARY KEY (`report_id`),
   UNIQUE KEY `PAYPAL_SETTLEMENT_REPORT_REPORT_DATE_ACCOUNT_ID` (`report_date`,`account_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Paypal Settlement Report Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Paypal Settlement Report Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145662,7 +145622,7 @@ CREATE TABLE `paypal_settlement_report_row` (
   PRIMARY KEY (`row_id`),
   KEY `PAYPAL_SETTLEMENT_REPORT_ROW_REPORT_ID` (`report_id`),
   CONSTRAINT `FK_E183E488F593E0DE10C6EBFFEBAC9B55` FOREIGN KEY (`report_id`) REFERENCES `paypal_settlement_report` (`report_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Paypal Settlement Report Row Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Paypal Settlement Report Row Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145695,7 +145655,7 @@ CREATE TABLE `persistent_session` (
   KEY `PERSISTENT_SESSION_UPDATED_AT` (`updated_at`),
   CONSTRAINT `PERSISTENT_SESSION_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `PERSISTENT_SESSION_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Persistent Session';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Persistent Session';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145734,7 +145694,7 @@ CREATE TABLE `product_alert_price` (
   CONSTRAINT `PRODUCT_ALERT_PRICE_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `PRODUCT_ALERT_PRICE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `PRODUCT_ALERT_PRICE_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Product Alert Price';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Product Alert Price';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145772,7 +145732,7 @@ CREATE TABLE `product_alert_stock` (
   CONSTRAINT `PRODUCT_ALERT_STOCK_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `PRODUCT_ALERT_STOCK_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `PRODUCT_ALERT_STOCK_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Product Alert Stock';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Product Alert Stock';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145796,7 +145756,7 @@ CREATE TABLE `queue` (
   `name` varchar(255) DEFAULT NULL COMMENT 'Queue name',
   PRIMARY KEY (`id`),
   UNIQUE KEY `QUEUE_NAME` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Table storing unique queues';
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Table storing unique queues';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145843,7 +145803,7 @@ CREATE TABLE `queue_lock` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Created At',
   PRIMARY KEY (`id`),
   UNIQUE KEY `QUEUE_LOCK_MESSAGE_CODE` (`message_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Messages that were processed are inserted here to be locked.';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Messages that were processed are inserted here to be locked.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145867,7 +145827,7 @@ CREATE TABLE `queue_message` (
   `topic_name` varchar(255) DEFAULT NULL COMMENT 'Message topic',
   `body` longtext DEFAULT NULL COMMENT 'Message body',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Queue messages';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Queue messages';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145901,7 +145861,7 @@ CREATE TABLE `queue_message_status` (
   KEY `QUEUE_MESSAGE_STATUS_STATUS_UPDATED_AT` (`status`,`updated_at`),
   CONSTRAINT `QUEUE_MESSAGE_STATUS_MESSAGE_ID_QUEUE_MESSAGE_ID` FOREIGN KEY (`message_id`) REFERENCES `queue_message` (`id`) ON DELETE CASCADE,
   CONSTRAINT `QUEUE_MESSAGE_STATUS_QUEUE_ID_QUEUE_ID` FOREIGN KEY (`queue_id`) REFERENCES `queue` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Relation table to keep associations between queues and messages';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Relation table to keep associations between queues and messages';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145924,7 +145884,7 @@ DROP TABLE IF EXISTS `queue_poison_pill`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `queue_poison_pill` (
   `version` varchar(255) NOT NULL COMMENT 'Poison Pill version.'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sequence table for poison pill versions';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sequence table for poison pill versions';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145934,7 +145894,7 @@ CREATE TABLE `queue_poison_pill` (
 LOCK TABLES `queue_poison_pill` WRITE;
 /*!40000 ALTER TABLE `queue_poison_pill` DISABLE KEYS */;
 INSERT INTO `queue_poison_pill` VALUES
-('version-69126688116ed');
+('version-698e762d94d92');
 /*!40000 ALTER TABLE `queue_poison_pill` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145997,17 +145957,17 @@ CREATE TABLE `quote` (
   `ext_shipping_info` text DEFAULT NULL COMMENT 'Ext Shipping Info',
   `gift_message_id` int(11) DEFAULT NULL COMMENT 'Gift Message ID',
   `is_persistent` smallint(5) unsigned DEFAULT 0 COMMENT 'Is Quote Persistent',
-  `mp_smtp_ace_token` varchar(255) DEFAULT NULL COMMENT 'ACE Token',
+  `mp_smtp_ace_token` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'ACE Token',
   `mp_smtp_ace_sent` smallint(6) DEFAULT 0 COMMENT 'ACE Sent',
-  `mp_smtp_ace_log_ids` text DEFAULT NULL COMMENT 'ACE Log Ids',
-  `mp_smtp_ace_log_data` text DEFAULT NULL COMMENT 'ACE Log Data',
+  `mp_smtp_ace_log_ids` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'ACE Log Ids',
+  `mp_smtp_ace_log_data` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'ACE Log Data',
   `ricardomartins_pagbank_interest_amount` decimal(20,4) DEFAULT 0.0000 COMMENT 'Interest Amount',
   `ricardomartins_pagbank_base_interest_amount` decimal(20,4) DEFAULT 0.0000 COMMENT 'Base Interest Amount',
   PRIMARY KEY (`entity_id`),
   KEY `QUOTE_CUSTOMER_ID_STORE_ID_IS_ACTIVE` (`customer_id`,`store_id`,`is_active`),
   KEY `QUOTE_STORE_ID_UPDATED_AT` (`store_id`,`updated_at`),
   CONSTRAINT `QUOTE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Quote';
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Quote';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146041,7 +146001,11 @@ INSERT INTO `quote` VALUES
 (23,1,'2020-10-16 01:03:10','2020-10-16 01:05:17',NULL,1,0,0,1,1.0000,0,0.0000,0.0000,'BRL','BRL','BRL',34.0000,34.0000,NULL,NULL,3,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,0,'172.18.0.1',NULL,NULL,NULL,NULL,'BRL',1.0000,1.0000,NULL,NULL,34.0000,34.0000,34.0000,34.0000,1,0,NULL,NULL,0,NULL,0,NULL,NULL,0.0000,0.0000),
 (24,1,'2020-12-15 06:23:08','2020-12-15 06:58:50',NULL,1,0,0,1,2.0000,0,0.0000,0.0000,'BRL','BRL','BRL',194.0000,194.0000,NULL,NULL,3,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,0,'172.21.0.1',NULL,NULL,NULL,NULL,'BRL',1.0000,1.0000,NULL,NULL,184.0000,184.0000,184.0000,184.0000,1,0,NULL,NULL,0,'bjxPq0Ui1bfbWKa4eqePMBx5KLw38dur',0,NULL,NULL,0.0000,0.0000),
 (25,1,'2021-01-12 23:45:18','2021-01-12 23:45:18',NULL,1,0,0,1,1.0000,0,0.0000,0.0000,'BRL','BRL','BRL',92.0000,92.0000,NULL,NULL,3,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,0,'172.21.0.1',NULL,NULL,NULL,NULL,'BRL',1.0000,1.0000,NULL,NULL,92.0000,92.0000,92.0000,92.0000,1,0,NULL,NULL,0,'nVqK9RtXnZq4w545xIpCZeVj9XmTPHXh',0,NULL,NULL,0.0000,0.0000),
-(26,1,'2023-07-04 03:09:08','2023-07-04 03:09:08',NULL,1,0,0,1,1.0000,0,0.0000,0.0000,'BRL','BRL','BRL',92.0000,92.0000,NULL,NULL,3,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,1,'172.24.0.1',NULL,NULL,NULL,NULL,'BRL',1.0000,1.0000,NULL,NULL,92.0000,92.0000,92.0000,92.0000,1,0,NULL,NULL,0,NULL,0,NULL,NULL,0.0000,0.0000);
+(26,1,'2023-07-04 03:09:08','2023-07-04 03:09:08',NULL,1,0,0,1,1.0000,0,0.0000,0.0000,'BRL','BRL','BRL',92.0000,92.0000,NULL,NULL,3,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,1,'172.24.0.1',NULL,NULL,NULL,NULL,'BRL',1.0000,1.0000,NULL,NULL,92.0000,92.0000,92.0000,92.0000,1,0,NULL,NULL,0,NULL,0,NULL,NULL,0.0000,0.0000),
+(27,1,'2026-02-12 04:07:18','2026-02-12 04:07:18',NULL,1,0,0,1,1.0000,0,0.0000,0.0000,'BRL','BRL','BRL',92.0000,92.0000,NULL,NULL,3,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,1,'192.168.65.1',NULL,NULL,NULL,NULL,'BRL',1.0000,1.0000,NULL,NULL,92.0000,92.0000,92.0000,92.0000,1,0,NULL,NULL,0,NULL,0,NULL,NULL,0.0000,0.0000),
+(28,1,'2026-02-12 05:27:46','2026-02-12 05:33:58',NULL,0,0,0,1,1.0000,0,0.0000,0.0000,'BRL','BRL','BRL',97.0000,97.0000,'guest',NULL,3,0,'teste20262121527@ricardomartins.net.br',NULL,'john',NULL,'doe',NULL,NULL,NULL,1,1,'192.168.65.1',NULL,'000000007',NULL,NULL,'BRL',1.0000,1.0000,NULL,NULL,92.0000,92.0000,92.0000,92.0000,1,0,NULL,NULL,0,NULL,0,NULL,NULL,0.0000,0.0000),
+(29,1,'2026-02-13 00:00:36','2026-02-13 00:01:08',NULL,0,0,0,1,1.0000,0,0.0000,0.0000,'BRL','BRL','BRL',97.0000,97.0000,'guest',NULL,3,0,'teste2026213100@ricardomartins.net.br',NULL,'Teste',NULL,'Pagbank',NULL,NULL,NULL,1,1,'192.168.65.1',NULL,'000000008',NULL,NULL,'BRL',1.0000,1.0000,NULL,NULL,92.0000,92.0000,92.0000,92.0000,1,0,NULL,NULL,0,NULL,0,NULL,NULL,0.0000,0.0000),
+(30,1,'2026-02-13 00:53:35','2026-02-13 00:55:14',NULL,0,0,0,1,1.0000,0,0.0000,0.0000,'BRL','BRL','BRL',97.0000,97.0000,'guest',NULL,3,0,'teste20262131054@ricardomartins.net.br',NULL,'Teste',NULL,'Pagbank',NULL,NULL,NULL,1,1,'192.168.65.1',NULL,'000000010',NULL,NULL,'BRL',1.0000,1.0000,NULL,NULL,92.0000,92.0000,92.0000,92.0000,1,0,NULL,NULL,0,NULL,0,NULL,NULL,0.0000,0.0000);
 /*!40000 ALTER TABLE `quote` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146068,7 +146032,7 @@ CREATE TABLE `quote_address` (
   `lastname` varchar(255) DEFAULT NULL,
   `suffix` varchar(40) DEFAULT NULL COMMENT 'Suffix',
   `company` varchar(255) DEFAULT NULL COMMENT 'Company',
-  `street_prefix` varchar(20) DEFAULT NULL COMMENT 'Street Prefix',
+  `street_prefix` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'Street Prefix',
   `street` varchar(255) DEFAULT NULL COMMENT 'Street',
   `city` varchar(255) DEFAULT NULL,
   `region` varchar(255) DEFAULT NULL,
@@ -146121,7 +146085,7 @@ CREATE TABLE `quote_address` (
   PRIMARY KEY (`address_id`),
   KEY `QUOTE_ADDRESS_QUOTE_ID` (`quote_id`),
   CONSTRAINT `QUOTE_ADDRESS_QUOTE_ID_QUOTE_ENTITY_ID` FOREIGN KEY (`quote_id`) REFERENCES `quote` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Quote Address';
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Quote Address';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146180,7 +146144,15 @@ INSERT INTO `quote_address` VALUES
 (57,25,'2021-01-12 23:45:18','2021-01-12 23:45:18',NULL,0,NULL,'billing',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,NULL,NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,NULL,'null',NULL,0.0000,0.0000,0.0000,NULL,0.0000,0.0000,0.0000,NULL,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0),
 (58,25,'2021-01-12 23:45:18','2021-01-12 23:45:18',NULL,0,NULL,'shipping',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,0,NULL,NULL,1.0000,92.0000,92.0000,92.0000,92.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,92.0000,92.0000,NULL,'[]',NULL,0.0000,0.0000,92.0000,92.0000,0.0000,0.0000,0.0000,NULL,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0),
 (59,26,'2023-07-04 03:09:08','2023-07-04 03:09:08',NULL,0,NULL,'billing',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,NULL,NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,NULL,'null',NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,NULL,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0),
-(60,26,'2023-07-04 03:09:08','2023-07-04 03:09:08',NULL,0,NULL,'shipping',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,0,NULL,NULL,1.0000,92.0000,92.0000,92.0000,92.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,92.0000,92.0000,NULL,'[]',NULL,0.0000,0.0000,92.0000,92.0000,0.0000,0.0000,0.0000,NULL,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0);
+(60,26,'2023-07-04 03:09:08','2023-07-04 03:09:08',NULL,0,NULL,'shipping',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,0,NULL,NULL,1.0000,92.0000,92.0000,92.0000,92.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,92.0000,92.0000,NULL,'[]',NULL,0.0000,0.0000,92.0000,92.0000,0.0000,0.0000,0.0000,NULL,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0),
+(61,27,'2026-02-12 04:07:18','2026-02-12 04:07:18',NULL,0,NULL,'billing',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,NULL,NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,NULL,'null',NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,NULL,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0),
+(62,27,'2026-02-12 04:07:18','2026-02-12 04:07:18',NULL,0,NULL,'shipping',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,0,NULL,NULL,1.0000,92.0000,92.0000,92.0000,92.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,92.0000,92.0000,NULL,'[]',NULL,0.0000,0.0000,92.0000,92.0000,0.0000,0.0000,0.0000,NULL,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0),
+(64,28,'2026-02-12 05:27:46','2026-02-12 05:29:46',NULL,0,NULL,'shipping','teste20262121527@ricardomartins.net.br',NULL,'john',NULL,'doe',NULL,NULL,NULL,'Rua Ângelo Guerra\n2454\n\nBoqueirão','Santos','São Paulo',508,'11045510','BR','1331133300',NULL,1,0,'flatrate_flatrate','Flat Rate - Fixed',1.0000,92.0000,92.0000,92.0000,92.0000,0.0000,0.0000,5.0000,5.0000,0.0000,0.0000,0.0000,0.0000,97.0000,97.0000,NULL,'[]',NULL,0.0000,0.0000,92.0000,92.0000,0.0000,0.0000,0.0000,NULL,5.0000,5.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0),
+(66,28,'2026-02-12 05:33:47','2026-02-12 05:33:47',NULL,NULL,NULL,'billing','teste20262121527@ricardomartins.net.br',NULL,'john',NULL,'doe',NULL,NULL,NULL,'Rua Ângelo Guerra\n2454\n\nBoqueirão','Santos','São Paulo',508,'11045510','BR','1331133300',NULL,0,0,NULL,NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,NULL,'null',NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,NULL,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0),
+(68,29,'2026-02-13 00:00:36','2026-02-13 00:01:08',NULL,0,NULL,'shipping','teste2026213100@ricardomartins.net.br',NULL,'Teste',NULL,'Pagbank',NULL,NULL,NULL,'Rua Ângelo Guerra\n2434\n\nBoqueirão','Santos','São Paulo',508,'11045510','BR','1331133300',NULL,1,0,'flatrate_flatrate','Flat Rate - Fixed',1.0000,92.0000,92.0000,92.0000,92.0000,0.0000,0.0000,5.0000,5.0000,0.0000,0.0000,0.0000,0.0000,97.0000,97.0000,NULL,'[]',NULL,0.0000,0.0000,92.0000,92.0000,0.0000,0.0000,0.0000,NULL,5.0000,5.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0),
+(69,29,'2026-02-13 00:01:04','2026-02-13 00:01:04',NULL,NULL,NULL,'billing','teste2026213100@ricardomartins.net.br',NULL,'Teste',NULL,'Pagbank',NULL,NULL,NULL,'Rua Ângelo Guerra\n2434\n\nBoqueirão','Santos','São Paulo',508,'11045510','BR','1331133300',NULL,0,0,NULL,NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,NULL,'null',NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,NULL,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0),
+(71,30,'2026-02-13 00:53:35','2026-02-13 00:54:38',NULL,0,NULL,'shipping','teste20262131054@ricardomartins.net.br',NULL,'Teste',NULL,'Pagbank',NULL,NULL,NULL,'Rua Ângelo Guerra\n244\n\nBoqueirão','Santos','São Paulo',508,'11045510','BR','1331133300',NULL,1,0,'flatrate_flatrate','Flat Rate - Fixed',1.0000,92.0000,92.0000,92.0000,92.0000,0.0000,0.0000,5.0000,5.0000,0.0000,0.0000,0.0000,0.0000,97.0000,97.0000,NULL,'[]',NULL,0.0000,0.0000,92.0000,92.0000,0.0000,0.0000,0.0000,NULL,5.0000,5.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0),
+(73,30,'2026-02-13 00:55:09','2026-02-13 00:55:09',NULL,NULL,NULL,'billing','teste20262131054@ricardomartins.net.br',NULL,'Teste',NULL,'Pagbank',NULL,NULL,NULL,'Rua Ângelo Guerra\n244\n\nBoqueirão','Santos','São Paulo',508,'11045510','BR','1331133300',NULL,0,0,NULL,NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,NULL,'null',NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,NULL,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0);
 /*!40000 ALTER TABLE `quote_address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146241,7 +146213,7 @@ CREATE TABLE `quote_address_item` (
   CONSTRAINT `QUOTE_ADDRESS_ITEM_QUOTE_ADDRESS_ID_QUOTE_ADDRESS_ADDRESS_ID` FOREIGN KEY (`quote_address_id`) REFERENCES `quote_address` (`address_id`) ON DELETE CASCADE,
   CONSTRAINT `QUOTE_ADDRESS_ITEM_QUOTE_ITEM_ID_QUOTE_ITEM_ITEM_ID` FOREIGN KEY (`quote_item_id`) REFERENCES `quote_item` (`item_id`) ON DELETE CASCADE,
   CONSTRAINT `QUOTE_ADDR_ITEM_PARENT_ITEM_ID_QUOTE_ADDR_ITEM_ADDR_ITEM_ID` FOREIGN KEY (`parent_item_id`) REFERENCES `quote_address_item` (`address_item_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Quote Address Item';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Quote Address Item';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146268,7 +146240,7 @@ CREATE TABLE `quote_id_mask` (
   KEY `QUOTE_ID_MASK_QUOTE_ID` (`quote_id`),
   KEY `QUOTE_ID_MASK_MASKED_ID` (`masked_id`),
   CONSTRAINT `QUOTE_ID_MASK_QUOTE_ID_QUOTE_ENTITY_ID` FOREIGN KEY (`quote_id`) REFERENCES `quote` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Quote ID and masked ID mapping';
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Quote ID and masked ID mapping';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146282,14 +146254,17 @@ INSERT INTO `quote_id_mask` VALUES
 (14,18,'4MJEmdGtds2vyte1XsbaMiBAoz2AzNdC'),
 (22,26,'5cKtOMxb0A5L0XPwQ38Ua84SKqlSFcIh'),
 (7,11,'7AAYZweGXUdwkP6HPM0jMlg2hnzYnWgl'),
+(26,30,'9mcTs3sAdCbbf7rEmjNcxpkZcsIuueTk'),
 (9,13,'A3XmLKFSzOJ1NrL3vjUTb0rm0zE9YLfk'),
 (18,22,'a3yUXpCGrl46CAd65gQbviC1QTgsgbhQ'),
 (16,20,'bLWdbv2OMvj9pWhARRHOd86uFDntzGGF'),
 (11,15,'C0UFE7ZsUswbc2nc2mtXrxFws0eZhCn9'),
+(24,28,'Cq06VRoGosR49StcG2b0U91qdikygAgZ'),
 (15,19,'F7E9KIlALhivCo8fqzgCaqgDO19E4utT'),
 (8,12,'hwvSDa2Tz4JHRmxgrEojpS0taCUIi7eb'),
 (5,9,'jLgod8udi74v6oSNHFs9TEFRIl82eTX3'),
 (10,14,'KCEM8FPzidDPgO6ZrZcgZ7z1fnRUq4x6'),
+(23,27,'L9PvpHKuKxG1WWZo4Y1qQTc9Hku7U3QI'),
 (13,17,'n9M8c2S4rc5vbIsgjyrXVcRt6eSmb2R5'),
 (20,24,'OJtnZHCe6bAZo48LB2SFS4X2tTl7aTGS'),
 (4,8,'ONKKRXCBzpahfXFTFEALFzBIIREPRP6W'),
@@ -146298,6 +146273,7 @@ INSERT INTO `quote_id_mask` VALUES
 (1,3,'uSWXgiYOsdiRrfpllRXabXLEFS0DSEmX'),
 (19,23,'XjrguLaOnBxluzIMmowhrStKDrXMX1k5'),
 (12,16,'ySddn5r5RW598T9PxgFbBTN44XbLcNU8'),
+(25,29,'Z1LzJGacFGMEB60lvXdPwMJ6X5bFoVLK'),
 (17,21,'zgwPYoslkKHaNbDhIAGRUxqZGZqfbbdb');
 /*!40000 ALTER TABLE `quote_id_mask` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -146371,7 +146347,7 @@ CREATE TABLE `quote_item` (
   CONSTRAINT `QUOTE_ITEM_PARENT_ITEM_ID_QUOTE_ITEM_ITEM_ID` FOREIGN KEY (`parent_item_id`) REFERENCES `quote_item` (`item_id`) ON DELETE CASCADE,
   CONSTRAINT `QUOTE_ITEM_QUOTE_ID_QUOTE_ENTITY_ID` FOREIGN KEY (`quote_id`) REFERENCES `quote` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `QUOTE_ITEM_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Quote Item';
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Quote Item';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146416,7 +146392,11 @@ INSERT INTO `quote_item` VALUES
 (37,23,'2020-10-16 01:05:17','2020-10-16 01:05:17',1807,1,36,0,'WT09-S-White','Breathe-Easy Tank-S-White',NULL,NULL,NULL,0,0,1.0000,1.0000,34.0000,0.0000,NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,'simple',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
 (38,24,'2020-12-15 06:23:08','2020-12-15 06:58:14',44,1,NULL,0,'24-WG02','Didi Sport Watch',NULL,NULL,NULL,0,0,NULL,2.0000,92.0000,92.0000,NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,184.0000,184.0000,0.0000,0.0000,'simple',NULL,NULL,NULL,NULL,NULL,92.0000,92.0000,184.0000,184.0000,0.0000,0.0000,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
 (39,25,'2021-01-12 23:45:18','2021-01-12 23:45:18',44,1,NULL,0,'24-WG02','Didi Sport Watch',NULL,NULL,NULL,0,0,1.0000,1.0000,92.0000,92.0000,NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,92.0000,92.0000,0.0000,1.0000,'simple',NULL,NULL,NULL,NULL,NULL,92.0000,92.0000,92.0000,92.0000,0.0000,0.0000,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
-(40,26,'2023-07-04 03:09:08','2023-07-04 03:09:08',44,1,NULL,0,'24-WG02','Didi Sport Watch',NULL,NULL,NULL,0,0,1.0000,1.0000,92.0000,92.0000,NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,92.0000,92.0000,0.0000,1.0000,'simple',NULL,NULL,NULL,NULL,NULL,92.0000,92.0000,92.0000,92.0000,0.0000,0.0000,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+(40,26,'2023-07-04 03:09:08','2023-07-04 03:09:08',44,1,NULL,0,'24-WG02','Didi Sport Watch',NULL,NULL,NULL,0,0,1.0000,1.0000,92.0000,92.0000,NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,92.0000,92.0000,0.0000,1.0000,'simple',NULL,NULL,NULL,NULL,NULL,92.0000,92.0000,92.0000,92.0000,0.0000,0.0000,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(41,27,'2026-02-12 04:07:18','2026-02-12 04:07:18',44,1,NULL,0,'24-WG02','Didi Sport Watch',NULL,NULL,NULL,0,0,1.0000,1.0000,92.0000,92.0000,NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,92.0000,92.0000,0.0000,1.0000,'simple',NULL,NULL,NULL,NULL,NULL,92.0000,92.0000,92.0000,92.0000,0.0000,0.0000,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(42,28,'2026-02-12 05:27:46','2026-02-12 05:27:46',44,1,NULL,0,'24-WG02','Didi Sport Watch',NULL,NULL,NULL,0,0,1.0000,1.0000,92.0000,92.0000,NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,92.0000,92.0000,0.0000,1.0000,'simple',NULL,NULL,NULL,NULL,NULL,92.0000,92.0000,92.0000,92.0000,0.0000,0.0000,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(43,29,'2026-02-13 00:00:36','2026-02-13 00:00:36',44,1,NULL,0,'24-WG02','Didi Sport Watch',NULL,NULL,NULL,0,0,1.0000,1.0000,92.0000,92.0000,NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,92.0000,92.0000,0.0000,1.0000,'simple',NULL,NULL,NULL,NULL,NULL,92.0000,92.0000,92.0000,92.0000,0.0000,0.0000,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(44,30,'2026-02-13 00:53:35','2026-02-13 00:53:35',44,1,NULL,0,'24-WG02','Didi Sport Watch',NULL,NULL,NULL,0,0,1.0000,1.0000,92.0000,92.0000,NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,92.0000,92.0000,0.0000,1.0000,'simple',NULL,NULL,NULL,NULL,NULL,92.0000,92.0000,92.0000,92.0000,0.0000,0.0000,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `quote_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146436,7 +146416,7 @@ CREATE TABLE `quote_item_option` (
   PRIMARY KEY (`option_id`),
   KEY `QUOTE_ITEM_OPTION_ITEM_ID` (`item_id`),
   CONSTRAINT `QUOTE_ITEM_OPTION_ITEM_ID_QUOTE_ITEM_ITEM_ID` FOREIGN KEY (`item_id`) REFERENCES `quote_item` (`item_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Quote Item Option';
+) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Quote Item Option';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146539,7 +146519,11 @@ INSERT INTO `quote_item_option` VALUES
 (97,37,1807,'parent_product_id','1818'),
 (98,38,44,'info_buyRequest','{\"uenc\":\"aHR0cHM6Ly9wYWdzZWd1cm8tZXhlbXBsby1tMi50ZXN0Lw,,\",\"product\":\"44\",\"qty\":1}'),
 (99,39,44,'info_buyRequest','{\"uenc\":\"aHR0cHM6Ly9wYWdzZWd1cm8tZXhlbXBsby1tMi50ZXN0Lw,,\",\"product\":\"44\",\"qty\":1}'),
-(100,40,44,'info_buyRequest','{\"uenc\":\"aHR0cHM6Ly9wYWdzZWd1cm8tZXhlbXBsby1tMi50ZXN0L2luZGV4LnBocC8~\",\"product\":\"44\",\"qty\":1}');
+(100,40,44,'info_buyRequest','{\"uenc\":\"aHR0cHM6Ly9wYWdzZWd1cm8tZXhlbXBsby1tMi50ZXN0L2luZGV4LnBocC8~\",\"product\":\"44\",\"qty\":1}'),
+(101,41,44,'info_buyRequest','{\"uenc\":\"aHR0cHM6Ly9wYWdzZWd1cm8tZXhlbXBsby1tMi50ZXN0Lw~~\",\"product\":\"44\",\"qty\":1}'),
+(102,42,44,'info_buyRequest','{\"uenc\":\"aHR0cHM6Ly9wYWdzZWd1cm8tZXhlbXBsby1tMi50ZXN0Lw~~\",\"product\":\"44\",\"qty\":1}'),
+(103,43,44,'info_buyRequest','{\"uenc\":\"aHR0cHM6Ly9wYWdzZWd1cm8tZXhlbXBsby1tMi50ZXN0Lw~~\",\"product\":\"44\",\"qty\":1}'),
+(104,44,44,'info_buyRequest','{\"uenc\":\"aHR0cHM6Ly9wYWdzZWd1cm8tZXhlbXBsby1tMi50ZXN0Lw~~\",\"product\":\"44\",\"qty\":1}');
 /*!40000 ALTER TABLE `quote_item_option` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146576,7 +146560,7 @@ CREATE TABLE `quote_payment` (
   PRIMARY KEY (`payment_id`),
   KEY `QUOTE_PAYMENT_QUOTE_ID` (`quote_id`),
   CONSTRAINT `QUOTE_PAYMENT_QUOTE_ID_QUOTE_ENTITY_ID` FOREIGN KEY (`quote_id`) REFERENCES `quote` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Quote Payment';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Quote Payment';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146593,7 +146577,11 @@ INSERT INTO `quote_payment` VALUES
 (5,4,'2020-08-07 08:00:38','2020-08-07 08:00:38','checkmo',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,0,0,NULL,NULL,NULL,'null',NULL,NULL,NULL),
 (6,17,'2020-08-10 07:47:22','2020-08-10 07:47:22','checkmo',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,0,0,NULL,NULL,NULL,'null',NULL,NULL,NULL),
 (7,19,'2020-08-11 01:07:43','2020-08-11 01:07:43','rm_pagseguro_cc','visa',NULL,'1111',NULL,NULL,'12',21,NULL,0,0,NULL,NULL,NULL,'{\"sender_hash\":\"6215d0ecf91386d68f7962447fc219b9035571d7271ca7660918c487a69aedf7\",\"credit_card_token\":\"6cb1bce10d44450fb9f67a5ea699c701\",\"credit_card_owner\":\"John Doe\",\"rm_pagseguro_cc_cpf\":\"71096412799\",\"credit_card_owner_birthdate\":\"12\\/11\\/1980\",\"installment_quantity\":1,\"installment_value\":\"56.5\"}',NULL,NULL,NULL),
-(8,24,'2020-12-15 06:58:56','2020-12-15 06:58:56','rm_pagseguro_cc',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,NULL,NULL,NULL,'{\"sender_hash\":null,\"credit_card_token\":null,\"credit_card_owner\":null,\"rm_pagseguro_cc_cpf\":null,\"credit_card_owner_birthdate\":\"01\\/01\\/1970\"}',NULL,NULL,NULL);
+(8,24,'2020-12-15 06:58:56','2020-12-15 06:58:56','rm_pagseguro_cc',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,NULL,NULL,NULL,'{\"sender_hash\":null,\"credit_card_token\":null,\"credit_card_owner\":null,\"rm_pagseguro_cc_cpf\":null,\"credit_card_owner_birthdate\":\"01\\/01\\/1970\"}',NULL,NULL,NULL),
+(9,27,'2026-02-12 04:07:18','2026-02-12 04:07:18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,0,0,NULL,NULL,NULL,'null',NULL,NULL,NULL),
+(10,28,'2026-02-12 05:27:46','2026-02-12 05:27:46','ricardomartins_pagbank_cc','VI',NULL,'0010',NULL,'john doe','03',2033,NULL,0,0,NULL,NULL,NULL,'{\"cc_installments\":\"3\",\"cc_number_encrypted\":\"ecA7pLhMyNWtjdnlm0haZmKAYNs5CEljHZ2XK\\/t+UohpSEA4Mcora98o2Pse8SBzGl8xEtapBVisn53pS5PcIRPC9a7BHOjKrNoiKaiIiqBPRdZ7WBSu9zrDcop1lHWZprCRQ1R3WpK0sqBhN6Dv6cMbHQDGhXcmM6AetSZWbPGs6+gJUfgawHEdf22DKJXgq1\\/SAJjta0X1JDqzO3FhmF6ION36C4lkaKYY++vbtIILlzVw5bv+bRJ3nXZzwNglGnqbbCnWRHGN+yJhdtHgS8PZRieBTLQ2V8UDz3YS00E0aRHjLfLvZokUyzcC+INeNlc0n5XcLcAx9EHs+PXjhQ==\",\"threed_secure_id\":\"\",\"tax_id\":\"01234567890\"}',NULL,NULL,NULL),
+(11,29,'2026-02-13 00:00:36','2026-02-13 00:00:36','ricardomartins_pagbank_pix',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,0,0,NULL,NULL,NULL,'{\"tax_id\":\"01234567890\"}',NULL,NULL,NULL),
+(12,30,'2026-02-13 00:53:35','2026-02-13 00:53:35','ricardomartins_pagbank_pix','VI',NULL,'0010',NULL,'jose da silva','03',2033,NULL,0,0,NULL,NULL,NULL,'{\"cc_installments\":\"1\",\"cc_number_encrypted\":\"n3pvIUI4TckPytml8AIjFqFLvMxZ9bsj1ule1YNYl\\/XSdv8OVBjY2CO11SrkHJlxYbm4NhIGmQAoCNh+UONrJ5MD0OfjXrRteRbqrwwsEIk+FkNDNKBmKlkVTEcUsoK7Uw8z0O4CbrYXlOpd5n1EenBW2Xvsn5GQrjwpgvBXDXMB7NzAmfpY0iDi5LA\\/RH5aNOdMM\\/ISY36xusMuvadGsD0Uqh1huTNevEc7lTxzOV37vANmznmeXcYV50kJDSIpwzgZYkmE9lozNJWZU8hnXOsRGWO0HB7OrdUxbzMETZRzulRR\\/mLvGd\\/3Akc3nhxXsJb6rDzB3VjrpHmlU5eFDQ==\",\"threed_secure_id\":\"\",\"tax_id\":\"01234567890\"}',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `quote_payment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146620,7 +146608,7 @@ CREATE TABLE `quote_shipping_rate` (
   PRIMARY KEY (`rate_id`),
   KEY `QUOTE_SHIPPING_RATE_ADDRESS_ID` (`address_id`),
   CONSTRAINT `QUOTE_SHIPPING_RATE_ADDRESS_ID_QUOTE_ADDRESS_ADDRESS_ID` FOREIGN KEY (`address_id`) REFERENCES `quote_address` (`address_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Quote Shipping Rate';
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Quote Shipping Rate';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146641,7 +146629,10 @@ INSERT INTO `quote_shipping_rate` VALUES
 (17,37,'2020-08-10 07:47:22','2020-08-10 07:47:22','correios','Correios','correios_correios40010','correios40010',NULL,24.9000,NULL,'Sedex - Em média 4 dia(s)'),
 (19,43,'2020-08-11 01:07:43','2020-08-11 01:07:43','correios','Correios','correios_correios40010','correios40010',NULL,22.5000,NULL,'Sedex - Em média 4 dia(s)'),
 (20,48,'2020-08-13 05:22:22','2020-08-13 05:22:22','imaginationmedia_correios','Correios','imaginationmedia_correios_imaginationmedia_correios40010','imaginationmedia_correios40010',NULL,24.9000,NULL,'Sedex - Em média 4 dia(s)'),
-(22,56,'2020-12-15 06:58:56','2020-12-15 06:58:56','flatrate','Flat Rate','flatrate_flatrate','flatrate',NULL,10.0000,NULL,'Fixed');
+(22,56,'2020-12-15 06:58:56','2020-12-15 06:58:56','flatrate','Flat Rate','flatrate_flatrate','flatrate',NULL,10.0000,NULL,'Fixed'),
+(30,64,'2026-02-12 05:33:47','2026-02-12 05:33:47','flatrate','Flat Rate','flatrate_flatrate','flatrate',NULL,5.0000,NULL,'Fixed'),
+(33,68,'2026-02-13 00:01:04','2026-02-13 00:01:04','flatrate','Flat Rate','flatrate_flatrate','flatrate',NULL,5.0000,NULL,'Fixed'),
+(39,71,'2026-02-13 00:55:09','2026-02-13 00:55:09','flatrate','Flat Rate','flatrate_flatrate','flatrate',NULL,5.0000,NULL,'Fixed');
 /*!40000 ALTER TABLE `quote_shipping_rate` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146662,7 +146653,7 @@ CREATE TABLE `rating` (
   UNIQUE KEY `RATING_RATING_CODE` (`rating_code`),
   KEY `RATING_ENTITY_ID` (`entity_id`),
   CONSTRAINT `RATING_ENTITY_ID_RATING_ENTITY_ENTITY_ID` FOREIGN KEY (`entity_id`) REFERENCES `rating_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Ratings';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Ratings';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146691,7 +146682,7 @@ CREATE TABLE `rating_entity` (
   `entity_code` varchar(64) NOT NULL COMMENT 'Entity Code',
   PRIMARY KEY (`entity_id`),
   UNIQUE KEY `RATING_ENTITY_ENTITY_CODE` (`entity_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Rating entities';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Rating entities';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146723,7 +146714,7 @@ CREATE TABLE `rating_option` (
   PRIMARY KEY (`option_id`),
   KEY `RATING_OPTION_RATING_ID` (`rating_id`),
   CONSTRAINT `RATING_OPTION_RATING_ID_RATING_RATING_ID` FOREIGN KEY (`rating_id`) REFERENCES `rating` (`rating_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Rating options';
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Rating options';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146779,7 +146770,7 @@ CREATE TABLE `rating_option_vote` (
   KEY `RATING_OPTION_VOTE_OPTION_ID` (`option_id`),
   CONSTRAINT `RATING_OPTION_VOTE_OPTION_ID_RATING_OPTION_OPTION_ID` FOREIGN KEY (`option_id`) REFERENCES `rating_option` (`option_id`) ON DELETE CASCADE,
   CONSTRAINT `RATING_OPTION_VOTE_REVIEW_ID_REVIEW_REVIEW_ID` FOREIGN KEY (`review_id`) REFERENCES `review` (`review_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=347 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Rating option values';
+) ENGINE=InnoDB AUTO_INCREMENT=347 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Rating option values';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147159,7 +147150,7 @@ CREATE TABLE `rating_option_vote_aggregated` (
   KEY `RATING_OPTION_VOTE_AGGREGATED_STORE_ID` (`store_id`),
   CONSTRAINT `RATING_OPTION_VOTE_AGGREGATED_RATING_ID_RATING_RATING_ID` FOREIGN KEY (`rating_id`) REFERENCES `rating` (`rating_id`) ON DELETE CASCADE,
   CONSTRAINT `RATING_OPTION_VOTE_AGGREGATED_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=251 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Rating vote aggregated';
+) ENGINE=InnoDB AUTO_INCREMENT=251 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Rating vote aggregated';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147436,7 +147427,7 @@ CREATE TABLE `rating_store` (
   KEY `RATING_STORE_STORE_ID` (`store_id`),
   CONSTRAINT `RATING_STORE_RATING_ID_RATING_RATING_ID` FOREIGN KEY (`rating_id`) REFERENCES `rating` (`rating_id`) ON DELETE CASCADE,
   CONSTRAINT `RATING_STORE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Rating Store';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Rating Store';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147466,7 +147457,7 @@ CREATE TABLE `rating_title` (
   KEY `RATING_TITLE_STORE_ID` (`store_id`),
   CONSTRAINT `RATING_TITLE_RATING_ID_RATING_RATING_ID` FOREIGN KEY (`rating_id`) REFERENCES `rating` (`rating_id`) ON DELETE CASCADE,
   CONSTRAINT `RATING_TITLE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Rating Title';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Rating Title';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147492,7 +147483,7 @@ CREATE TABLE `release_notification_viewer_log` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `RELEASE_NOTIFICATION_VIEWER_LOG_VIEWER_ID` (`viewer_id`),
   CONSTRAINT `RELEASE_NOTIFICATION_VIEWER_LOG_VIEWER_ID_ADMIN_USER_USER_ID` FOREIGN KEY (`viewer_id`) REFERENCES `admin_user` (`user_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Release Notification Viewer Log Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Release Notification Viewer Log Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147527,7 +147518,7 @@ CREATE TABLE `report_compared_product_index` (
   CONSTRAINT `REPORT_CMPD_PRD_IDX_CSTR_ID_CSTR_ENTT_ENTT_ID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `REPORT_CMPD_PRD_IDX_PRD_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `REPORT_COMPARED_PRODUCT_INDEX_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Reports Compared Product Index Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Reports Compared Product Index Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147562,7 +147553,7 @@ CREATE TABLE `report_event` (
   KEY `REPORT_EVENT_STORE_ID` (`store_id`),
   CONSTRAINT `REPORT_EVENT_EVENT_TYPE_ID_REPORT_EVENT_TYPES_EVENT_TYPE_ID` FOREIGN KEY (`event_type_id`) REFERENCES `report_event_types` (`event_type_id`) ON DELETE CASCADE,
   CONSTRAINT `REPORT_EVENT_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Reports Event Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Reports Event Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147586,7 +147577,7 @@ CREATE TABLE `report_event_types` (
   `event_name` varchar(64) NOT NULL COMMENT 'Event Name',
   `customer_login` smallint(5) unsigned NOT NULL DEFAULT 0 COMMENT 'Customer Login',
   PRIMARY KEY (`event_type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Reports Event Type Table';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Reports Event Type Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147627,7 +147618,7 @@ CREATE TABLE `report_viewed_product_aggregated_daily` (
   KEY `REPORT_VIEWED_PRODUCT_AGGREGATED_DAILY_PRODUCT_ID` (`product_id`),
   CONSTRAINT `REPORT_VIEWED_PRD_AGGRED_DAILY_PRD_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `REPORT_VIEWED_PRODUCT_AGGREGATED_DAILY_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Most Viewed Products Aggregated Daily';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Most Viewed Products Aggregated Daily';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147661,7 +147652,7 @@ CREATE TABLE `report_viewed_product_aggregated_monthly` (
   KEY `REPORT_VIEWED_PRODUCT_AGGREGATED_MONTHLY_PRODUCT_ID` (`product_id`),
   CONSTRAINT `REPORT_VIEWED_PRD_AGGRED_MONTHLY_PRD_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `REPORT_VIEWED_PRODUCT_AGGREGATED_MONTHLY_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Most Viewed Products Aggregated Monthly';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Most Viewed Products Aggregated Monthly';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147695,7 +147686,7 @@ CREATE TABLE `report_viewed_product_aggregated_yearly` (
   KEY `REPORT_VIEWED_PRODUCT_AGGREGATED_YEARLY_PRODUCT_ID` (`product_id`),
   CONSTRAINT `REPORT_VIEWED_PRD_AGGRED_YEARLY_PRD_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `REPORT_VIEWED_PRODUCT_AGGREGATED_YEARLY_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Most Viewed Products Aggregated Yearly';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Most Viewed Products Aggregated Yearly';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147730,7 +147721,7 @@ CREATE TABLE `report_viewed_product_index` (
   CONSTRAINT `REPORT_VIEWED_PRD_IDX_CSTR_ID_CSTR_ENTT_ENTT_ID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `REPORT_VIEWED_PRD_IDX_PRD_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `REPORT_VIEWED_PRODUCT_INDEX_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Reports Viewed Product Index Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Reports Viewed Product Index Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147755,7 +147746,7 @@ CREATE TABLE `reporting_counts` (
   `count` int(10) unsigned DEFAULT NULL COMMENT 'Count Value',
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Updated At',
   PRIMARY KEY (`entity_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Reporting for all count related events generated via the cron job';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Reporting for all count related events generated via the cron job';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147782,7 +147773,7 @@ CREATE TABLE `reporting_module_status` (
   `state` varchar(255) DEFAULT NULL COMMENT 'Module State',
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Updated At',
   PRIMARY KEY (`entity_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Module Status Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Module Status Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147809,7 +147800,7 @@ CREATE TABLE `reporting_orders` (
   `item_count` int(10) unsigned NOT NULL COMMENT 'Line Item Count',
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Updated At',
   PRIMARY KEY (`entity_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Reporting for all orders';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Reporting for all orders';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147834,7 +147825,7 @@ CREATE TABLE `reporting_system_updates` (
   `action` varchar(255) DEFAULT NULL COMMENT 'Action Performed',
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Updated At',
   PRIMARY KEY (`entity_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Reporting for system updates';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Reporting for system updates';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147859,7 +147850,7 @@ CREATE TABLE `reporting_users` (
   `action` varchar(255) DEFAULT NULL COMMENT 'Action Performed',
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Updated At',
   PRIMARY KEY (`entity_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Reporting for user actions';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Reporting for user actions';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147890,7 +147881,7 @@ CREATE TABLE `review` (
   KEY `REVIEW_ENTITY_PK_VALUE` (`entity_pk_value`),
   CONSTRAINT `REVIEW_ENTITY_ID_REVIEW_ENTITY_ENTITY_ID` FOREIGN KEY (`entity_id`) REFERENCES `review_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `REVIEW_STATUS_ID_REVIEW_STATUS_STATUS_ID` FOREIGN KEY (`status_id`) REFERENCES `review_status` (`status_id`) ON DELETE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=347 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Review base information';
+) ENGINE=InnoDB AUTO_INCREMENT=347 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Review base information';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148271,7 +148262,7 @@ CREATE TABLE `review_detail` (
   CONSTRAINT `REVIEW_DETAIL_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE SET NULL,
   CONSTRAINT `REVIEW_DETAIL_REVIEW_ID_REVIEW_REVIEW_ID` FOREIGN KEY (`review_id`) REFERENCES `review` (`review_id`) ON DELETE CASCADE,
   CONSTRAINT `REVIEW_DETAIL_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=347 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Review detail information';
+) ENGINE=InnoDB AUTO_INCREMENT=347 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Review detail information';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148641,7 +148632,7 @@ CREATE TABLE `review_entity` (
   `entity_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Review entity ID',
   `entity_code` varchar(32) NOT NULL COMMENT 'Review entity code',
   PRIMARY KEY (`entity_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Review entities';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Review entities';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148675,7 +148666,7 @@ CREATE TABLE `review_entity_summary` (
   UNIQUE KEY `REVIEW_ENTITY_SUMMARY_ENTITY_PK_VALUE_STORE_ID_ENTITY_TYPE` (`entity_pk_value`,`store_id`,`entity_type`),
   KEY `REVIEW_ENTITY_SUMMARY_STORE_ID` (`store_id`),
   CONSTRAINT `REVIEW_ENTITY_SUMMARY_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=251 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Review aggregates';
+) ENGINE=InnoDB AUTO_INCREMENT=251 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Review aggregates';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148949,7 +148940,7 @@ CREATE TABLE `review_status` (
   `status_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Status ID',
   `status_code` varchar(32) NOT NULL COMMENT 'Status code',
   PRIMARY KEY (`status_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Review statuses';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Review statuses';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148979,7 +148970,7 @@ CREATE TABLE `review_store` (
   KEY `REVIEW_STORE_STORE_ID` (`store_id`),
   CONSTRAINT `REVIEW_STORE_REVIEW_ID_REVIEW_REVIEW_ID` FOREIGN KEY (`review_id`) REFERENCES `review` (`review_id`) ON DELETE CASCADE,
   CONSTRAINT `REVIEW_STORE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Review Store';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Review Store';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149705,7 +149696,7 @@ CREATE TABLE `sales_bestsellers_aggregated_daily` (
   KEY `SALES_BESTSELLERS_AGGREGATED_DAILY_STORE_ID` (`store_id`),
   KEY `SALES_BESTSELLERS_AGGREGATED_DAILY_PRODUCT_ID` (`product_id`),
   CONSTRAINT `SALES_BESTSELLERS_AGGREGATED_DAILY_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Bestsellers Aggregated Daily';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Bestsellers Aggregated Daily';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149743,7 +149734,7 @@ CREATE TABLE `sales_bestsellers_aggregated_monthly` (
   KEY `SALES_BESTSELLERS_AGGREGATED_MONTHLY_STORE_ID` (`store_id`),
   KEY `SALES_BESTSELLERS_AGGREGATED_MONTHLY_PRODUCT_ID` (`product_id`),
   CONSTRAINT `SALES_BESTSELLERS_AGGREGATED_MONTHLY_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Bestsellers Aggregated Monthly';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Bestsellers Aggregated Monthly';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149781,7 +149772,7 @@ CREATE TABLE `sales_bestsellers_aggregated_yearly` (
   KEY `SALES_BESTSELLERS_AGGREGATED_YEARLY_STORE_ID` (`store_id`),
   KEY `SALES_BESTSELLERS_AGGREGATED_YEARLY_PRODUCT_ID` (`product_id`),
   CONSTRAINT `SALES_BESTSELLERS_AGGREGATED_YEARLY_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Bestsellers Aggregated Yearly';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Bestsellers Aggregated Yearly';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149833,7 +149824,7 @@ CREATE TABLE `sales_creditmemo` (
   `shipping_tax_amount` decimal(20,4) DEFAULT NULL COMMENT 'Shipping Tax Amount',
   `tax_amount` decimal(20,4) DEFAULT NULL COMMENT 'Tax Amount',
   `order_id` int(10) unsigned NOT NULL COMMENT 'Order ID',
-  `email_sent` smallint(5) unsigned DEFAULT NULL COMMENT 'Email Sent',
+  `email_sent` smallint(6) DEFAULT NULL COMMENT 'Email Sent',
   `send_email` smallint(5) unsigned DEFAULT NULL COMMENT 'Send Email',
   `creditmemo_status` int(11) DEFAULT NULL COMMENT 'Creditmemo Status',
   `state` int(11) DEFAULT NULL COMMENT 'State',
@@ -149869,7 +149860,7 @@ CREATE TABLE `sales_creditmemo` (
   KEY `SALES_CREDITMEMO_EMAIL_SENT` (`email_sent`),
   CONSTRAINT `SALES_CREDITMEMO_ORDER_ID_SALES_ORDER_ENTITY_ID` FOREIGN KEY (`order_id`) REFERENCES `sales_order` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `SALES_CREDITMEMO_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Creditmemo';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Creditmemo';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149897,11 +149888,15 @@ CREATE TABLE `sales_creditmemo_comment` (
   `is_visible_on_front` smallint(5) unsigned NOT NULL DEFAULT 0 COMMENT 'Is Visible On Front',
   `comment` text DEFAULT NULL COMMENT 'Comment',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Created At',
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Updated At',
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'Admin User ID',
+  `user_type` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'User Type',
   PRIMARY KEY (`entity_id`),
+  UNIQUE KEY `SALES_CREDITMEMO_COMMENT_ENTITY_ID_USER_ID_USER_TYPE` (`entity_id`,`user_id`,`user_type`),
   KEY `SALES_CREDITMEMO_COMMENT_CREATED_AT` (`created_at`),
   KEY `SALES_CREDITMEMO_COMMENT_PARENT_ID` (`parent_id`),
   CONSTRAINT `SALES_CREDITMEMO_COMMENT_PARENT_ID_SALES_CREDITMEMO_ENTITY_ID` FOREIGN KEY (`parent_id`) REFERENCES `sales_creditmemo` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Creditmemo Comment';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Creditmemo Comment';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149959,7 +149954,7 @@ CREATE TABLE `sales_creditmemo_grid` (
   KEY `SALES_CREDITMEMO_GRID_ORDER_BASE_GRAND_TOTAL` (`order_base_grand_total`),
   KEY `SALES_CREDITMEMO_GRID_ORDER_ID` (`order_id`),
   FULLTEXT KEY `FTI_32B7BA885941A8254EE84AE650ABDC86` (`increment_id`,`order_increment_id`,`billing_name`,`billing_address`,`shipping_address`,`customer_name`,`customer_email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Creditmemo Grid';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Creditmemo Grid';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150018,7 +150013,7 @@ CREATE TABLE `sales_creditmemo_item` (
   PRIMARY KEY (`entity_id`),
   KEY `SALES_CREDITMEMO_ITEM_PARENT_ID` (`parent_id`),
   CONSTRAINT `SALES_CREDITMEMO_ITEM_PARENT_ID_SALES_CREDITMEMO_ENTITY_ID` FOREIGN KEY (`parent_id`) REFERENCES `sales_creditmemo` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Creditmemo Item';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Creditmemo Item';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150045,7 +150040,7 @@ CREATE TABLE `sales_data_exporter_order_statuses` (
   `modified_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Modified At',
   PRIMARY KEY (`status`),
   KEY `SALES_DATA_EXPORTER_ORDER_STATUSES_MODIFIED_AT` (`modified_at`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Order Statuses Feed Storage';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Order Statuses Feed Storage';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150071,7 +150066,7 @@ CREATE TABLE `sales_data_exporter_orders` (
   `modified_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Modified At',
   PRIMARY KEY (`id`),
   KEY `SALES_DATA_EXPORTER_ORDERS_MODIFIED_AT` (`modified_at`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Orders Feed Storage';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Orders Feed Storage';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150115,7 +150110,7 @@ CREATE TABLE `sales_invoice` (
   `billing_address_id` int(11) DEFAULT NULL COMMENT 'Billing Address ID',
   `is_used_for_refund` smallint(5) unsigned DEFAULT NULL COMMENT 'Is Used For Refund',
   `order_id` int(10) unsigned NOT NULL COMMENT 'Order ID',
-  `email_sent` smallint(5) unsigned DEFAULT NULL COMMENT 'Email Sent',
+  `email_sent` smallint(6) DEFAULT NULL COMMENT 'Email Sent',
   `send_email` smallint(5) unsigned DEFAULT NULL COMMENT 'Send Email',
   `can_void_flag` smallint(5) unsigned DEFAULT NULL COMMENT 'Can Void Flag',
   `state` int(11) DEFAULT NULL COMMENT 'State',
@@ -150150,7 +150145,7 @@ CREATE TABLE `sales_invoice` (
   KEY `SALES_INVOICE_EMAIL_SENT` (`email_sent`),
   CONSTRAINT `SALES_INVOICE_ORDER_ID_SALES_ORDER_ENTITY_ID` FOREIGN KEY (`order_id`) REFERENCES `sales_order` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `SALES_INVOICE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Invoice';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Invoice';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150161,7 +150156,8 @@ LOCK TABLES `sales_invoice` WRITE;
 /*!40000 ALTER TABLE `sales_invoice` DISABLE KEYS */;
 INSERT INTO `sales_invoice` VALUES
 (1,1,36.3900,0.0000,2.3900,2.3900,0.0000,0.0000,0.0000,1.0000,36.3900,5.0000,31.3900,31.3900,0.0000,5.0000,1.0000,1.0000,29.0000,29.0000,0.0000,2,NULL,1,NULL,NULL,0,2,1,'BRL',NULL,'BRL','BRL','BRL','000000001','2020-07-29 06:42:33','2020-07-29 06:42:33',0.0000,0.0000,0.0000,0.0000,5.0000,5.0000,NULL,NULL,NULL,NULL),
-(2,1,39.6400,0.0000,2.6400,2.6400,0.0000,0.0000,0.0000,1.0000,39.6400,5.0000,34.6400,34.6400,0.0000,5.0000,1.0000,1.0000,32.0000,32.0000,0.0000,4,NULL,2,NULL,NULL,0,2,3,'BRL',NULL,'BRL','BRL','BRL','000000002','2020-07-29 06:42:33','2020-07-29 06:42:33',0.0000,0.0000,0.0000,0.0000,5.0000,5.0000,NULL,NULL,NULL,NULL);
+(2,1,39.6400,0.0000,2.6400,2.6400,0.0000,0.0000,0.0000,1.0000,39.6400,5.0000,34.6400,34.6400,0.0000,5.0000,1.0000,1.0000,32.0000,32.0000,0.0000,4,NULL,2,NULL,NULL,0,2,3,'BRL',NULL,'BRL','BRL','BRL','000000002','2020-07-29 06:42:33','2020-07-29 06:42:33',0.0000,0.0000,0.0000,0.0000,5.0000,5.0000,NULL,NULL,NULL,NULL),
+(3,1,97.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,1.0000,97.0000,5.0000,92.0000,92.0000,0.0000,5.0000,1.0000,1.0000,92.0000,92.0000,0.0000,11,NULL,6,1,1,NULL,2,10,'BRL','ORDE_631DFB64-0D96-4D08-B58A-21002E331FE7','BRL','BRL','BRL','000000003','2026-02-12 05:33:53','2026-02-12 05:33:58',0.0000,0.0000,0.0000,0.0000,5.0000,5.0000,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `sales_invoice` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150179,11 +150175,15 @@ CREATE TABLE `sales_invoice_comment` (
   `is_visible_on_front` smallint(5) unsigned NOT NULL DEFAULT 0 COMMENT 'Is Visible On Front',
   `comment` text DEFAULT NULL COMMENT 'Comment',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Created At',
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Updated At',
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'Admin User ID',
+  `user_type` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'User Type',
   PRIMARY KEY (`entity_id`),
+  UNIQUE KEY `SALES_INVOICE_COMMENT_ENTITY_ID_USER_ID_USER_TYPE` (`entity_id`,`user_id`,`user_type`),
   KEY `SALES_INVOICE_COMMENT_CREATED_AT` (`created_at`),
   KEY `SALES_INVOICE_COMMENT_PARENT_ID` (`parent_id`),
   CONSTRAINT `SALES_INVOICE_COMMENT_PARENT_ID_SALES_INVOICE_ENTITY_ID` FOREIGN KEY (`parent_id`) REFERENCES `sales_invoice` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Invoice Comment';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Invoice Comment';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150242,7 +150242,7 @@ CREATE TABLE `sales_invoice_grid` (
   KEY `SALES_INVOICE_GRID_BILLING_NAME` (`billing_name`),
   KEY `SALES_INVOICE_GRID_BASE_GRAND_TOTAL` (`base_grand_total`),
   FULLTEXT KEY `FTI_95D9C924DD6A8734EB8B5D01D60F90DE` (`increment_id`,`order_increment_id`,`billing_name`,`billing_address`,`shipping_address`,`customer_name`,`customer_email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Invoice Grid';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Invoice Grid';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150253,7 +150253,8 @@ LOCK TABLES `sales_invoice_grid` WRITE;
 /*!40000 ALTER TABLE `sales_invoice_grid` DISABLE KEYS */;
 INSERT INTO `sales_invoice_grid` VALUES
 (1,'000000001',2,1,'Main Website\nMain Website Store\nDefault Store View',1,'000000001','2020-07-29 06:42:32','Veronica Costello','roni_cost@example.com',1,'checkmo','BRL','BRL','BRL','BRL','Veronica Costello','6146 Honey Bluff Parkway,Calder,Michigan,49628-7978','6146 Honey Bluff Parkway,Calder,Michigan,49628-7978','Flat Rate - Fixed',29.0000,5.0000,36.3900,'2020-07-29 06:42:33','2020-07-29 06:42:33',36.3900),
-(2,'000000002',2,1,'Main Website\nMain Website Store\nDefault Store View',2,'000000002','2020-07-29 06:42:33','Veronica Costello','roni_cost@example.com',1,'checkmo','BRL','BRL','BRL','BRL','Veronica Costello','6146 Honey Bluff Parkway,Calder,Michigan,49628-7978','6146 Honey Bluff Parkway,Calder,Michigan,49628-7978','Flat Rate - Fixed',32.0000,5.0000,39.6400,'2020-07-29 06:42:33','2020-07-29 06:42:33',39.6400);
+(2,'000000002',2,1,'Main Website\nMain Website Store\nDefault Store View',2,'000000002','2020-07-29 06:42:33','Veronica Costello','roni_cost@example.com',1,'checkmo','BRL','BRL','BRL','BRL','Veronica Costello','6146 Honey Bluff Parkway,Calder,Michigan,49628-7978','6146 Honey Bluff Parkway,Calder,Michigan,49628-7978','Flat Rate - Fixed',32.0000,5.0000,39.6400,'2020-07-29 06:42:33','2020-07-29 06:42:33',39.6400),
+(3,'000000003',2,1,'Main Website\nMain Website Store\nDefault Store View',6,'000000007','2026-02-12 05:33:53','john doe','teste20262121527@ricardomartins.net.br',0,'ricardomartins_pagbank_cc','BRL','BRL','BRL','BRL','john doe','Rua Ângelo Guerra\n2454\n\nBoqueirão,Santos,São Paulo,11045510','Rua Ângelo Guerra\n2454\n\nBoqueirão,Santos,São Paulo,11045510','Flat Rate - Fixed',92.0000,5.0000,97.0000,'2026-02-12 05:33:53','2026-02-12 05:33:53',97.0000);
 /*!40000 ALTER TABLE `sales_invoice_grid` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150302,7 +150303,7 @@ CREATE TABLE `sales_invoice_item` (
   PRIMARY KEY (`entity_id`),
   KEY `SALES_INVOICE_ITEM_PARENT_ID` (`parent_id`),
   CONSTRAINT `SALES_INVOICE_ITEM_PARENT_ID_SALES_INVOICE_ENTITY_ID` FOREIGN KEY (`parent_id`) REFERENCES `sales_invoice` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Invoice Item';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Invoice Item';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150313,7 +150314,8 @@ LOCK TABLES `sales_invoice_item` WRITE;
 /*!40000 ALTER TABLE `sales_invoice_item` DISABLE KEYS */;
 INSERT INTO `sales_invoice_item` VALUES
 (1,1,29.0000,2.3900,29.0000,NULL,29.0000,NULL,31.3900,2.3900,31.3900,1.0000,NULL,29.0000,31.3900,31.3900,1434,1,NULL,NULL,'WS03-XS-Red','Iris Workout Top',0.0000,0.0000,NULL,'[]',NULL,0.0000,NULL,0.0000,NULL,NULL,NULL,0.0000),
-(2,2,32.0000,2.6400,32.0000,NULL,32.0000,NULL,34.6400,2.6400,34.6400,1.0000,NULL,32.0000,34.6400,34.6400,1498,2,NULL,NULL,'WS08-XS-Blue','Minerva LumaTech&trade; V-Tee',0.0000,0.0000,NULL,'[]',NULL,0.0000,NULL,0.0000,NULL,NULL,NULL,0.0000);
+(2,2,32.0000,2.6400,32.0000,NULL,32.0000,NULL,34.6400,2.6400,34.6400,1.0000,NULL,32.0000,34.6400,34.6400,1498,2,NULL,NULL,'WS08-XS-Blue','Minerva LumaTech&trade; V-Tee',0.0000,0.0000,NULL,'[]',NULL,0.0000,NULL,0.0000,NULL,NULL,NULL,0.0000),
+(3,3,92.0000,NULL,92.0000,NULL,92.0000,NULL,92.0000,NULL,92.0000,1.0000,NULL,92.0000,92.0000,92.0000,44,7,NULL,NULL,'24-WG02','Didi Sport Watch',NULL,NULL,NULL,'[]',NULL,0.0000,NULL,0.0000,NULL,NULL,NULL,0.0000);
 /*!40000 ALTER TABLE `sales_invoice_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150338,7 +150340,7 @@ CREATE TABLE `sales_invoiced_aggregated` (
   UNIQUE KEY `SALES_INVOICED_AGGREGATED_PERIOD_STORE_ID_ORDER_STATUS` (`period`,`store_id`,`order_status`),
   KEY `SALES_INVOICED_AGGREGATED_STORE_ID` (`store_id`),
   CONSTRAINT `SALES_INVOICED_AGGREGATED_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Invoiced Aggregated';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Invoiced Aggregated';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150371,7 +150373,7 @@ CREATE TABLE `sales_invoiced_aggregated_order` (
   UNIQUE KEY `SALES_INVOICED_AGGREGATED_ORDER_PERIOD_STORE_ID_ORDER_STATUS` (`period`,`store_id`,`order_status`),
   KEY `SALES_INVOICED_AGGREGATED_ORDER_STORE_ID` (`store_id`),
   CONSTRAINT `SALES_INVOICED_AGGREGATED_ORDER_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Invoiced Aggregated Order';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Invoiced Aggregated Order';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150464,7 +150466,7 @@ CREATE TABLE `sales_order` (
   `billing_address_id` int(11) DEFAULT NULL COMMENT 'Billing Address ID',
   `customer_group_id` int(11) DEFAULT NULL,
   `edit_increment` int(11) DEFAULT NULL COMMENT 'Edit Increment',
-  `email_sent` smallint(5) unsigned DEFAULT NULL COMMENT 'Email Sent',
+  `email_sent` smallint(6) DEFAULT NULL COMMENT 'Email Sent',
   `send_email` smallint(5) unsigned DEFAULT NULL COMMENT 'Send Email',
   `forced_shipment_with_invoice` smallint(5) unsigned DEFAULT NULL COMMENT 'Forced Do Shipment With Invoice',
   `payment_auth_expiration` int(11) DEFAULT NULL COMMENT 'Payment Authorization Expiration',
@@ -150550,7 +150552,7 @@ CREATE TABLE `sales_order` (
   KEY `SALES_ORDER_STORE_ID_STATE_CREATED_AT` (`store_id`,`state`,`created_at`),
   CONSTRAINT `SALES_ORDER_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE SET NULL,
   CONSTRAINT `SALES_ORDER_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Order';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Order';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150564,7 +150566,10 @@ INSERT INTO `sales_order` VALUES
 (2,'closed','closed',NULL,'85d590d15701ec78720ba8e2016cd674','Flat Rate - Fixed',0,1,1,0.0000,NULL,0.0000,0.0000,39.6400,5.0000,NULL,5.0000,5.0000,0.0000,0.0000,32.0000,NULL,32.0000,32.0000,2.6400,NULL,2.6400,2.6400,1.0000,1.0000,NULL,39.6400,0.0000,39.6400,NULL,39.6400,NULL,39.6400,0.0000,NULL,0.0000,0.0000,39.6400,5.0000,NULL,5.0000,5.0000,0.0000,0.0000,0.0000,0.0000,32.0000,NULL,32.0000,32.0000,2.6400,NULL,2.6400,2.6400,NULL,39.6400,39.6400,NULL,39.6400,1.0000,39.6400,NULL,NULL,0,1,4,1,NULL,NULL,NULL,NULL,NULL,NULL,2,3,0.0000,0.0000,0.0000,0.0000,0.0000,34.6400,0.0000,NULL,0.0000,34.6400,0.0000,1.0000,'1973-12-15 00:00:00','000000002','1','BRL','roni_cost@example.com','Veronica','Costello',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'BRL',NULL,NULL,'BRL',NULL,NULL,NULL,NULL,NULL,NULL,'flatrate_flatrate','BRL','Main Website\nMain Website Store\nDefault Store View',NULL,NULL,'2020-07-29 06:42:33','2020-07-29 06:42:34',1,2,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,5.0000,5.0000,NULL,NULL,0,0,0,0.0000,0.0000,NULL,NULL),
 (3,'new','pending',NULL,'59df868e2dc6e955935b33f490caa9cb',NULL,1,1,2,0.0000,NULL,NULL,NULL,14.0000,0.0000,NULL,NULL,NULL,0.0000,NULL,14.0000,NULL,NULL,NULL,0.0000,NULL,NULL,NULL,1.0000,1.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.0000,NULL,NULL,NULL,14.0000,0.0000,NULL,NULL,NULL,0.0000,NULL,0.0000,0.0000,14.0000,NULL,NULL,NULL,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1.0000,NULL,NULL,NULL,0,1,5,1,NULL,1,1,NULL,NULL,NULL,3,NULL,NULL,NULL,NULL,NULL,0.0000,14.0000,14.0000,NULL,0.0000,14.0000,14.0000,0.0000,NULL,'000000003',NULL,'BRL','ricardo@ricardomartins.net.br','Ricardo','Martins',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'BRL',NULL,NULL,'BRL',NULL,NULL,NULL,NULL,NULL,'127.0.0.1',NULL,'BRL','Main Website\nMain Website Store\nDefault Store View',NULL,NULL,'2020-08-07 00:22:57','2020-08-07 00:22:59',1,NULL,0.0000,0.0000,0.0000,0.0000,NULL,NULL,NULL,NULL,0.0000,0.0000,NULL,NULL,0,0,0,0.0000,0.0000,NULL,NULL),
 (4,'new','pending',NULL,'cd0d20e8ed1f6417b0995cd9c49398ff','Flat Rate - Fixed',0,1,NULL,0.0000,NULL,NULL,NULL,50.0000,5.0000,NULL,NULL,NULL,0.0000,NULL,45.0000,NULL,NULL,NULL,0.0000,NULL,NULL,NULL,1.0000,1.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.0000,NULL,NULL,NULL,50.0000,5.0000,NULL,NULL,NULL,0.0000,NULL,0.0000,0.0000,45.0000,NULL,NULL,NULL,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1.0000,NULL,NULL,NULL,1,1,7,0,NULL,1,1,NULL,NULL,NULL,11,6,NULL,NULL,NULL,NULL,0.0000,45.0000,50.0000,NULL,0.0000,45.0000,50.0000,0.0000,NULL,'000000004',NULL,'BRL','teste070820_17h29m56s@ricardomartins.net.br','Teste','CEP',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'BRL',NULL,NULL,'BRL',NULL,NULL,NULL,NULL,NULL,'127.0.0.1','flatrate_flatrate','BRL','Main Website\nMain Website Store\nDefault Store View',NULL,NULL,'2020-08-07 07:30:14','2020-08-07 07:30:21',1,NULL,0.0000,0.0000,0.0000,0.0000,NULL,NULL,NULL,NULL,5.0000,5.0000,NULL,NULL,0,0,0,0.0000,0.0000,NULL,NULL),
-(5,'pending_payment','pending_payment',NULL,'beaf31cf4126872702256ba698f059f4','Correios - Sedex - Em média 4 dia(s)',0,1,NULL,0.0000,NULL,NULL,NULL,56.5000,22.5000,NULL,NULL,NULL,0.0000,NULL,34.0000,NULL,NULL,NULL,0.0000,NULL,NULL,NULL,1.0000,1.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.0000,NULL,NULL,NULL,56.5000,22.5000,NULL,NULL,NULL,0.0000,NULL,0.0000,0.0000,34.0000,NULL,NULL,NULL,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1.0000,NULL,NULL,NULL,1,1,9,0,NULL,1,1,NULL,NULL,NULL,19,8,NULL,NULL,NULL,NULL,0.0000,34.0000,56.5000,NULL,0.0000,34.0000,56.5000,1.0000,NULL,'000000005',NULL,'BRL','teste110820_11h05m59s@ricardomartins222.net.br','Teste','Firestore',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'BRL',NULL,NULL,'BRL',NULL,NULL,NULL,NULL,NULL,'127.0.0.1','correios_correios40010','BRL','Main Website\nMain Website Store\nDefault Store View',NULL,NULL,'2020-08-11 01:07:47','2020-08-11 01:07:54',1,NULL,0.0000,0.0000,0.0000,0.0000,NULL,NULL,NULL,NULL,22.5000,22.5000,NULL,NULL,0,0,0,0.0000,0.0000,NULL,NULL);
+(5,'pending_payment','pending_payment',NULL,'beaf31cf4126872702256ba698f059f4','Correios - Sedex - Em média 4 dia(s)',0,1,NULL,0.0000,NULL,NULL,NULL,56.5000,22.5000,NULL,NULL,NULL,0.0000,NULL,34.0000,NULL,NULL,NULL,0.0000,NULL,NULL,NULL,1.0000,1.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.0000,NULL,NULL,NULL,56.5000,22.5000,NULL,NULL,NULL,0.0000,NULL,0.0000,0.0000,34.0000,NULL,NULL,NULL,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1.0000,NULL,NULL,NULL,1,1,9,0,NULL,1,1,NULL,NULL,NULL,19,8,NULL,NULL,NULL,NULL,0.0000,34.0000,56.5000,NULL,0.0000,34.0000,56.5000,1.0000,NULL,'000000005',NULL,'BRL','teste110820_11h05m59s@ricardomartins222.net.br','Teste','Firestore',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'BRL',NULL,NULL,'BRL',NULL,NULL,NULL,NULL,NULL,'127.0.0.1','correios_correios40010','BRL','Main Website\nMain Website Store\nDefault Store View',NULL,NULL,'2020-08-11 01:07:47','2020-08-11 01:07:54',1,NULL,0.0000,0.0000,0.0000,0.0000,NULL,NULL,NULL,NULL,22.5000,22.5000,NULL,NULL,0,0,0,0.0000,0.0000,NULL,NULL),
+(6,'processing','processing',NULL,'8e19225785c9539191a4c8daa1f77ee9','Flat Rate - Fixed',0,1,NULL,0.0000,NULL,0.0000,NULL,97.0000,5.0000,NULL,5.0000,NULL,0.0000,NULL,92.0000,NULL,92.0000,NULL,0.0000,NULL,0.0000,NULL,1.0000,1.0000,NULL,97.0000,0.0000,NULL,NULL,97.0000,NULL,NULL,0.0000,NULL,0.0000,NULL,97.0000,5.0000,NULL,5.0000,NULL,0.0000,NULL,0.0000,0.0000,92.0000,NULL,92.0000,NULL,0.0000,NULL,0.0000,NULL,NULL,97.0000,NULL,NULL,97.0000,1.0000,NULL,NULL,NULL,1,1,11,0,NULL,1,1,NULL,NULL,NULL,28,10,NULL,NULL,NULL,NULL,0.0000,92.0000,0.0000,NULL,0.0000,92.0000,0.0000,1.0000,NULL,'000000007',NULL,'BRL','teste20262121527@ricardomartins.net.br','john','doe',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'BRL',NULL,NULL,'BRL',NULL,NULL,NULL,NULL,NULL,'192.168.65.1','flatrate_flatrate','BRL','Main Website\nMain Website Store\nDefault Store View',NULL,NULL,'2026-02-12 05:33:53','2026-02-12 05:33:56',1,NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,NULL,NULL,5.0000,5.0000,NULL,NULL,0,0,0,0.0000,0.0000,'2026-02-12 11:33:53','d75aa3c777d0d2670ce7647d5419446f'),
+(7,'pending_payment','pending_payment',NULL,'87ac4dcd19267c6ef3c645b48aa35fca','Flat Rate - Fixed',0,1,NULL,0.0000,NULL,NULL,NULL,97.0000,5.0000,NULL,NULL,NULL,0.0000,NULL,92.0000,NULL,NULL,NULL,0.0000,NULL,NULL,NULL,1.0000,1.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.0000,NULL,NULL,NULL,97.0000,5.0000,NULL,NULL,NULL,0.0000,NULL,0.0000,0.0000,92.0000,NULL,NULL,NULL,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1.0000,NULL,NULL,NULL,1,1,13,0,NULL,1,1,NULL,NULL,NULL,29,12,NULL,NULL,NULL,NULL,0.0000,92.0000,97.0000,NULL,0.0000,92.0000,97.0000,1.0000,NULL,'000000008',NULL,'BRL','teste2026213100@ricardomartins.net.br','Teste','Pagbank',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'BRL',NULL,NULL,'BRL',NULL,NULL,NULL,NULL,NULL,'192.168.65.1','flatrate_flatrate','BRL','Main Website\nMain Website Store\nDefault Store View',NULL,NULL,'2026-02-13 00:01:06','2026-02-13 00:01:08',1,NULL,0.0000,0.0000,0.0000,0.0000,NULL,NULL,NULL,NULL,5.0000,5.0000,NULL,NULL,0,0,0,0.0000,0.0000,'2026-02-13 06:01:06',NULL),
+(8,'pending_payment','pending_payment',NULL,'e0eaedd269f190a74f8b82a5a8a4791b','Flat Rate - Fixed',0,1,NULL,0.0000,NULL,NULL,NULL,97.0000,5.0000,NULL,NULL,NULL,0.0000,NULL,92.0000,NULL,NULL,NULL,0.0000,NULL,NULL,NULL,1.0000,1.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.0000,NULL,NULL,NULL,97.0000,5.0000,NULL,NULL,NULL,0.0000,NULL,0.0000,0.0000,92.0000,NULL,NULL,NULL,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1.0000,NULL,NULL,NULL,1,1,15,0,NULL,1,1,NULL,NULL,NULL,30,14,NULL,NULL,NULL,NULL,0.0000,92.0000,97.0000,NULL,0.0000,92.0000,97.0000,1.0000,NULL,'000000010',NULL,'BRL','teste20262131054@ricardomartins.net.br','Teste','Pagbank',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'BRL',NULL,NULL,'BRL',NULL,NULL,NULL,NULL,NULL,'192.168.65.1','flatrate_flatrate','BRL','Main Website\nMain Website Store\nDefault Store View',NULL,NULL,'2026-02-13 00:55:12','2026-02-13 00:55:14',1,NULL,0.0000,0.0000,0.0000,0.0000,NULL,NULL,NULL,NULL,5.0000,5.0000,NULL,NULL,0,0,0,0.0000,0.0000,'2026-02-13 06:55:12',NULL);
 /*!40000 ALTER TABLE `sales_order` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -150574,7 +150579,7 @@ UNLOCK TABLES;
 /*!50003 SET character_set_results = utf8mb3 */ ;
 /*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=CURRENT_USER*/ /*!50003 TRIGGER trg_sales_order_after_insert AFTER INSERT ON sales_order FOR EACH ROW
 BEGIN
@@ -150592,7 +150597,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb3 */ ;
 /*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=CURRENT_USER*/ /*!50003 TRIGGER trg_sales_order_after_update AFTER UPDATE ON sales_order FOR EACH ROW
 BEGIN
@@ -150610,7 +150615,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb3 */ ;
 /*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=CURRENT_USER*/ /*!50003 TRIGGER trg_sales_order_after_delete AFTER DELETE ON sales_order FOR EACH ROW
 BEGIN
@@ -150640,7 +150645,7 @@ CREATE TABLE `sales_order_address` (
   `region` varchar(255) DEFAULT NULL COMMENT 'Region',
   `postcode` varchar(255) DEFAULT NULL COMMENT 'Postcode',
   `lastname` varchar(255) DEFAULT NULL COMMENT 'Lastname',
-  `street_prefix` varchar(20) DEFAULT NULL COMMENT 'Street Prefix',
+  `street_prefix` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'Street Prefix',
   `street` varchar(255) DEFAULT NULL COMMENT 'Street',
   `city` varchar(255) DEFAULT NULL COMMENT 'City',
   `email` varchar(255) DEFAULT NULL COMMENT 'Email',
@@ -150660,7 +150665,7 @@ CREATE TABLE `sales_order_address` (
   PRIMARY KEY (`entity_id`),
   KEY `SALES_ORDER_ADDRESS_PARENT_ID` (`parent_id`),
   CONSTRAINT `SALES_ORDER_ADDRESS_PARENT_ID_SALES_ORDER_ENTITY_ID` FOREIGN KEY (`parent_id`) REFERENCES `sales_order` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Order Address';
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Order Address';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150678,7 +150683,13 @@ INSERT INTO `sales_order_address` VALUES
 (6,4,NULL,24,508,NULL,NULL,'São Paulo','11050-230','CEP',NULL,'Rua Doutor Guedes Coelho\n84\nlado par\nEncruzilhada','Santos','teste070820_17h29m56s@ricardomartins.net.br','(13) 3113-3300','BR','Teste','shipping',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
 (7,4,NULL,25,508,NULL,NULL,'São Paulo','11050-230','CEP',NULL,'Rua Doutor Guedes Coelho\n84\nlado par\nEncruzilhada','Santos','teste070820_17h29m56s@ricardomartins.net.br','(13) 3113-3300','BR','Teste','billing',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
 (8,5,NULL,43,508,NULL,NULL,'São Paulo','11045-510','Firestore',NULL,'Rua Ângelo Guerra\n244\nBoqueirão','Santos','teste110820_11h05m59s@ricardomartins222.net.br','(13) 3113-3300','BR','Teste','shipping',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
-(9,5,NULL,44,508,NULL,NULL,'São Paulo','11045-510','Firestore',NULL,'Rua Ângelo Guerra\n244\nBoqueirão','Santos','teste110820_11h05m59s@ricardomartins222.net.br','(13) 3113-3300','BR','Teste','billing',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+(9,5,NULL,44,508,NULL,NULL,'São Paulo','11045-510','Firestore',NULL,'Rua Ângelo Guerra\n244\nBoqueirão','Santos','teste110820_11h05m59s@ricardomartins222.net.br','(13) 3113-3300','BR','Teste','billing',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(10,6,NULL,64,508,NULL,NULL,'São Paulo','11045510','doe',NULL,'Rua Ângelo Guerra\n2454\n\nBoqueirão','Santos','teste20262121527@ricardomartins.net.br','1331133300','BR','john','shipping',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(11,6,NULL,66,508,NULL,NULL,'São Paulo','11045510','doe',NULL,'Rua Ângelo Guerra\n2454\n\nBoqueirão','Santos','teste20262121527@ricardomartins.net.br','1331133300','BR','john','billing',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(12,7,NULL,68,508,NULL,NULL,'São Paulo','11045510','Pagbank',NULL,'Rua Ângelo Guerra\n2434\n\nBoqueirão','Santos','teste2026213100@ricardomartins.net.br','1331133300','BR','Teste','shipping',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(13,7,NULL,69,508,NULL,NULL,'São Paulo','11045510','Pagbank',NULL,'Rua Ângelo Guerra\n2434\n\nBoqueirão','Santos','teste2026213100@ricardomartins.net.br','1331133300','BR','Teste','billing',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(14,8,NULL,71,508,NULL,NULL,'São Paulo','11045510','Pagbank',NULL,'Rua Ângelo Guerra\n244\n\nBoqueirão','Santos','teste20262131054@ricardomartins.net.br','1331133300','BR','Teste','shipping',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(15,8,NULL,73,508,NULL,NULL,'São Paulo','11045510','Pagbank',NULL,'Rua Ângelo Guerra\n244\n\nBoqueirão','Santos','teste20262131054@ricardomartins.net.br','1331133300','BR','Teste','billing',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `sales_order_address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150714,7 +150725,7 @@ CREATE TABLE `sales_order_aggregated_created` (
   UNIQUE KEY `SALES_ORDER_AGGREGATED_CREATED_PERIOD_STORE_ID_ORDER_STATUS` (`period`,`store_id`,`order_status`),
   KEY `SALES_ORDER_AGGREGATED_CREATED_STORE_ID` (`store_id`),
   CONSTRAINT `SALES_ORDER_AGGREGATED_CREATED_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Order Aggregated Created';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Order Aggregated Created';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150758,7 +150769,7 @@ CREATE TABLE `sales_order_aggregated_updated` (
   UNIQUE KEY `SALES_ORDER_AGGREGATED_UPDATED_PERIOD_STORE_ID_ORDER_STATUS` (`period`,`store_id`,`order_status`),
   KEY `SALES_ORDER_AGGREGATED_UPDATED_STORE_ID` (`store_id`),
   CONSTRAINT `SALES_ORDER_AGGREGATED_UPDATED_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Order Aggregated Updated';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Order Aggregated Updated';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150768,6 +150779,32 @@ CREATE TABLE `sales_order_aggregated_updated` (
 LOCK TABLES `sales_order_aggregated_updated` WRITE;
 /*!40000 ALTER TABLE `sales_order_aggregated_updated` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sales_order_aggregated_updated` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sales_order_confirm_cancel`
+--
+
+DROP TABLE IF EXISTS `sales_order_confirm_cancel`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sales_order_confirm_cancel` (
+  `order_id` int(10) unsigned NOT NULL COMMENT 'Order ID',
+  `confirmation_key` varchar(32) NOT NULL COMMENT 'Random key',
+  `reason` varchar(255) NOT NULL COMMENT 'Cancellation reason',
+  `created_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'created at',
+  PRIMARY KEY (`order_id`),
+  CONSTRAINT `SALES_ORDER_CONFIRM_CANCEL_ORDER_ID_SALES_ORDER_ENTITY_ID` FOREIGN KEY (`order_id`) REFERENCES `sales_order` (`entity_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Save the confirmation key to cancel guest order';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sales_order_confirm_cancel`
+--
+
+LOCK TABLES `sales_order_confirm_cancel` WRITE;
+/*!40000 ALTER TABLE `sales_order_confirm_cancel` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sales_order_confirm_cancel` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -150781,7 +150818,7 @@ CREATE TABLE `sales_order_data_exporter_cl` (
   `version_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Version ID',
   `entity_id` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'Entity ID',
   PRIMARY KEY (`version_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='sales_order_data_exporter_cl';
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='sales_order_data_exporter_cl';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150863,7 +150900,23 @@ INSERT INTO `sales_order_data_exporter_cl` VALUES
 (70,34),
 (71,34),
 (72,34),
-(73,34);
+(73,34),
+(74,6),
+(75,6),
+(76,6),
+(77,6),
+(78,6),
+(79,6),
+(80,7),
+(81,7),
+(82,7),
+(83,7),
+(84,7),
+(85,8),
+(86,8),
+(87,8),
+(88,8),
+(89,8);
 /*!40000 ALTER TABLE `sales_order_data_exporter_cl` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150917,7 +150970,7 @@ CREATE TABLE `sales_order_grid` (
   KEY `SALES_ORDER_GRID_UPDATED_AT` (`updated_at`),
   KEY `SALES_ORDER_GRID_PICKUP_LOCATION_CODE` (`pickup_location_code`),
   FULLTEXT KEY `FTI_65B9E9925EC58F0C7C2E2F6379C233E7` (`increment_id`,`billing_name`,`shipping_name`,`shipping_address`,`billing_address`,`customer_name`,`customer_email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Order Grid';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Order Grid';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150931,7 +150984,10 @@ INSERT INTO `sales_order_grid` VALUES
 (2,'closed',1,'Main Website\nMain Website Store\nDefault Store View',1,39.6400,39.6400,39.6400,39.6400,'000000002','BRL','BRL','Veronica Costello','Veronica Costello','2020-07-29 06:42:33','2020-07-29 06:42:34','6146 Honey Bluff Parkway,Calder,Michigan,49628-7978','6146 Honey Bluff Parkway,Calder,Michigan,49628-7978','Flat Rate - Fixed','roni_cost@example.com','1',32.0000,5.0000,'Veronica Costello','checkmo',39.6400,NULL),
 (3,'pending',1,'Main Website\nMain Website Store\nDefault Store View',2,14.0000,NULL,14.0000,NULL,'000000003','BRL','BRL','','Ricardo Martins','2020-08-07 00:22:57','2020-08-07 00:22:57','Line1\nLine3,Santos,São Paulo,11045510','',NULL,'ricardo@ricardomartins.net.br','1',14.0000,0.0000,'Ricardo Martins','checkmo',NULL,NULL),
 (4,'pending',1,'Main Website\nMain Website Store\nDefault Store View',NULL,50.0000,NULL,50.0000,NULL,'000000004','BRL','BRL','Teste CEP','Teste CEP','2020-08-07 07:30:14','2020-08-07 07:30:14','Rua Doutor Guedes Coelho\n84\nlado par\nEncruzilhada,Santos,São Paulo,11050-230','Rua Doutor Guedes Coelho\n84\nlado par\nEncruzilhada,Santos,São Paulo,11050-230','Flat Rate - Fixed','teste070820_17h29m56s@ricardomartins.net.br','0',45.0000,5.0000,'Teste CEP','checkmo',NULL,NULL),
-(5,'pending_payment',1,'Main Website\nMain Website Store\nDefault Store View',NULL,56.5000,NULL,56.5000,NULL,'000000005','BRL','BRL','Teste Firestore','Teste Firestore','2020-08-11 01:07:47','2020-08-11 01:07:48','Rua Ângelo Guerra\n244\nBoqueirão,Santos,São Paulo,11045-510','Rua Ângelo Guerra\n244\nBoqueirão,Santos,São Paulo,11045-510','Correios - Sedex - Em média 4 dia(s)','teste110820_11h05m59s@ricardomartins222.net.br','0',34.0000,22.5000,'Teste Firestore','rm_pagseguro_cc',NULL,NULL);
+(5,'pending_payment',1,'Main Website\nMain Website Store\nDefault Store View',NULL,56.5000,NULL,56.5000,NULL,'000000005','BRL','BRL','Teste Firestore','Teste Firestore','2020-08-11 01:07:47','2020-08-11 01:07:48','Rua Ângelo Guerra\n244\nBoqueirão,Santos,São Paulo,11045-510','Rua Ângelo Guerra\n244\nBoqueirão,Santos,São Paulo,11045-510','Correios - Sedex - Em média 4 dia(s)','teste110820_11h05m59s@ricardomartins222.net.br','0',34.0000,22.5000,'Teste Firestore','rm_pagseguro_cc',NULL,NULL),
+(6,'processing',1,'Main Website\nMain Website Store\nDefault Store View',NULL,97.0000,97.0000,97.0000,97.0000,'000000007','BRL','BRL','john doe','john doe','2026-02-12 05:33:53','2026-02-12 05:33:53','Rua Ângelo Guerra\n2454\n\nBoqueirão,Santos,São Paulo,11045510','Rua Ângelo Guerra\n2454\n\nBoqueirão,Santos,São Paulo,11045510','Flat Rate - Fixed','teste20262121527@ricardomartins.net.br','0',92.0000,5.0000,'john doe','ricardomartins_pagbank_cc',NULL,NULL),
+(7,'pending_payment',1,'Main Website\nMain Website Store\nDefault Store View',NULL,97.0000,NULL,97.0000,NULL,'000000008','BRL','BRL','Teste Pagbank','Teste Pagbank','2026-02-13 00:01:06','2026-02-13 00:01:06','Rua Ângelo Guerra\n2434\n\nBoqueirão,Santos,São Paulo,11045510','Rua Ângelo Guerra\n2434\n\nBoqueirão,Santos,São Paulo,11045510','Flat Rate - Fixed','teste2026213100@ricardomartins.net.br','0',92.0000,5.0000,'Teste Pagbank','ricardomartins_pagbank_pix',NULL,NULL),
+(8,'pending_payment',1,'Main Website\nMain Website Store\nDefault Store View',NULL,97.0000,NULL,97.0000,NULL,'000000010','BRL','BRL','Teste Pagbank','Teste Pagbank','2026-02-13 00:55:12','2026-02-13 00:55:12','Rua Ângelo Guerra\n244\n\nBoqueirão,Santos,São Paulo,11045510','Rua Ângelo Guerra\n244\n\nBoqueirão,Santos,São Paulo,11045510','Flat Rate - Fixed','teste20262131054@ricardomartins.net.br','0',92.0000,5.0000,'Teste Pagbank','ricardomartins_pagbank_pix',NULL,NULL);
 /*!40000 ALTER TABLE `sales_order_grid` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -151028,7 +151084,7 @@ CREATE TABLE `sales_order_item` (
   KEY `SALES_ORDER_ITEM_STORE_ID` (`store_id`),
   CONSTRAINT `SALES_ORDER_ITEM_ORDER_ID_SALES_ORDER_ENTITY_ID` FOREIGN KEY (`order_id`) REFERENCES `sales_order` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `SALES_ORDER_ITEM_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Order Item';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Order Item';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151043,7 +151099,10 @@ INSERT INTO `sales_order_item` VALUES
 (3,3,NULL,5,1,'2020-08-07 00:22:57','2020-08-07 00:22:57',48,'downloadable','{\"info_buyRequest\":{\"uenc\":\"aHR0cHM6Ly9tYWdlbnRvMjQwLnRlc3QvbGlmZWxvbmctZml0bmVzcy1pdi5odG1s\",\"product\":\"48\",\"selected_configurable_option\":\"\",\"related_product\":\"\",\"item\":\"48\",\"qty\":\"1\"},\"links\":[\"2\"],\"is_downloadable\":true,\"real_product_type\":\"downloadable\"}',NULL,1,'240-LV05','LifeLong Fitness IV',NULL,NULL,NULL,0,0,NULL,0.0000,0.0000,1.0000,0.0000,0.0000,NULL,14.0000,14.0000,14.0000,14.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,14.0000,14.0000,0.0000,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,14.0000,14.0000,14.0000,14.0000,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
 (4,4,NULL,12,1,'2020-08-07 07:30:14','2020-08-07 07:30:14',14,'simple','{\"info_buyRequest\":{\"uenc\":\"aHR0cHM6Ly9tYWdlbnRvMjQwLnRlc3Qv\",\"product\":\"14\",\"qty\":1}}',NULL,0,'24-WB04','Push It Messenger Bag',NULL,NULL,NULL,0,0,NULL,0.0000,0.0000,1.0000,0.0000,0.0000,NULL,45.0000,45.0000,45.0000,45.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,45.0000,45.0000,0.0000,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,45.0000,45.0000,45.0000,45.0000,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
 (5,5,NULL,25,1,'2020-08-11 01:07:48','2020-08-11 01:07:48',1818,'configurable','{\"info_buyRequest\":{\"uenc\":\"aHR0cHM6Ly9tYWdlbnRvMjQwLnRlc3Qv\",\"product\":\"1818\",\"super_attribute\":{\"144\":\"167\",\"93\":\"59\"},\"qty\":1},\"attributes_info\":[{\"label\":\"Size\",\"value\":\"S\",\"option_id\":144,\"option_value\":\"167\"},{\"label\":\"Color\",\"value\":\"White\",\"option_id\":93,\"option_value\":\"59\"}],\"simple_name\":\"Breathe-Easy Tank-S-White\",\"simple_sku\":\"WT09-S-White\",\"product_calculations\":1,\"shipment_type\":0}',1.0000,0,'WT09-S-White','Breathe-Easy Tank',NULL,NULL,NULL,0,0,NULL,0.0000,0.0000,1.0000,0.0000,0.0000,NULL,34.0000,34.0000,34.0000,34.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,34.0000,34.0000,0.0000,0.0000,1.0000,NULL,NULL,NULL,NULL,NULL,34.0000,34.0000,34.0000,34.0000,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
-(6,5,5,26,1,'2020-08-11 01:07:48','2020-08-11 01:07:48',1807,'simple','{\"info_buyRequest\":{\"uenc\":\"aHR0cHM6Ly9tYWdlbnRvMjQwLnRlc3Qv\",\"product\":\"1818\",\"super_attribute\":{\"144\":\"167\",\"93\":\"59\"},\"qty\":1}}',1.0000,0,'WT09-S-White','Breathe-Easy Tank-S-White',NULL,NULL,NULL,0,0,NULL,0.0000,0.0000,1.0000,0.0000,0.0000,NULL,34.0000,0.0000,0.0000,NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+(6,5,5,26,1,'2020-08-11 01:07:48','2020-08-11 01:07:48',1807,'simple','{\"info_buyRequest\":{\"uenc\":\"aHR0cHM6Ly9tYWdlbnRvMjQwLnRlc3Qv\",\"product\":\"1818\",\"super_attribute\":{\"144\":\"167\",\"93\":\"59\"},\"qty\":1}}',1.0000,0,'WT09-S-White','Breathe-Easy Tank-S-White',NULL,NULL,NULL,0,0,NULL,0.0000,0.0000,1.0000,0.0000,0.0000,NULL,34.0000,0.0000,0.0000,NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(7,6,NULL,42,1,'2026-02-12 05:33:53','2026-02-12 05:33:53',44,'simple','{\"info_buyRequest\":{\"uenc\":\"aHR0cHM6Ly9wYWdzZWd1cm8tZXhlbXBsby1tMi50ZXN0Lw~~\",\"product\":\"44\",\"qty\":1}}',1.0000,0,'24-WG02','Didi Sport Watch',NULL,NULL,NULL,0,0,NULL,0.0000,1.0000,1.0000,0.0000,0.0000,NULL,92.0000,92.0000,92.0000,92.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,92.0000,92.0000,92.0000,92.0000,1.0000,NULL,NULL,NULL,NULL,NULL,92.0000,92.0000,92.0000,92.0000,0.0000,0.0000,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,'[]',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(8,7,NULL,43,1,'2026-02-13 00:01:06','2026-02-13 00:01:06',44,'simple','{\"info_buyRequest\":{\"uenc\":\"aHR0cHM6Ly9wYWdzZWd1cm8tZXhlbXBsby1tMi50ZXN0Lw~~\",\"product\":\"44\",\"qty\":1}}',1.0000,0,'24-WG02','Didi Sport Watch',NULL,NULL,NULL,0,0,NULL,0.0000,0.0000,1.0000,0.0000,0.0000,NULL,92.0000,92.0000,92.0000,92.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,92.0000,92.0000,0.0000,0.0000,1.0000,NULL,NULL,NULL,NULL,NULL,92.0000,92.0000,92.0000,92.0000,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(9,8,NULL,44,1,'2026-02-13 00:55:12','2026-02-13 00:55:12',44,'simple','{\"info_buyRequest\":{\"uenc\":\"aHR0cHM6Ly9wYWdzZWd1cm8tZXhlbXBsby1tMi50ZXN0Lw~~\",\"product\":\"44\",\"qty\":1}}',1.0000,0,'24-WG02','Didi Sport Watch',NULL,NULL,NULL,0,0,NULL,0.0000,0.0000,1.0000,0.0000,0.0000,NULL,92.0000,92.0000,92.0000,92.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,92.0000,92.0000,0.0000,0.0000,1.0000,NULL,NULL,NULL,NULL,NULL,92.0000,92.0000,92.0000,92.0000,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `sales_order_item` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -151053,7 +151112,7 @@ UNLOCK TABLES;
 /*!50003 SET character_set_results = utf8mb3 */ ;
 /*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=CURRENT_USER*/ /*!50003 TRIGGER trg_sales_order_item_after_insert AFTER INSERT ON sales_order_item FOR EACH ROW
 BEGIN
@@ -151071,7 +151130,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb3 */ ;
 /*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=CURRENT_USER*/ /*!50003 TRIGGER trg_sales_order_item_after_update AFTER UPDATE ON sales_order_item FOR EACH ROW
 BEGIN
@@ -151089,7 +151148,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb3 */ ;
 /*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=CURRENT_USER*/ /*!50003 TRIGGER trg_sales_order_item_after_delete AFTER DELETE ON sales_order_item FOR EACH ROW
 BEGIN
@@ -151166,7 +151225,7 @@ CREATE TABLE `sales_order_payment` (
   PRIMARY KEY (`entity_id`),
   KEY `SALES_ORDER_PAYMENT_PARENT_ID` (`parent_id`),
   CONSTRAINT `SALES_ORDER_PAYMENT_PARENT_ID_SALES_ORDER_ENTITY_ID` FOREIGN KEY (`parent_id`) REFERENCES `sales_order` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Order Payment';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Order Payment';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151180,7 +151239,10 @@ INSERT INTO `sales_order_payment` VALUES
 (2,2,5.0000,5.0000,39.6400,39.6400,NULL,NULL,NULL,NULL,5.0000,5.0000,39.6400,NULL,39.6400,5.0000,5.0000,39.6400,39.6400,NULL,NULL,NULL,NULL,NULL,NULL,'checkmo',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'{\"method_title\":\"Check \\/ Money order\"}'),
 (3,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.0000,0.0000,NULL,NULL,14.0000,NULL,NULL,NULL,14.0000,NULL,NULL,NULL,NULL,'0',NULL,'checkmo',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'{\"method_title\":\"Check \\/ Money order\"}'),
 (4,4,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,5.0000,5.0000,NULL,NULL,50.0000,NULL,NULL,NULL,50.0000,NULL,NULL,NULL,NULL,'0',NULL,'checkmo',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'{\"method_title\":\"Check \\/ Money order\"}'),
-(5,5,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,22.5000,22.5000,NULL,NULL,56.5000,NULL,NULL,NULL,56.5000,NULL,NULL,NULL,'12',NULL,NULL,'rm_pagseguro_cc',NULL,NULL,NULL,NULL,'1111',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'visa',NULL,'21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'{\"transaction_id\":\"8BC82A88-C9F1-4D59-A25C-0FC67F9E43A5\",\"sender_hash\":\"6215d0ecf91386d68f7962447fc219b9035571d7271ca7660918c487a69aedf7\",\"credit_card_token\":\"6cb1bce10d44450fb9f67a5ea699c701\",\"credit_card_owner\":\"John Doe\",\"rm_pagseguro_cc_cpf\":\"71096412799\",\"credit_card_owner_birthdate\":\"12\\/11\\/1980\",\"installment_quantity\":1,\"installment_value\":\"56.5\",\"method_title\":\"Cart\\u00e3o de Cr\\u00e9dito via PagSeguro UOL\"}');
+(5,5,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,22.5000,22.5000,NULL,NULL,56.5000,NULL,NULL,NULL,56.5000,NULL,NULL,NULL,'12',NULL,NULL,'rm_pagseguro_cc',NULL,NULL,NULL,NULL,'1111',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'visa',NULL,'21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'{\"transaction_id\":\"8BC82A88-C9F1-4D59-A25C-0FC67F9E43A5\",\"sender_hash\":\"6215d0ecf91386d68f7962447fc219b9035571d7271ca7660918c487a69aedf7\",\"credit_card_token\":\"6cb1bce10d44450fb9f67a5ea699c701\",\"credit_card_owner\":\"John Doe\",\"rm_pagseguro_cc_cpf\":\"71096412799\",\"credit_card_owner_birthdate\":\"12\\/11\\/1980\",\"installment_quantity\":1,\"installment_value\":\"56.5\",\"method_title\":\"Cart\\u00e3o de Cr\\u00e9dito via PagSeguro UOL\"}'),
+(6,6,5.0000,5.0000,NULL,97.0000,NULL,97.0000,97.0000,NULL,5.0000,5.0000,97.0000,97.0000,97.0000,NULL,NULL,NULL,97.0000,NULL,NULL,NULL,'03','0',NULL,'ricardomartins_pagbank_cc',NULL,NULL,NULL,NULL,'0010',NULL,NULL,NULL,'0',NULL,'ORDE_631DFB64-0D96-4D08-B58A-21002E331FE7',NULL,'john doe','VI',NULL,'2033',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'ORDE_631DFB64-0D96-4D08-B58A-210',NULL,'{\"cc_installments\":\"3\",\"cc_number_encrypted\":\"ecA7pLhMyNWtjdnlm0haZmKAYNs5CEljHZ2XK\\/t+UohpSEA4Mcora98o2Pse8SBzGl8xEtapBVisn53pS5PcIRPC9a7BHOjKrNoiKaiIiqBPRdZ7WBSu9zrDcop1lHWZprCRQ1R3WpK0sqBhN6Dv6cMbHQDGhXcmM6AetSZWbPGs6+gJUfgawHEdf22DKJXgq1\\/SAJjta0X1JDqzO3FhmF6ION36C4lkaKYY++vbtIILlzVw5bv+bRJ3nXZzwNglGnqbbCnWRHGN+yJhdtHgS8PZRieBTLQ2V8UDz3YS00E0aRHjLfLvZokUyzcC+INeNlc0n5XcLcAx9EHs+PXjhQ==\",\"threed_secure_id\":\"\",\"tax_id\":\"01234567890\",\"method_title\":\"PagBank Cart\\u00e3o de Cr\\u00e9dito\",\"payment_id\":\"ORDE_631DFB64-0D96-4D08-B58A-21002E331FE7\",\"charge_id\":\"CHAR_F44596E9-D96F-497B-9547-1E698F1CBC60\",\"status\":\"PAID\",\"is_sandbox\":true,\"brand\":\"visa\",\"cc_last_4\":\"0010\",\"cc_owner\":\"john doe\",\"installments\":3,\"authorization_code\":\"145803\",\"nsu\":\"032416400102\"}'),
+(7,7,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,5.0000,5.0000,NULL,NULL,97.0000,NULL,NULL,NULL,97.0000,NULL,NULL,NULL,NULL,'0',NULL,'ricardomartins_pagbank_pix',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,'ORDE_8EC9D3DB-628D-43AB-BDA0-98EA470C3D0C',NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'ORDE_8EC9D3DB-628D-43AB-BDA0-98E',NULL,'{\"tax_id\":\"01234567890\",\"method_title\":\"PIX via PagBank\",\"payment_link_qrcode\":\"https:\\/\\/sandbox.api.pagseguro.com\\/qrcode\\/QRCO_0670D35F-DE7A-4D1C-B60F-6894DECF6666\\/png\",\"payment_id\":\"ORDE_8EC9D3DB-628D-43AB-BDA0-98EA470C3D0C\",\"payment_text_pix\":\"00020101021226850014br.gov.bcb.pix2563api-h.pagseguro.com\\/pix\\/v2\\/0670D35F-DE7A-4D1C-B60F-6894DECF666627600016BR.COM.PAGSEGURO01360670D35F-DE7A-4D1C-B60F-6894DECF6666520489995303986540597.005802BR5922Rafael Gouveia Firmino6009SAO PAULO62070503***63046951\",\"expiration_date\":\"2026-02-13T05:01:04.000-03:00\",\"is_sandbox\":true}'),
+(8,8,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,5.0000,5.0000,NULL,NULL,97.0000,NULL,NULL,NULL,97.0000,NULL,NULL,NULL,'03','0',NULL,'ricardomartins_pagbank_pix',NULL,NULL,NULL,NULL,'0010',NULL,NULL,NULL,'0',NULL,'ORDE_53FDCD77-55E8-4BC9-8076-D44DB2D24272',NULL,'jose da silva','VI',NULL,'2033',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'ORDE_53FDCD77-55E8-4BC9-8076-D44',NULL,'{\"cc_installments\":\"1\",\"cc_number_encrypted\":\"n3pvIUI4TckPytml8AIjFqFLvMxZ9bsj1ule1YNYl\\/XSdv8OVBjY2CO11SrkHJlxYbm4NhIGmQAoCNh+UONrJ5MD0OfjXrRteRbqrwwsEIk+FkNDNKBmKlkVTEcUsoK7Uw8z0O4CbrYXlOpd5n1EenBW2Xvsn5GQrjwpgvBXDXMB7NzAmfpY0iDi5LA\\/RH5aNOdMM\\/ISY36xusMuvadGsD0Uqh1huTNevEc7lTxzOV37vANmznmeXcYV50kJDSIpwzgZYkmE9lozNJWZU8hnXOsRGWO0HB7OrdUxbzMETZRzulRR\\/mLvGd\\/3Akc3nhxXsJb6rDzB3VjrpHmlU5eFDQ==\",\"threed_secure_id\":\"\",\"tax_id\":\"01234567890\",\"method_title\":\"PIX via PagBank\",\"payment_link_qrcode\":\"https:\\/\\/sandbox.api.pagseguro.com\\/qrcode\\/QRCO_87242870-5491-437F-BEFC-43AA27052452\\/png\",\"payment_id\":\"ORDE_53FDCD77-55E8-4BC9-8076-D44DB2D24272\",\"payment_text_pix\":\"00020101021226850014br.gov.bcb.pix2563api-h.pagseguro.com\\/pix\\/v2\\/87242870-5491-437F-BEFC-43AA2705245227600016BR.COM.PAGSEGURO013687242870-5491-437F-BEFC-43AA27052452520489995303986540597.005802BR5922Rafael Gouveia Firmino6009SAO PAULO62070503***630475ED\",\"expiration_date\":\"2026-02-13T05:55:10.000-03:00\",\"is_sandbox\":true}');
 /*!40000 ALTER TABLE `sales_order_payment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -151195,7 +151257,7 @@ CREATE TABLE `sales_order_status` (
   `status` varchar(32) NOT NULL COMMENT 'Status',
   `label` varchar(128) NOT NULL COMMENT 'Label',
   PRIMARY KEY (`status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Order Status Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Order Status Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151226,7 +151288,7 @@ UNLOCK TABLES;
 /*!50003 SET character_set_results = utf8mb3 */ ;
 /*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=CURRENT_USER*/ /*!50003 TRIGGER trg_sales_order_status_after_insert AFTER INSERT ON sales_order_status FOR EACH ROW
 BEGIN
@@ -151244,7 +151306,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb3 */ ;
 /*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=CURRENT_USER*/ /*!50003 TRIGGER trg_sales_order_status_after_update AFTER UPDATE ON sales_order_status FOR EACH ROW
 BEGIN
@@ -151262,7 +151324,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb3 */ ;
 /*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=CURRENT_USER*/ /*!50003 TRIGGER trg_sales_order_status_after_delete AFTER DELETE ON sales_order_status FOR EACH ROW
 BEGIN
@@ -151275,6 +151337,35 @@ DELIMITER ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
+-- Table structure for table `sales_order_status_change_history`
+--
+
+DROP TABLE IF EXISTS `sales_order_status_change_history`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sales_order_status_change_history` (
+  `entity_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Entity ID',
+  `order_id` int(10) unsigned NOT NULL COMMENT 'Order ID',
+  `status` varchar(32) NOT NULL COMMENT 'Order Status',
+  `created_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'Order status updated at',
+  PRIMARY KEY (`entity_id`),
+  KEY `SALES_ORDER_STATUS_CHANGE_HISTORY_ORDER_ID_SALES_ORDER_ENTITY_ID` (`order_id`),
+  CONSTRAINT `SALES_ORDER_STATUS_CHANGE_HISTORY_ORDER_ID_SALES_ORDER_ENTITY_ID` FOREIGN KEY (`order_id`) REFERENCES `sales_order` (`entity_id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Save the updated order status with timestamp';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sales_order_status_change_history`
+--
+
+LOCK TABLES `sales_order_status_change_history` WRITE;
+/*!40000 ALTER TABLE `sales_order_status_change_history` DISABLE KEYS */;
+INSERT INTO `sales_order_status_change_history` VALUES
+(1,8,'pending_payment','2026-02-13 00:55:12');
+/*!40000 ALTER TABLE `sales_order_status_change_history` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `sales_order_status_data_exporter_cl`
 --
 
@@ -151285,7 +151376,7 @@ CREATE TABLE `sales_order_status_data_exporter_cl` (
   `version_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Version ID',
   `entity_id` varchar(32) NOT NULL DEFAULT '' COMMENT 'Order status',
   PRIMARY KEY (`version_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='sales_order_status_data_exporter_cl';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='sales_order_status_data_exporter_cl';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151317,7 +151408,7 @@ CREATE TABLE `sales_order_status_history` (
   KEY `SALES_ORDER_STATUS_HISTORY_PARENT_ID` (`parent_id`),
   KEY `SALES_ORDER_STATUS_HISTORY_CREATED_AT` (`created_at`),
   CONSTRAINT `SALES_ORDER_STATUS_HISTORY_PARENT_ID_SALES_ORDER_ENTITY_ID` FOREIGN KEY (`parent_id`) REFERENCES `sales_order` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Order Status History';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Order Status History';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151328,7 +151419,10 @@ LOCK TABLES `sales_order_status_history` WRITE;
 /*!40000 ALTER TABLE `sales_order_status_history` DISABLE KEYS */;
 INSERT INTO `sales_order_status_history` VALUES
 (1,2,1,0,'We refunded R$39.64 offline.','closed','2020-07-29 06:42:34','creditmemo'),
-(2,5,NULL,0,'Aguardando pagamento: o comprador iniciou a transação, mas até o momento o PagSeguro não recebeu nenhuma informação do pagamento.','pending_payment','2020-08-11 01:07:48','order');
+(2,5,NULL,0,'Aguardando pagamento: o comprador iniciou a transação, mas até o momento o PagSeguro não recebeu nenhuma informação do pagamento.','pending_payment','2020-08-11 01:07:48','order'),
+(3,6,NULL,0,'Captured amount of R$ 97,00 online. ID da transação: \"ORDE_631DFB64-0D96-4D08-B58A-21002E331FE7\"','processing','2026-02-12 05:33:53','invoice'),
+(4,7,1,0,NULL,'pending_payment','2026-02-13 00:01:06','order'),
+(5,8,1,0,NULL,'pending_payment','2026-02-13 00:55:12','order');
 /*!40000 ALTER TABLE `sales_order_status_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -151347,7 +151441,7 @@ CREATE TABLE `sales_order_status_label` (
   KEY `SALES_ORDER_STATUS_LABEL_STORE_ID` (`store_id`),
   CONSTRAINT `SALES_ORDER_STATUS_LABEL_STATUS_SALES_ORDER_STATUS_STATUS` FOREIGN KEY (`status`) REFERENCES `sales_order_status` (`status`) ON DELETE CASCADE,
   CONSTRAINT `SALES_ORDER_STATUS_LABEL_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Order Status Label Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Order Status Label Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151373,7 +151467,7 @@ CREATE TABLE `sales_order_status_state` (
   `visible_on_front` smallint(5) unsigned NOT NULL DEFAULT 0 COMMENT 'Visible on front',
   PRIMARY KEY (`status`,`state`),
   CONSTRAINT `SALES_ORDER_STATUS_STATE_STATUS_SALES_ORDER_STATUS_STATUS` FOREIGN KEY (`status`) REFERENCES `sales_order_status` (`status`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Order Status Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Order Status Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151417,7 +151511,7 @@ CREATE TABLE `sales_order_tax` (
   `base_real_amount` decimal(20,4) DEFAULT NULL COMMENT 'Base Real Amount',
   PRIMARY KEY (`tax_id`),
   KEY `SALES_ORDER_TAX_ORDER_ID_PRIORITY_POSITION` (`order_id`,`priority`,`position`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Order Tax Table';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Order Tax Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151457,7 +151551,7 @@ CREATE TABLE `sales_order_tax_item` (
   CONSTRAINT `SALES_ORDER_TAX_ITEM_ASSOCIATED_ITEM_ID_SALES_ORDER_ITEM_ITEM_ID` FOREIGN KEY (`associated_item_id`) REFERENCES `sales_order_item` (`item_id`) ON DELETE CASCADE,
   CONSTRAINT `SALES_ORDER_TAX_ITEM_ITEM_ID_SALES_ORDER_ITEM_ITEM_ID` FOREIGN KEY (`item_id`) REFERENCES `sales_order_item` (`item_id`) ON DELETE CASCADE,
   CONSTRAINT `SALES_ORDER_TAX_ITEM_TAX_ID_SALES_ORDER_TAX_TAX_ID` FOREIGN KEY (`tax_id`) REFERENCES `sales_order_tax` (`tax_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Order Tax Item';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Order Tax Item';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151497,7 +151591,7 @@ CREATE TABLE `sales_payment_transaction` (
   CONSTRAINT `FK_B99FF1A06402D725EBDB0F3A7ECD47A2` FOREIGN KEY (`parent_id`) REFERENCES `sales_payment_transaction` (`transaction_id`) ON DELETE CASCADE,
   CONSTRAINT `SALES_PAYMENT_TRANSACTION_ORDER_ID_SALES_ORDER_ENTITY_ID` FOREIGN KEY (`order_id`) REFERENCES `sales_order` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `SALES_PAYMENT_TRANSACTION_PAYMENT_ID_SALES_ORDER_PAYMENT_ENTT_ID` FOREIGN KEY (`payment_id`) REFERENCES `sales_order_payment` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Payment Transaction';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Payment Transaction';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151506,6 +151600,10 @@ CREATE TABLE `sales_payment_transaction` (
 
 LOCK TABLES `sales_payment_transaction` WRITE;
 /*!40000 ALTER TABLE `sales_payment_transaction` DISABLE KEYS */;
+INSERT INTO `sales_payment_transaction` VALUES
+(1,NULL,6,6,'ORDE_631DFB64-0D96-4D08-B58A-21002E331FE7',NULL,'capture',1,'{\"message_code_20000\":\"032416400102 - SUCESSO\",\"raw_details_info\":{\"pagbank_order_id\":\"ORDE_631DFB64-0D96-4D08-B58A-21002E331FE7\",\"reference_id\":\"000000007\",\"charge_id\":\"CHAR_F44596E9-D96F-497B-9547-1E698F1CBC60\",\"charge_status\":\"PAID\"}}','2026-02-12 05:33:53'),
+(2,NULL,7,7,'ORDE_8EC9D3DB-628D-43AB-BDA0-98EA470C3D0C',NULL,'order',1,'{\"raw_details_info\":{\"pagbank_order_id\":\"ORDE_8EC9D3DB-628D-43AB-BDA0-98EA470C3D0C\",\"reference_id\":\"000000008\"}}','2026-02-13 00:01:06'),
+(3,NULL,8,8,'ORDE_53FDCD77-55E8-4BC9-8076-D44DB2D24272',NULL,'order',1,'{\"raw_details_info\":{\"pagbank_order_id\":\"ORDE_53FDCD77-55E8-4BC9-8076-D44DB2D24272\",\"reference_id\":\"000000010\"}}','2026-02-13 00:55:12');
 /*!40000 ALTER TABLE `sales_payment_transaction` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -151515,7 +151613,7 @@ UNLOCK TABLES;
 /*!50003 SET character_set_results = utf8mb3 */ ;
 /*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=CURRENT_USER*/ /*!50003 TRIGGER trg_sales_payment_transaction_after_insert AFTER INSERT ON sales_payment_transaction FOR EACH ROW
 BEGIN
@@ -151533,7 +151631,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb3 */ ;
 /*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=CURRENT_USER*/ /*!50003 TRIGGER trg_sales_payment_transaction_after_update AFTER UPDATE ON sales_payment_transaction FOR EACH ROW
 BEGIN
@@ -151551,7 +151649,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb3 */ ;
 /*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=CURRENT_USER*/ /*!50003 TRIGGER trg_sales_payment_transaction_after_delete AFTER DELETE ON sales_payment_transaction FOR EACH ROW
 BEGIN
@@ -151583,7 +151681,7 @@ CREATE TABLE `sales_refunded_aggregated` (
   UNIQUE KEY `SALES_REFUNDED_AGGREGATED_PERIOD_STORE_ID_ORDER_STATUS` (`period`,`store_id`,`order_status`),
   KEY `SALES_REFUNDED_AGGREGATED_STORE_ID` (`store_id`),
   CONSTRAINT `SALES_REFUNDED_AGGREGATED_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Refunded Aggregated';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Refunded Aggregated';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151615,7 +151713,7 @@ CREATE TABLE `sales_refunded_aggregated_order` (
   UNIQUE KEY `SALES_REFUNDED_AGGREGATED_ORDER_PERIOD_STORE_ID_ORDER_STATUS` (`period`,`store_id`,`order_status`),
   KEY `SALES_REFUNDED_AGGREGATED_ORDER_STORE_ID` (`store_id`),
   CONSTRAINT `SALES_REFUNDED_AGGREGATED_ORDER_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Refunded Aggregated Order';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Refunded Aggregated Order';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151641,7 +151739,7 @@ CREATE TABLE `sales_sequence_meta` (
   `sequence_table` varchar(64) NOT NULL COMMENT 'table for sequence',
   PRIMARY KEY (`meta_id`),
   UNIQUE KEY `SALES_SEQUENCE_META_ENTITY_TYPE_STORE_ID` (`entity_type`,`store_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='sales_sequence_meta';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='sales_sequence_meta';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151682,7 +151780,7 @@ CREATE TABLE `sales_sequence_profile` (
   PRIMARY KEY (`profile_id`),
   UNIQUE KEY `SALES_SEQUENCE_PROFILE_META_ID_PREFIX_SUFFIX` (`meta_id`,`prefix`,`suffix`),
   CONSTRAINT `SALES_SEQUENCE_PROFILE_META_ID_SALES_SEQUENCE_META_META_ID` FOREIGN KEY (`meta_id`) REFERENCES `sales_sequence_meta` (`meta_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='sales_sequence_profile';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='sales_sequence_profile';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151715,7 +151813,7 @@ CREATE TABLE `sales_shipment` (
   `store_id` smallint(5) unsigned DEFAULT NULL COMMENT 'Store ID',
   `total_weight` decimal(12,4) DEFAULT NULL COMMENT 'Total Weight',
   `total_qty` decimal(12,4) DEFAULT NULL COMMENT 'Total Qty',
-  `email_sent` smallint(5) unsigned DEFAULT NULL COMMENT 'Email Sent',
+  `email_sent` smallint(6) DEFAULT NULL COMMENT 'Email Sent',
   `send_email` smallint(5) unsigned DEFAULT NULL COMMENT 'Send Email',
   `order_id` int(10) unsigned NOT NULL COMMENT 'Order ID',
   `customer_id` int(11) DEFAULT NULL COMMENT 'Customer ID',
@@ -151740,7 +151838,7 @@ CREATE TABLE `sales_shipment` (
   KEY `SALES_SHIPMENT_EMAIL_SENT` (`email_sent`),
   CONSTRAINT `SALES_SHIPMENT_ORDER_ID_SALES_ORDER_ENTITY_ID` FOREIGN KEY (`order_id`) REFERENCES `sales_order` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `SALES_SHIPMENT_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Shipment';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Shipment';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151769,11 +151867,15 @@ CREATE TABLE `sales_shipment_comment` (
   `is_visible_on_front` smallint(5) unsigned NOT NULL DEFAULT 0 COMMENT 'Is Visible On Front',
   `comment` text DEFAULT NULL COMMENT 'Comment',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Created At',
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Updated At',
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'Admin User ID',
+  `user_type` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'User Type',
   PRIMARY KEY (`entity_id`),
+  UNIQUE KEY `SALES_SHIPMENT_COMMENT_ENTITY_ID_USER_ID_USER_TYPE` (`entity_id`,`user_id`,`user_type`),
   KEY `SALES_SHIPMENT_COMMENT_CREATED_AT` (`created_at`),
   KEY `SALES_SHIPMENT_COMMENT_PARENT_ID` (`parent_id`),
   CONSTRAINT `SALES_SHIPMENT_COMMENT_PARENT_ID_SALES_SHIPMENT_ENTITY_ID` FOREIGN KEY (`parent_id`) REFERENCES `sales_shipment` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Shipment Comment';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Shipment Comment';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151827,7 +151929,7 @@ CREATE TABLE `sales_shipment_grid` (
   KEY `SALES_SHIPMENT_GRID_BILLING_NAME` (`billing_name`),
   KEY `SALES_SHIPMENT_GRID_ORDER_ID` (`order_id`),
   FULLTEXT KEY `FTI_086B40C8955F167B8EA76653437879B4` (`increment_id`,`order_increment_id`,`shipping_name`,`customer_name`,`customer_email`,`billing_address`,`shipping_address`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Shipment Grid';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Shipment Grid';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151865,7 +151967,7 @@ CREATE TABLE `sales_shipment_item` (
   PRIMARY KEY (`entity_id`),
   KEY `SALES_SHIPMENT_ITEM_PARENT_ID` (`parent_id`),
   CONSTRAINT `SALES_SHIPMENT_ITEM_PARENT_ID_SALES_SHIPMENT_ENTITY_ID` FOREIGN KEY (`parent_id`) REFERENCES `sales_shipment` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Shipment Item';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Shipment Item';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151904,7 +152006,7 @@ CREATE TABLE `sales_shipment_track` (
   KEY `SALES_SHIPMENT_TRACK_ORDER_ID` (`order_id`),
   KEY `SALES_SHIPMENT_TRACK_CREATED_AT` (`created_at`),
   CONSTRAINT `SALES_SHIPMENT_TRACK_PARENT_ID_SALES_SHIPMENT_ENTITY_ID` FOREIGN KEY (`parent_id`) REFERENCES `sales_shipment` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Flat Shipment Track';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Flat Shipment Track';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151936,7 +152038,7 @@ CREATE TABLE `sales_shipping_aggregated` (
   UNIQUE KEY `SALES_SHPP_AGGRED_PERIOD_STORE_ID_ORDER_STS_SHPP_DESCRIPTION` (`period`,`store_id`,`order_status`,`shipping_description`),
   KEY `SALES_SHIPPING_AGGREGATED_STORE_ID` (`store_id`),
   CONSTRAINT `SALES_SHIPPING_AGGREGATED_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Shipping Aggregated';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Shipping Aggregated';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151968,7 +152070,7 @@ CREATE TABLE `sales_shipping_aggregated_order` (
   UNIQUE KEY `UNQ_C05FAE47282EEA68654D0924E946761F` (`period`,`store_id`,`order_status`,`shipping_description`),
   KEY `SALES_SHIPPING_AGGREGATED_ORDER_STORE_ID` (`store_id`),
   CONSTRAINT `SALES_SHIPPING_AGGREGATED_ORDER_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Shipping Aggregated Order';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Shipping Aggregated Order';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152006,7 +152108,7 @@ CREATE TABLE `salesrule` (
   `discount_qty` decimal(12,4) DEFAULT NULL COMMENT 'Discount Qty',
   `discount_step` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'Discount Step',
   `apply_to_shipping` smallint(5) unsigned NOT NULL DEFAULT 0 COMMENT 'Apply To Shipping',
-  `times_used` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'Times Used',
+  `times_used` int(11) NOT NULL DEFAULT 0 COMMENT 'Times Used',
   `is_rss` smallint(6) NOT NULL DEFAULT 0 COMMENT 'Is Rss',
   `coupon_type` smallint(5) unsigned NOT NULL DEFAULT 1 COMMENT 'Coupon Type',
   `use_auto_generation` smallint(6) NOT NULL DEFAULT 0 COMMENT 'Use Auto Generation',
@@ -152014,7 +152116,7 @@ CREATE TABLE `salesrule` (
   `simple_free_shipping` smallint(5) unsigned DEFAULT NULL COMMENT 'Simple Free Shipping',
   PRIMARY KEY (`rule_id`),
   KEY `SALESRULE_IS_ACTIVE_SORT_ORDER_TO_DATE_FROM_DATE` (`is_active`,`sort_order`,`to_date`,`from_date`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Salesrule';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Salesrule';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152055,7 +152157,7 @@ CREATE TABLE `salesrule_coupon` (
   UNIQUE KEY `SALESRULE_COUPON_RULE_ID_IS_PRIMARY` (`rule_id`,`is_primary`),
   KEY `SALESRULE_COUPON_RULE_ID` (`rule_id`),
   CONSTRAINT `SALESRULE_COUPON_RULE_ID_SALESRULE_RULE_ID` FOREIGN KEY (`rule_id`) REFERENCES `salesrule` (`rule_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Salesrule Coupon';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Salesrule Coupon';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152095,7 +152197,7 @@ CREATE TABLE `salesrule_coupon_aggregated` (
   KEY `SALESRULE_COUPON_AGGREGATED_STORE_ID` (`store_id`),
   KEY `SALESRULE_COUPON_AGGREGATED_RULE_NAME` (`rule_name`),
   CONSTRAINT `SALESRULE_COUPON_AGGREGATED_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Coupon Aggregated';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Coupon Aggregated';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152130,7 +152232,7 @@ CREATE TABLE `salesrule_coupon_aggregated_order` (
   KEY `SALESRULE_COUPON_AGGREGATED_ORDER_STORE_ID` (`store_id`),
   KEY `SALESRULE_COUPON_AGGREGATED_ORDER_RULE_NAME` (`rule_name`),
   CONSTRAINT `SALESRULE_COUPON_AGGREGATED_ORDER_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Coupon Aggregated Order';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Coupon Aggregated Order';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152168,7 +152270,7 @@ CREATE TABLE `salesrule_coupon_aggregated_updated` (
   KEY `SALESRULE_COUPON_AGGREGATED_UPDATED_STORE_ID` (`store_id`),
   KEY `SALESRULE_COUPON_AGGREGATED_UPDATED_RULE_NAME` (`rule_name`),
   CONSTRAINT `SALESRULE_COUPON_AGGREGATED_UPDATED_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Salesrule Coupon Aggregated Updated';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Salesrule Coupon Aggregated Updated';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152195,7 +152297,7 @@ CREATE TABLE `salesrule_coupon_usage` (
   KEY `SALESRULE_COUPON_USAGE_CUSTOMER_ID` (`customer_id`),
   CONSTRAINT `SALESRULE_COUPON_USAGE_COUPON_ID_SALESRULE_COUPON_COUPON_ID` FOREIGN KEY (`coupon_id`) REFERENCES `salesrule_coupon` (`coupon_id`) ON DELETE CASCADE,
   CONSTRAINT `SALESRULE_COUPON_USAGE_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Salesrule Coupon Usage';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Salesrule Coupon Usage';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152224,7 +152326,7 @@ CREATE TABLE `salesrule_customer` (
   KEY `SALESRULE_CUSTOMER_CUSTOMER_ID_RULE_ID` (`customer_id`,`rule_id`),
   CONSTRAINT `SALESRULE_CUSTOMER_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `SALESRULE_CUSTOMER_RULE_ID_SALESRULE_RULE_ID` FOREIGN KEY (`rule_id`) REFERENCES `salesrule` (`rule_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Salesrule Customer';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Salesrule Customer';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152252,7 +152354,7 @@ CREATE TABLE `salesrule_customer_group` (
   KEY `SALESRULE_CUSTOMER_GROUP_CUSTOMER_GROUP_ID` (`customer_group_id`),
   CONSTRAINT `SALESRULE_CSTR_GROUP_CSTR_GROUP_ID_CSTR_GROUP_CSTR_GROUP_ID` FOREIGN KEY (`customer_group_id`) REFERENCES `customer_group` (`customer_group_id`) ON DELETE CASCADE,
   CONSTRAINT `SALESRULE_CUSTOMER_GROUP_RULE_ID_SALESRULE_RULE_ID` FOREIGN KEY (`rule_id`) REFERENCES `salesrule` (`rule_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Rules To Customer Groups Relations';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Rules To Customer Groups Relations';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152298,7 +152400,7 @@ CREATE TABLE `salesrule_label` (
   KEY `SALESRULE_LABEL_STORE_ID` (`store_id`),
   CONSTRAINT `SALESRULE_LABEL_RULE_ID_SALESRULE_RULE_ID` FOREIGN KEY (`rule_id`) REFERENCES `salesrule` (`rule_id`) ON DELETE CASCADE,
   CONSTRAINT `SALESRULE_LABEL_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Salesrule Label';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Salesrule Label';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152330,7 +152432,7 @@ CREATE TABLE `salesrule_product_attribute` (
   CONSTRAINT `SALESRULE_PRD_ATTR_CSTR_GROUP_ID_CSTR_GROUP_CSTR_GROUP_ID` FOREIGN KEY (`customer_group_id`) REFERENCES `customer_group` (`customer_group_id`) ON DELETE CASCADE,
   CONSTRAINT `SALESRULE_PRODUCT_ATTRIBUTE_RULE_ID_SALESRULE_RULE_ID` FOREIGN KEY (`rule_id`) REFERENCES `salesrule` (`rule_id`) ON DELETE CASCADE,
   CONSTRAINT `SALESRULE_PRODUCT_ATTRIBUTE_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Salesrule Product Attribute';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Salesrule Product Attribute';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152373,7 +152475,7 @@ CREATE TABLE `salesrule_website` (
   KEY `SALESRULE_WEBSITE_WEBSITE_ID` (`website_id`),
   CONSTRAINT `SALESRULE_WEBSITE_RULE_ID_SALESRULE_RULE_ID` FOREIGN KEY (`rule_id`) REFERENCES `salesrule` (`rule_id`) ON DELETE CASCADE,
   CONSTRAINT `SALESRULE_WEBSITE_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Sales Rules To Websites Relations';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Sales Rules To Websites Relations';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152410,11 +152512,11 @@ CREATE TABLE `search_query` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Updated at',
   PRIMARY KEY (`query_id`),
   UNIQUE KEY `SEARCH_QUERY_QUERY_TEXT_STORE_ID` (`query_text`,`store_id`),
-  KEY `SEARCH_QUERY_QUERY_TEXT_STORE_ID_POPULARITY` (`query_text`,`store_id`,`popularity`),
   KEY `SEARCH_QUERY_IS_PROCESSED` (`is_processed`),
   KEY `SEARCH_QUERY_STORE_ID_NUM_RESULTS_POPULARITY` (`store_id`,`num_results`,`popularity`),
+  KEY `SEARCH_QUERY_QUERY_TEXT_STORE_ID_NUM_RESULTS_POPULARITY` (`query_text`,`store_id`,`num_results`,`popularity`),
   CONSTRAINT `SEARCH_QUERY_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Search query table';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Search query table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152448,7 +152550,7 @@ CREATE TABLE `search_synonyms` (
   FULLTEXT KEY `SEARCH_SYNONYMS_SYNONYMS` (`synonyms`),
   CONSTRAINT `SEARCH_SYNONYMS_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `SEARCH_SYNONYMS_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='table storing various synonyms groups';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='table storing various synonyms groups';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152475,7 +152577,7 @@ CREATE TABLE `sendfriend_log` (
   PRIMARY KEY (`log_id`),
   KEY `SENDFRIEND_LOG_IP` (`ip`),
   KEY `SENDFRIEND_LOG_TIME` (`time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Send to friend function log storage table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Send to friend function log storage table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152565,7 +152667,7 @@ DROP TABLE IF EXISTS `sequence_invoice_1`;
 CREATE TABLE `sequence_invoice_1` (
   `sequence_value` int(10) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`sequence_value`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152576,7 +152678,8 @@ LOCK TABLES `sequence_invoice_1` WRITE;
 /*!40000 ALTER TABLE `sequence_invoice_1` DISABLE KEYS */;
 INSERT INTO `sequence_invoice_1` VALUES
 (1),
-(2);
+(2),
+(3);
 /*!40000 ALTER TABLE `sequence_invoice_1` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152612,7 +152715,7 @@ DROP TABLE IF EXISTS `sequence_order_1`;
 CREATE TABLE `sequence_order_1` (
   `sequence_value` int(10) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`sequence_value`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152626,7 +152729,12 @@ INSERT INTO `sequence_order_1` VALUES
 (2),
 (3),
 (4),
-(5);
+(5),
+(6),
+(7),
+(8),
+(9),
+(10);
 /*!40000 ALTER TABLE `sequence_order_1` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152685,11 +152793,11 @@ DROP TABLE IF EXISTS `session`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `session` (
-  `session_id` varchar(255) NOT NULL COMMENT 'Session Id',
+  `session_id` varchar(255) NOT NULL,
   `session_expires` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'Date of Session Expiration',
   `session_data` mediumblob NOT NULL COMMENT 'Session Data',
   PRIMARY KEY (`session_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Database Sessions Storage';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Database Sessions Storage';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152709,11 +152817,11 @@ DROP TABLE IF EXISTS `setup_module`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `setup_module` (
-  `module` varchar(50) NOT NULL COMMENT 'Module',
-  `schema_version` varchar(50) DEFAULT NULL COMMENT 'Schema Version',
-  `data_version` varchar(50) DEFAULT NULL COMMENT 'Data Version',
+  `module` varchar(50) NOT NULL,
+  `schema_version` varchar(50) DEFAULT NULL,
+  `data_version` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`module`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Module versions registry';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Module versions registry';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152742,6 +152850,7 @@ INSERT INTO `setup_module` VALUES
 ('Magento_ComposerRootUpdatePlugin','0.1.0','0.1.0'),
 ('Magento_DataExporter','42.0.1','42.0.1'),
 ('Magento_GoogleShoppingAds','4.0.1','4.0.1'),
+('Magento_PageBuilderImageAttribute','1.0.0','1.0.0'),
 ('Magento_QueryXml','42.0.0','42.0.0'),
 ('Magento_Securitytxt','1.0.0','1.0.0'),
 ('Magento_ServicesConnector','1.1.0','1.1.0'),
@@ -152779,7 +152888,7 @@ CREATE TABLE `shipping_tablerate` (
   `cost` decimal(12,4) NOT NULL DEFAULT 0.0000 COMMENT 'Cost',
   PRIMARY KEY (`pk`),
   UNIQUE KEY `UNQ_D60821CDB2AFACEE1566CFC02D0D4CAA` (`website_id`,`dest_country_id`,`dest_region_id`,`dest_zip`,`condition_name`,`condition_value`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Shipping Tablerate';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Shipping Tablerate';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152818,7 +152927,7 @@ CREATE TABLE `sitemap` (
   PRIMARY KEY (`sitemap_id`),
   KEY `SITEMAP_STORE_ID` (`store_id`),
   CONSTRAINT `SITEMAP_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='XML Sitemap';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='XML Sitemap';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152852,7 +152961,7 @@ CREATE TABLE `store` (
   KEY `STORE_GROUP_ID` (`group_id`),
   CONSTRAINT `STORE_GROUP_ID_STORE_GROUP_GROUP_ID` FOREIGN KEY (`group_id`) REFERENCES `store_group` (`group_id`) ON DELETE CASCADE,
   CONSTRAINT `STORE_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Stores';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Stores';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152873,7 +152982,7 @@ UNLOCK TABLES;
 /*!50003 SET character_set_results = utf8mb3 */ ;
 /*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=CURRENT_USER*/ /*!50003 TRIGGER trg_store_after_insert AFTER INSERT ON store FOR EACH ROW
 BEGIN
@@ -152891,7 +153000,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb3 */ ;
 /*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=CURRENT_USER*/ /*!50003 TRIGGER trg_store_after_update AFTER UPDATE ON store FOR EACH ROW
 BEGIN
@@ -152909,7 +153018,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb3 */ ;
 /*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=CURRENT_USER*/ /*!50003 TRIGGER trg_store_after_delete AFTER DELETE ON store FOR EACH ROW
 BEGIN
@@ -152932,7 +153041,7 @@ CREATE TABLE `store_data_exporter_cl` (
   `version_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Version ID',
   `entity_id` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'Entity ID',
   PRIMARY KEY (`version_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='store_data_exporter_cl';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='store_data_exporter_cl';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152963,7 +153072,7 @@ CREATE TABLE `store_group` (
   KEY `STORE_GROUP_WEBSITE_ID` (`website_id`),
   KEY `STORE_GROUP_DEFAULT_STORE_ID` (`default_store_id`),
   CONSTRAINT `STORE_GROUP_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Store Groups';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Store Groups';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152984,7 +153093,7 @@ UNLOCK TABLES;
 /*!50003 SET character_set_results = utf8mb3 */ ;
 /*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=CURRENT_USER*/ /*!50003 TRIGGER trg_store_group_after_insert AFTER INSERT ON store_group FOR EACH ROW
 BEGIN
@@ -153002,7 +153111,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb3 */ ;
 /*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=CURRENT_USER*/ /*!50003 TRIGGER trg_store_group_after_update AFTER UPDATE ON store_group FOR EACH ROW
 BEGIN
@@ -153020,7 +153129,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb3 */ ;
 /*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=CURRENT_USER*/ /*!50003 TRIGGER trg_store_group_after_delete AFTER DELETE ON store_group FOR EACH ROW
 BEGIN
@@ -153050,7 +153159,7 @@ CREATE TABLE `store_website` (
   UNIQUE KEY `STORE_WEBSITE_CODE` (`code`),
   KEY `STORE_WEBSITE_SORT_ORDER` (`sort_order`),
   KEY `STORE_WEBSITE_DEFAULT_GROUP_ID` (`default_group_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Websites';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Websites';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153071,7 +153180,7 @@ UNLOCK TABLES;
 /*!50003 SET character_set_results = utf8mb3 */ ;
 /*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=CURRENT_USER*/ /*!50003 TRIGGER trg_store_website_after_insert AFTER INSERT ON store_website FOR EACH ROW
 BEGIN
@@ -153089,7 +153198,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb3 */ ;
 /*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=CURRENT_USER*/ /*!50003 TRIGGER trg_store_website_after_update AFTER UPDATE ON store_website FOR EACH ROW
 BEGIN
@@ -153107,7 +153216,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb3 */ ;
 /*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=CURRENT_USER*/ /*!50003 TRIGGER trg_store_website_after_delete AFTER DELETE ON store_website FOR EACH ROW
 BEGIN
@@ -153132,7 +153241,7 @@ CREATE TABLE `stores_data_exporter` (
   `modified_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Modified At',
   PRIMARY KEY (`id`),
   KEY `STORES_DATA_EXPORTER_MODIFIED_AT` (`modified_at`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Stores Feed Storage';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Stores Feed Storage';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153166,7 +153275,7 @@ CREATE TABLE `tax_calculation` (
   CONSTRAINT `TAX_CALCULATION_PRODUCT_TAX_CLASS_ID_TAX_CLASS_CLASS_ID` FOREIGN KEY (`product_tax_class_id`) REFERENCES `tax_class` (`class_id`) ON DELETE CASCADE,
   CONSTRAINT `TAX_CALC_TAX_CALC_RATE_ID_TAX_CALC_RATE_TAX_CALC_RATE_ID` FOREIGN KEY (`tax_calculation_rate_id`) REFERENCES `tax_calculation_rate` (`tax_calculation_rate_id`) ON DELETE CASCADE,
   CONSTRAINT `TAX_CALC_TAX_CALC_RULE_ID_TAX_CALC_RULE_TAX_CALC_RULE_ID` FOREIGN KEY (`tax_calculation_rule_id`) REFERENCES `tax_calculation_rule` (`tax_calculation_rule_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Tax Calculation';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Tax Calculation';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153201,7 +153310,7 @@ CREATE TABLE `tax_calculation_rate` (
   KEY `TAX_CALCULATION_RATE_TAX_COUNTRY_ID_TAX_REGION_ID_TAX_POSTCODE` (`tax_country_id`,`tax_region_id`,`tax_postcode`),
   KEY `TAX_CALCULATION_RATE_CODE` (`code`),
   KEY `IDX_CA799F1E2CB843495F601E56C84A626D` (`tax_calculation_rate_id`,`tax_country_id`,`tax_region_id`,`zip_is_range`,`tax_postcode`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Tax Calculation Rate';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Tax Calculation Rate';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153234,7 +153343,7 @@ CREATE TABLE `tax_calculation_rate_title` (
   KEY `TAX_CALCULATION_RATE_TITLE_STORE_ID` (`store_id`),
   CONSTRAINT `FK_37FB965F786AD5897BB3AE90470C42AB` FOREIGN KEY (`tax_calculation_rate_id`) REFERENCES `tax_calculation_rate` (`tax_calculation_rate_id`) ON DELETE CASCADE,
   CONSTRAINT `TAX_CALCULATION_RATE_TITLE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Tax Calculation Rate Title';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Tax Calculation Rate Title';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153262,7 +153371,7 @@ CREATE TABLE `tax_calculation_rule` (
   PRIMARY KEY (`tax_calculation_rule_id`),
   KEY `TAX_CALCULATION_RULE_PRIORITY_POSITION` (`priority`,`position`),
   KEY `TAX_CALCULATION_RULE_CODE` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Tax Calculation Rule';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Tax Calculation Rule';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153288,7 +153397,7 @@ CREATE TABLE `tax_class` (
   `class_name` varchar(255) NOT NULL COMMENT 'Class Name',
   `class_type` varchar(8) NOT NULL DEFAULT 'CUSTOMER' COMMENT 'Class Type',
   PRIMARY KEY (`class_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Tax Class';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Tax Class';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153329,7 +153438,7 @@ CREATE TABLE `tax_order_aggregated_created` (
   UNIQUE KEY `TAX_ORDER_AGGRED_CREATED_PERIOD_STORE_ID_CODE_PERCENT_ORDER_STS` (`period`,`store_id`,`code`,`percent`,`order_status`),
   KEY `TAX_ORDER_AGGREGATED_CREATED_STORE_ID` (`store_id`),
   CONSTRAINT `TAX_ORDER_AGGREGATED_CREATED_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Tax Order Aggregation';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Tax Order Aggregation';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153361,7 +153470,7 @@ CREATE TABLE `tax_order_aggregated_updated` (
   UNIQUE KEY `TAX_ORDER_AGGRED_UPDATED_PERIOD_STORE_ID_CODE_PERCENT_ORDER_STS` (`period`,`store_id`,`code`,`percent`,`order_status`),
   KEY `TAX_ORDER_AGGREGATED_UPDATED_STORE_ID` (`store_id`),
   CONSTRAINT `TAX_ORDER_AGGREGATED_UPDATED_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Tax Order Aggregated Updated';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Tax Order Aggregated Updated';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153391,7 +153500,7 @@ CREATE TABLE `theme` (
   `type` smallint(6) NOT NULL COMMENT 'Theme type: 0:physical, 1:virtual, 2:staging',
   `code` text DEFAULT NULL COMMENT 'Full theme code, including package',
   PRIMARY KEY (`theme_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Core theme';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Core theme';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153426,7 +153535,7 @@ CREATE TABLE `theme_file` (
   PRIMARY KEY (`theme_files_id`),
   KEY `THEME_FILE_THEME_ID_THEME_THEME_ID` (`theme_id`),
   CONSTRAINT `THEME_FILE_THEME_ID_THEME_THEME_ID` FOREIGN KEY (`theme_id`) REFERENCES `theme` (`theme_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Core theme files';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Core theme files';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153455,7 +153564,7 @@ CREATE TABLE `translation` (
   PRIMARY KEY (`key_id`),
   UNIQUE KEY `TRANSLATION_STORE_ID_LOCALE_CRC_STRING_STRING` (`store_id`,`locale`,`crc_string`,`string`),
   CONSTRAINT `TRANSLATION_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Translations';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Translations';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153487,7 +153596,7 @@ CREATE TABLE `ui_bookmark` (
   PRIMARY KEY (`bookmark_id`),
   KEY `UI_BOOKMARK_USER_ID_NAMESPACE_IDENTIFIER` (`user_id`,`namespace`,`identifier`),
   CONSTRAINT `UI_BOOKMARK_USER_ID_ADMIN_USER_USER_ID` FOREIGN KEY (`user_id`) REFERENCES `admin_user` (`user_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Bookmark';
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Bookmark';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153514,7 +153623,13 @@ INSERT INTO `ui_bookmark` VALUES
 (15,1,'sales_order_grid','default',1,'Visualização padrão','{\"views\":{\"default\":{\"label\":\"Visualiza\\u00e7\\u00e3o padr\\u00e3o\",\"index\":\"default\",\"editable\":false,\"data\":{\"filters\":{\"applied\":{\"placeholder\":true}},\"columns\":{\"increment_id\":{\"visible\":true,\"sorting\":false},\"billing_name\":{\"visible\":true,\"sorting\":false},\"shipping_name\":{\"visible\":true,\"sorting\":false},\"base_grand_total\":{\"visible\":true,\"sorting\":false},\"grand_total\":{\"visible\":true,\"sorting\":false},\"billing_address\":{\"visible\":false,\"sorting\":false},\"shipping_address\":{\"visible\":false,\"sorting\":false},\"shipping_information\":{\"visible\":false,\"sorting\":false},\"customer_email\":{\"visible\":false,\"sorting\":false},\"subtotal\":{\"visible\":false,\"sorting\":false},\"shipping_and_handling\":{\"visible\":false,\"sorting\":false},\"customer_name\":{\"visible\":false,\"sorting\":false},\"total_refunded\":{\"visible\":false,\"sorting\":false},\"pickup_location_code\":{\"visible\":false,\"sorting\":false},\"transaction_source\":{\"visible\":true,\"sorting\":false},\"ids\":{\"visible\":true,\"sorting\":false},\"status\":{\"visible\":true,\"sorting\":false},\"customer_group\":{\"visible\":false,\"sorting\":false},\"payment_method\":{\"visible\":false,\"sorting\":false},\"actions\":{\"visible\":true,\"sorting\":false},\"allocated_sources\":{\"visible\":true,\"sorting\":false},\"created_at\":{\"visible\":true,\"sorting\":\"desc\"}},\"search\":{\"value\":\"\"},\"paging\":{\"pageSize\":20,\"current\":1,\"options\":{\"20\":{\"value\":20,\"label\":20},\"30\":{\"value\":30,\"label\":30},\"50\":{\"value\":50,\"label\":50},\"100\":{\"value\":100,\"label\":100},\"200\":{\"value\":200,\"label\":200}},\"value\":20},\"displayMode\":\"grid\",\"positions\":{\"ids\":0,\"increment_id\":1,\"created_at\":2,\"billing_name\":3,\"shipping_name\":4,\"base_grand_total\":5,\"grand_total\":6,\"status\":7,\"billing_address\":8,\"shipping_address\":9,\"shipping_information\":10,\"customer_email\":11,\"customer_group\":12,\"subtotal\":13,\"shipping_and_handling\":14,\"customer_name\":15,\"payment_method\":16,\"total_refunded\":17,\"actions\":18,\"allocated_sources\":19,\"pickup_location_code\":20}},\"value\":\"Visualiza\\u00e7\\u00e3o padr\\u00e3o\"}}}','2020-08-19 03:47:08','2025-04-15 01:26:43'),
 (16,1,'sales_order_grid','current',0,NULL,'{\"current\":{\"filters\":{\"applied\":{\"placeholder\":true}},\"columns\":{\"increment_id\":{\"visible\":true,\"sorting\":false},\"billing_name\":{\"visible\":true,\"sorting\":false},\"shipping_name\":{\"visible\":true,\"sorting\":false},\"base_grand_total\":{\"visible\":true,\"sorting\":false},\"grand_total\":{\"visible\":true,\"sorting\":false},\"billing_address\":{\"visible\":false,\"sorting\":false},\"shipping_address\":{\"visible\":false,\"sorting\":false},\"shipping_information\":{\"visible\":false,\"sorting\":false},\"customer_email\":{\"visible\":false,\"sorting\":false},\"subtotal\":{\"visible\":false,\"sorting\":false},\"shipping_and_handling\":{\"visible\":false,\"sorting\":false},\"customer_name\":{\"visible\":false,\"sorting\":false},\"total_refunded\":{\"visible\":false,\"sorting\":false},\"pickup_location_code\":{\"visible\":false,\"sorting\":false},\"transaction_source\":{\"visible\":true,\"sorting\":false},\"ids\":{\"visible\":true,\"sorting\":false},\"status\":{\"visible\":true,\"sorting\":false},\"customer_group\":{\"visible\":false,\"sorting\":false},\"payment_method\":{\"visible\":false,\"sorting\":false},\"actions\":{\"visible\":true,\"sorting\":false},\"allocated_sources\":{\"visible\":true,\"sorting\":false},\"created_at\":{\"visible\":true,\"sorting\":\"desc\"}},\"search\":{\"value\":\"\"},\"paging\":{\"pageSize\":20,\"current\":1,\"options\":{\"20\":{\"value\":20,\"label\":20},\"30\":{\"value\":30,\"label\":30},\"50\":{\"value\":50,\"label\":50},\"100\":{\"value\":100,\"label\":100},\"200\":{\"value\":200,\"label\":200}},\"value\":20},\"displayMode\":\"grid\",\"positions\":{\"ids\":0,\"increment_id\":1,\"created_at\":2,\"billing_name\":3,\"shipping_name\":4,\"base_grand_total\":5,\"grand_total\":6,\"status\":7,\"billing_address\":8,\"shipping_address\":9,\"shipping_information\":10,\"customer_email\":11,\"customer_group\":12,\"subtotal\":13,\"shipping_and_handling\":14,\"customer_name\":15,\"payment_method\":16,\"total_refunded\":17,\"actions\":18,\"allocated_sources\":19,\"pickup_location_code\":20}}}','2020-08-19 03:47:08','2025-04-15 01:26:43'),
 (17,1,'media_gallery_listing','default',1,'Visualização padrão','{\"views\":{\"default\":{\"label\":\"Visualização padrão\",\"index\":\"default\",\"editable\":false,\"data\":{\"filters\":{\"applied\":{\"placeholder\":true}},\"paging\":{\"pageSize\":\"32\",\"current\":1,\"options\":{\"32\":{\"value\":32,\"label\":\"32\"},\"48\":{\"value\":48,\"label\":\"48\"},\"64\":{\"value\":64,\"label\":\"64\"}},\"value\":\"32\"},\"columns\":{\"newest_first\":{\"visible\":false,\"sorting\":false},\"oldest_first\":{\"visible\":false,\"sorting\":false},\"created_at\":{\"visible\":false,\"sorting\":false},\"path\":{\"visible\":false,\"sorting\":false},\"directory_desc\":{\"visible\":false,\"sorting\":false},\"directory_asc\":{\"visible\":false,\"sorting\":false},\"title\":{\"visible\":false,\"sorting\":false},\"name_az\":{\"visible\":false,\"sorting\":false},\"name_za\":{\"visible\":false,\"sorting\":false},\"source\":{\"visible\":false,\"sorting\":false},\"overlay\":{\"visible\":true,\"sorting\":false},\"thumbnail_url\":{\"visible\":true,\"sorting\":false}},\"search\":{\"value\":\"\"},\"displayMode\":\"grid\",\"positions\":{\"source\":0,\"overlay\":1,\"thumbnail_url\":2,\"newest_first\":3,\"oldest_first\":4,\"created_at\":5,\"path\":6,\"directory_desc\":7,\"directory_asc\":8,\"title\":9,\"name_az\":10,\"name_za\":11}},\"value\":\"Visualização padrão\"}}}','2023-07-04 03:00:56','2023-07-04 03:00:56'),
-(18,1,'media_gallery_listing','current',0,NULL,'{\"current\":{\"filters\":{\"applied\":{\"placeholder\":true,\"path\":\"wysiwyg\"}},\"paging\":{\"pageSize\":\"32\",\"current\":1,\"options\":{\"32\":{\"value\":32,\"label\":\"32\"},\"48\":{\"value\":48,\"label\":\"48\"},\"64\":{\"value\":64,\"label\":\"64\"}},\"value\":\"32\"},\"columns\":{\"newest_first\":{\"visible\":false,\"sorting\":false},\"oldest_first\":{\"visible\":false,\"sorting\":false},\"created_at\":{\"visible\":false,\"sorting\":false},\"path\":{\"visible\":false,\"sorting\":false},\"directory_desc\":{\"visible\":false,\"sorting\":false},\"directory_asc\":{\"visible\":false,\"sorting\":false},\"title\":{\"visible\":false,\"sorting\":false},\"name_az\":{\"visible\":false,\"sorting\":false},\"name_za\":{\"visible\":false,\"sorting\":false},\"source\":{\"visible\":false,\"sorting\":false},\"overlay\":{\"visible\":true,\"sorting\":false},\"thumbnail_url\":{\"visible\":true,\"sorting\":false}},\"search\":{\"value\":\"\"},\"displayMode\":\"grid\",\"positions\":{\"source\":0,\"overlay\":1,\"thumbnail_url\":2,\"newest_first\":3,\"oldest_first\":4,\"created_at\":5,\"path\":6,\"directory_desc\":7,\"directory_asc\":8,\"title\":9,\"name_az\":10,\"name_za\":11}}}','2023-07-04 03:00:58','2023-07-04 03:00:58');
+(18,1,'media_gallery_listing','current',0,NULL,'{\"current\":{\"filters\":{\"applied\":{\"placeholder\":true,\"path\":\"wysiwyg\"}},\"paging\":{\"pageSize\":\"32\",\"current\":1,\"options\":{\"32\":{\"value\":32,\"label\":\"32\"},\"48\":{\"value\":48,\"label\":\"48\"},\"64\":{\"value\":64,\"label\":\"64\"}},\"value\":\"32\"},\"columns\":{\"newest_first\":{\"visible\":false,\"sorting\":false},\"oldest_first\":{\"visible\":false,\"sorting\":false},\"created_at\":{\"visible\":false,\"sorting\":false},\"path\":{\"visible\":false,\"sorting\":false},\"directory_desc\":{\"visible\":false,\"sorting\":false},\"directory_asc\":{\"visible\":false,\"sorting\":false},\"title\":{\"visible\":false,\"sorting\":false},\"name_az\":{\"visible\":false,\"sorting\":false},\"name_za\":{\"visible\":false,\"sorting\":false},\"source\":{\"visible\":false,\"sorting\":false},\"overlay\":{\"visible\":true,\"sorting\":false},\"thumbnail_url\":{\"visible\":true,\"sorting\":false}},\"search\":{\"value\":\"\"},\"displayMode\":\"grid\",\"positions\":{\"source\":0,\"overlay\":1,\"thumbnail_url\":2,\"newest_first\":3,\"oldest_first\":4,\"created_at\":5,\"path\":6,\"directory_desc\":7,\"directory_asc\":8,\"title\":9,\"name_az\":10,\"name_za\":11}}}','2023-07-04 03:00:58','2023-07-04 03:00:58'),
+(19,1,'sales_order_view_invoice_grid','default',1,'Visualização padrão','{\"views\":{\"default\":{\"label\":\"Visualização padrão\",\"index\":\"default\",\"editable\":false,\"data\":{\"search\":{\"value\":\"\"},\"displayMode\":\"grid\",\"filters\":{\"applied\":{\"placeholder\":true}},\"columns\":{\"actions\":{\"visible\":true,\"sorting\":false},\"created_at\":{\"visible\":true,\"sorting\":false},\"order_created_at\":{\"visible\":true,\"sorting\":false},\"state\":{\"visible\":true,\"sorting\":false},\"customer_group_id\":{\"visible\":false,\"sorting\":false},\"payment_method\":{\"visible\":false,\"sorting\":false},\"ids\":{\"visible\":true,\"sorting\":false},\"increment_id\":{\"visible\":true,\"sorting\":\"asc\"},\"order_increment_id\":{\"visible\":true,\"sorting\":false},\"billing_name\":{\"visible\":true,\"sorting\":false},\"grand_total\":{\"visible\":true,\"sorting\":false},\"billing_address\":{\"visible\":false,\"sorting\":false},\"shipping_address\":{\"visible\":false,\"sorting\":false},\"customer_name\":{\"visible\":false,\"sorting\":false},\"customer_email\":{\"visible\":false,\"sorting\":false},\"shipping_information\":{\"visible\":false,\"sorting\":false},\"subtotal\":{\"visible\":false,\"sorting\":false},\"shipping_and_handling\":{\"visible\":false,\"sorting\":false}},\"positions\":{\"ids\":0,\"increment_id\":1,\"created_at\":2,\"order_increment_id\":3,\"order_created_at\":4,\"billing_name\":5,\"state\":6,\"grand_total\":7,\"billing_address\":8,\"shipping_address\":9,\"customer_name\":10,\"customer_email\":11,\"customer_group_id\":12,\"payment_method\":13,\"shipping_information\":14,\"subtotal\":15,\"shipping_and_handling\":16,\"actions\":17},\"paging\":{\"pageSize\":20,\"current\":1,\"options\":{\"20\":{\"value\":20,\"label\":20},\"30\":{\"value\":30,\"label\":30},\"50\":{\"value\":50,\"label\":50},\"100\":{\"value\":100,\"label\":100},\"200\":{\"value\":200,\"label\":200}},\"value\":20}},\"value\":\"Visualização padrão\"}}}','2026-02-13 00:55:40','2026-02-13 00:55:40'),
+(20,1,'sales_order_view_creditmemo_grid','default',1,'Visualização padrão','{\"views\":{\"default\":{\"label\":\"Visualização padrão\",\"index\":\"default\",\"editable\":false,\"data\":{\"search\":{\"value\":\"\"},\"displayMode\":\"grid\",\"filters\":{\"applied\":{\"placeholder\":true}},\"columns\":{\"actions\":{\"visible\":true,\"sorting\":false},\"created_at\":{\"visible\":true,\"sorting\":false},\"order_created_at\":{\"visible\":true,\"sorting\":false},\"state\":{\"visible\":true,\"sorting\":false},\"order_status\":{\"visible\":false,\"sorting\":false},\"customer_group_id\":{\"visible\":false,\"sorting\":false},\"payment_method\":{\"visible\":false,\"sorting\":false},\"ids\":{\"visible\":true,\"sorting\":false},\"increment_id\":{\"visible\":true,\"sorting\":false},\"order_increment_id\":{\"visible\":true,\"sorting\":false},\"billing_name\":{\"visible\":true,\"sorting\":false},\"base_grand_total\":{\"visible\":true,\"sorting\":false},\"billing_address\":{\"visible\":false,\"sorting\":false},\"shipping_address\":{\"visible\":false,\"sorting\":false},\"customer_name\":{\"visible\":false,\"sorting\":false},\"customer_email\":{\"visible\":false,\"sorting\":false},\"shipping_information\":{\"visible\":false,\"sorting\":false},\"subtotal\":{\"visible\":false,\"sorting\":false},\"shipping_and_handling\":{\"visible\":false,\"sorting\":false},\"adjustment_positive\":{\"visible\":false,\"sorting\":false},\"adjustment_negative\":{\"visible\":false,\"sorting\":false},\"order_base_grand_total\":{\"visible\":false,\"sorting\":false}},\"positions\":{\"ids\":0,\"increment_id\":1,\"created_at\":2,\"order_increment_id\":3,\"order_created_at\":4,\"billing_name\":5,\"state\":6,\"base_grand_total\":7,\"order_status\":8,\"billing_address\":9,\"shipping_address\":10,\"customer_name\":11,\"customer_email\":12,\"customer_group_id\":13,\"payment_method\":14,\"shipping_information\":15,\"subtotal\":16,\"shipping_and_handling\":17,\"adjustment_positive\":18,\"adjustment_negative\":19,\"order_base_grand_total\":20,\"actions\":21},\"paging\":{\"pageSize\":20,\"current\":1,\"options\":{\"20\":{\"value\":20,\"label\":20},\"30\":{\"value\":30,\"label\":30},\"50\":{\"value\":50,\"label\":50},\"100\":{\"value\":100,\"label\":100},\"200\":{\"value\":200,\"label\":200}},\"value\":20}},\"value\":\"Visualização padrão\"}}}','2026-02-13 00:55:40','2026-02-13 00:55:40'),
+(21,1,'sales_order_view_shipment_grid','default',1,'Visualização padrão','{\"views\":{\"default\":{\"label\":\"Visualização padrão\",\"index\":\"default\",\"editable\":false,\"data\":{\"search\":{\"value\":\"\"},\"displayMode\":\"grid\",\"filters\":{\"applied\":{\"placeholder\":true}},\"columns\":{\"order_increment_id\":{\"visible\":true,\"sorting\":false},\"shipping_name\":{\"visible\":true,\"sorting\":false},\"total_qty\":{\"visible\":true,\"sorting\":false},\"customer_name\":{\"visible\":false,\"sorting\":false},\"customer_email\":{\"visible\":false,\"sorting\":false},\"billing_address\":{\"visible\":false,\"sorting\":false},\"shipping_address\":{\"visible\":false,\"sorting\":false},\"shipping_information\":{\"visible\":false,\"sorting\":false},\"actions\":{\"visible\":true,\"sorting\":false},\"created_at\":{\"visible\":true,\"sorting\":false},\"order_created_at\":{\"visible\":true,\"sorting\":false},\"order_status\":{\"visible\":false,\"sorting\":false},\"customer_group_id\":{\"visible\":false,\"sorting\":false},\"payment_method\":{\"visible\":false,\"sorting\":false},\"ids\":{\"visible\":true,\"sorting\":false},\"increment_id\":{\"visible\":true,\"sorting\":\"asc\"}},\"positions\":{\"ids\":0,\"increment_id\":1,\"created_at\":2,\"order_increment_id\":3,\"order_created_at\":4,\"shipping_name\":5,\"total_qty\":6,\"order_status\":7,\"customer_name\":8,\"customer_email\":9,\"customer_group_id\":10,\"billing_address\":11,\"shipping_address\":12,\"payment_method\":13,\"shipping_information\":14,\"actions\":15},\"paging\":{\"pageSize\":20,\"current\":1,\"options\":{\"20\":{\"value\":20,\"label\":20},\"30\":{\"value\":30,\"label\":30},\"50\":{\"value\":50,\"label\":50},\"100\":{\"value\":100,\"label\":100},\"200\":{\"value\":200,\"label\":200}},\"value\":20}},\"value\":\"Visualização padrão\"}}}','2026-02-13 00:55:40','2026-02-13 00:55:40'),
+(22,1,'sales_order_view_shipment_grid','current',0,NULL,'{\"current\":{\"search\":{\"value\":\"\"},\"displayMode\":\"grid\",\"filters\":{\"applied\":{\"placeholder\":true}},\"columns\":{\"order_increment_id\":{\"visible\":true,\"sorting\":false},\"shipping_name\":{\"visible\":true,\"sorting\":false},\"total_qty\":{\"visible\":true,\"sorting\":false},\"customer_name\":{\"visible\":false,\"sorting\":false},\"customer_email\":{\"visible\":false,\"sorting\":false},\"billing_address\":{\"visible\":false,\"sorting\":false},\"shipping_address\":{\"visible\":false,\"sorting\":false},\"shipping_information\":{\"visible\":false,\"sorting\":false},\"actions\":{\"visible\":true,\"sorting\":false},\"created_at\":{\"visible\":true,\"sorting\":false},\"order_created_at\":{\"visible\":true,\"sorting\":false},\"order_status\":{\"visible\":false,\"sorting\":false},\"customer_group_id\":{\"visible\":false,\"sorting\":false},\"payment_method\":{\"visible\":false,\"sorting\":false},\"ids\":{\"visible\":true,\"sorting\":false},\"increment_id\":{\"visible\":true,\"sorting\":\"asc\"}},\"positions\":{\"ids\":0,\"increment_id\":1,\"created_at\":2,\"order_increment_id\":3,\"order_created_at\":4,\"shipping_name\":5,\"total_qty\":6,\"order_status\":7,\"customer_name\":8,\"customer_email\":9,\"customer_group_id\":10,\"billing_address\":11,\"shipping_address\":12,\"payment_method\":13,\"shipping_information\":14,\"actions\":15},\"paging\":{\"pageSize\":20,\"current\":1,\"options\":{\"20\":{\"value\":20,\"label\":20},\"30\":{\"value\":30,\"label\":30},\"50\":{\"value\":50,\"label\":50},\"100\":{\"value\":100,\"label\":100},\"200\":{\"value\":200,\"label\":200}},\"value\":20}}}','2026-02-13 00:55:41','2026-02-13 00:55:41'),
+(23,1,'sales_order_view_creditmemo_grid','current',0,NULL,'{\"current\":{\"search\":{\"value\":\"\"},\"displayMode\":\"grid\",\"filters\":{\"applied\":{\"placeholder\":true}},\"columns\":{\"actions\":{\"visible\":true,\"sorting\":false},\"created_at\":{\"visible\":true,\"sorting\":false},\"order_created_at\":{\"visible\":true,\"sorting\":false},\"state\":{\"visible\":true,\"sorting\":false},\"order_status\":{\"visible\":false,\"sorting\":false},\"customer_group_id\":{\"visible\":false,\"sorting\":false},\"payment_method\":{\"visible\":false,\"sorting\":false},\"ids\":{\"visible\":true,\"sorting\":false},\"increment_id\":{\"visible\":true,\"sorting\":false},\"order_increment_id\":{\"visible\":true,\"sorting\":false},\"billing_name\":{\"visible\":true,\"sorting\":false},\"base_grand_total\":{\"visible\":true,\"sorting\":false},\"billing_address\":{\"visible\":false,\"sorting\":false},\"shipping_address\":{\"visible\":false,\"sorting\":false},\"customer_name\":{\"visible\":false,\"sorting\":false},\"customer_email\":{\"visible\":false,\"sorting\":false},\"shipping_information\":{\"visible\":false,\"sorting\":false},\"subtotal\":{\"visible\":false,\"sorting\":false},\"shipping_and_handling\":{\"visible\":false,\"sorting\":false},\"adjustment_positive\":{\"visible\":false,\"sorting\":false},\"adjustment_negative\":{\"visible\":false,\"sorting\":false},\"order_base_grand_total\":{\"visible\":false,\"sorting\":false}},\"positions\":{\"ids\":0,\"increment_id\":1,\"created_at\":2,\"order_increment_id\":3,\"order_created_at\":4,\"billing_name\":5,\"state\":6,\"base_grand_total\":7,\"order_status\":8,\"billing_address\":9,\"shipping_address\":10,\"customer_name\":11,\"customer_email\":12,\"customer_group_id\":13,\"payment_method\":14,\"shipping_information\":15,\"subtotal\":16,\"shipping_and_handling\":17,\"adjustment_positive\":18,\"adjustment_negative\":19,\"order_base_grand_total\":20,\"actions\":21},\"paging\":{\"pageSize\":20,\"current\":1,\"options\":{\"20\":{\"value\":20,\"label\":20},\"30\":{\"value\":30,\"label\":30},\"50\":{\"value\":50,\"label\":50},\"100\":{\"value\":100,\"label\":100},\"200\":{\"value\":200,\"label\":200}},\"value\":20}}}','2026-02-13 00:55:41','2026-02-13 00:55:41'),
+(24,1,'sales_order_view_invoice_grid','current',0,NULL,'{\"current\":{\"search\":{\"value\":\"\"},\"displayMode\":\"grid\",\"filters\":{\"applied\":{\"placeholder\":true}},\"columns\":{\"actions\":{\"visible\":true,\"sorting\":false},\"created_at\":{\"visible\":true,\"sorting\":false},\"order_created_at\":{\"visible\":true,\"sorting\":false},\"state\":{\"visible\":true,\"sorting\":false},\"customer_group_id\":{\"visible\":false,\"sorting\":false},\"payment_method\":{\"visible\":false,\"sorting\":false},\"ids\":{\"visible\":true,\"sorting\":false},\"increment_id\":{\"visible\":true,\"sorting\":\"asc\"},\"order_increment_id\":{\"visible\":true,\"sorting\":false},\"billing_name\":{\"visible\":true,\"sorting\":false},\"grand_total\":{\"visible\":true,\"sorting\":false},\"billing_address\":{\"visible\":false,\"sorting\":false},\"shipping_address\":{\"visible\":false,\"sorting\":false},\"customer_name\":{\"visible\":false,\"sorting\":false},\"customer_email\":{\"visible\":false,\"sorting\":false},\"shipping_information\":{\"visible\":false,\"sorting\":false},\"subtotal\":{\"visible\":false,\"sorting\":false},\"shipping_and_handling\":{\"visible\":false,\"sorting\":false}},\"positions\":{\"ids\":0,\"increment_id\":1,\"created_at\":2,\"order_increment_id\":3,\"order_created_at\":4,\"billing_name\":5,\"state\":6,\"grand_total\":7,\"billing_address\":8,\"shipping_address\":9,\"customer_name\":10,\"customer_email\":11,\"customer_group_id\":12,\"payment_method\":13,\"shipping_information\":14,\"subtotal\":15,\"shipping_and_handling\":16,\"actions\":17},\"paging\":{\"pageSize\":20,\"current\":1,\"options\":{\"20\":{\"value\":20,\"label\":20},\"30\":{\"value\":30,\"label\":30},\"50\":{\"value\":50,\"label\":50},\"100\":{\"value\":100,\"label\":100},\"200\":{\"value\":200,\"label\":200}},\"value\":20}}}','2026-02-13 00:55:41','2026-02-13 00:55:41');
 /*!40000 ALTER TABLE `ui_bookmark` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153542,7 +153657,7 @@ CREATE TABLE `url_rewrite` (
   KEY `URL_REWRITE_STORE_ID_ENTITY_ID` (`store_id`,`entity_id`),
   KEY `URL_REWRITE_ENTITY_ID` (`entity_id`),
   KEY `URL_REWRITE_IS_AUTOGENERATED_METADATA` (`is_autogenerated`,`metadata`)
-) ENGINE=InnoDB AUTO_INCREMENT=1153 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Url Rewrites';
+) ENGINE=InnoDB AUTO_INCREMENT=1153 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Url Rewrites';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154396,7 +154511,7 @@ CREATE TABLE `variable` (
   `name` varchar(255) DEFAULT NULL COMMENT 'Variable Name',
   PRIMARY KEY (`variable_id`),
   UNIQUE KEY `VARIABLE_CODE` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Variables';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Variables';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154426,7 +154541,7 @@ CREATE TABLE `variable_value` (
   KEY `VARIABLE_VALUE_STORE_ID` (`store_id`),
   CONSTRAINT `VARIABLE_VALUE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `VARIABLE_VALUE_VARIABLE_ID_VARIABLE_VARIABLE_ID` FOREIGN KEY (`variable_id`) REFERENCES `variable` (`variable_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Variable Value';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Variable Value';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154463,7 +154578,7 @@ CREATE TABLE `vault_payment_token` (
   UNIQUE KEY `VAULT_PAYMENT_TOKEN_PAYMENT_METHOD_CODE_CSTR_ID_GATEWAY_TOKEN` (`payment_method_code`,`customer_id`,`gateway_token`),
   KEY `VAULT_PAYMENT_TOKEN_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID` (`customer_id`),
   CONSTRAINT `VAULT_PAYMENT_TOKEN_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Vault tokens of payment';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Vault tokens of payment';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154489,7 +154604,7 @@ CREATE TABLE `vault_payment_token_order_payment_link` (
   KEY `FK_4ED894655446D385894580BECA993862` (`payment_token_id`),
   CONSTRAINT `FK_4ED894655446D385894580BECA993862` FOREIGN KEY (`payment_token_id`) REFERENCES `vault_payment_token` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `FK_CF37B9D854256534BE23C818F6291CA2` FOREIGN KEY (`order_payment_id`) REFERENCES `sales_order_payment` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Order payments to vault token';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Order payments to vault token';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154906,7 +155021,7 @@ CREATE TABLE `weee_tax` (
   CONSTRAINT `WEEE_TAX_COUNTRY_DIRECTORY_COUNTRY_COUNTRY_ID` FOREIGN KEY (`country`) REFERENCES `directory_country` (`country_id`) ON DELETE CASCADE,
   CONSTRAINT `WEEE_TAX_ENTITY_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `WEEE_TAX_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Weee Tax';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Weee Tax';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154932,7 +155047,7 @@ CREATE TABLE `widget` (
   `parameters` text DEFAULT NULL COMMENT 'Parameters',
   PRIMARY KEY (`widget_id`),
   KEY `WIDGET_WIDGET_CODE` (`widget_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Preconfigured Widgets';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Preconfigured Widgets';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154962,7 +155077,7 @@ CREATE TABLE `widget_instance` (
   PRIMARY KEY (`instance_id`),
   KEY `WIDGET_INSTANCE_THEME_ID_THEME_THEME_ID` (`theme_id`),
   CONSTRAINT `WIDGET_INSTANCE_THEME_ID_THEME_THEME_ID` FOREIGN KEY (`theme_id`) REFERENCES `theme` (`theme_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Instances of Widget for Package Theme';
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Instances of Widget for Package Theme';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155012,7 +155127,7 @@ CREATE TABLE `widget_instance_page` (
   PRIMARY KEY (`page_id`),
   KEY `WIDGET_INSTANCE_PAGE_INSTANCE_ID` (`instance_id`),
   CONSTRAINT `WIDGET_INSTANCE_PAGE_INSTANCE_ID_WIDGET_INSTANCE_INSTANCE_ID` FOREIGN KEY (`instance_id`) REFERENCES `widget_instance` (`instance_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Instance of Widget on Page';
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Instance of Widget on Page';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155057,7 +155172,7 @@ CREATE TABLE `widget_instance_page_layout` (
   KEY `WIDGET_INSTANCE_PAGE_LAYOUT_PAGE_ID` (`page_id`),
   CONSTRAINT `WIDGET_INSTANCE_PAGE_LAYOUT_PAGE_ID_WIDGET_INSTANCE_PAGE_PAGE_ID` FOREIGN KEY (`page_id`) REFERENCES `widget_instance_page` (`page_id`) ON DELETE CASCADE,
   CONSTRAINT `WIDGET_INSTANCE_PAGE_LYT_LYT_UPDATE_ID_LYT_UPDATE_LYT_UPDATE_ID` FOREIGN KEY (`layout_update_id`) REFERENCES `layout_update` (`layout_update_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Layout updates';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Layout updates';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155105,7 +155220,7 @@ CREATE TABLE `wishlist` (
   UNIQUE KEY `WISHLIST_CUSTOMER_ID` (`customer_id`),
   KEY `WISHLIST_SHARED` (`shared`),
   CONSTRAINT `WISHLIST_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Wishlist main Table';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Wishlist main Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155142,7 +155257,7 @@ CREATE TABLE `wishlist_item` (
   CONSTRAINT `WISHLIST_ITEM_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `WISHLIST_ITEM_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL,
   CONSTRAINT `WISHLIST_ITEM_WISHLIST_ID_WISHLIST_WISHLIST_ID` FOREIGN KEY (`wishlist_id`) REFERENCES `wishlist` (`wishlist_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Wishlist items';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Wishlist items';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155170,7 +155285,7 @@ CREATE TABLE `wishlist_item_option` (
   PRIMARY KEY (`option_id`),
   KEY `FK_A014B30B04B72DD0EAB3EECD779728D6` (`wishlist_item_id`),
   CONSTRAINT `FK_A014B30B04B72DD0EAB3EECD779728D6` FOREIGN KEY (`wishlist_item_id`) REFERENCES `wishlist_item` (`wishlist_item_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci COMMENT='Wishlist Item Option Table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Wishlist Item Option Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155291,4 +155406,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-11-10 22:26:27
+-- Dump completed on 2026-02-13  0:59:23
