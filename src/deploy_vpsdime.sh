@@ -68,5 +68,6 @@ rm -rf pub/static/frontend pub/static/_cache pub/static/_requirejs
 bin/magento setup:static-content:deploy pt_BR en_US --force
 bin/magento maintenance:disable
 bin/magento cache:enable
-sudo service php8.3-fpm restart
+# Reset OPcache (no sudo: clears CLI opcache; FPM workers keep their cache until restart)
+/usr/bin/php8.3 -r "if (function_exists('opcache_reset')) { opcache_reset(); }" 2>/dev/null || true
 rm -f $deployLock
