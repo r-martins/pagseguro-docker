@@ -8,7 +8,7 @@
         "AFL-3.0"
     ],
     "require": {
-        "magento/product-community-edition": "^2.4",
+        "magento/product-community-edition": "2.4.8-p3",
         "composer/composer": "@alpha",
         "msp/devtools": "^1.2",
         "rafaelstz/traducao_magento2_pt_br": "dev-master",
@@ -25,7 +25,8 @@
             "laminas/laminas-dependency-plugin": true,
             "magento/composer-dependency-version-audit-plugin": true,
             "magento/inventory-composer-installer": true,
-            "magento/magento-composer-installer": true
+            "magento/magento-composer-installer": true,
+            "php-http/discovery": true
         }
     },
     "autoload": {
@@ -56,7 +57,11 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "https://repo.magento.com/"
+            "url": "https://repo.magento.com/",
+            "exclude": [
+                "ricardomartins/pagseguro",
+                "ricardomartins/pagbank-magento2"
+            ]
         },
         {
             "type": "package",
