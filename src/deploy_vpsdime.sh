@@ -13,7 +13,7 @@ bin/magento maintenance:enable
 git fetch origin
 git checkout master
 git reset --hard origin/master
-mysql -u pagbank_m2 -ppagbank_m2_pass -D pagbank_m2 < pagseguro_exemplo_m2.sql
+mysql -u pagbank_m2 -ppagbank_m2_pass -D pagbank_m2 < ../pagseguro_exemplo_m2.sql
 mysql -u pagbank_m2 -ppagbank_m2_pass -D pagbank_m2 -e  "UPDATE core_config_data set value='localhost' where path = 'catalog/search/opensearch_server_hostname';"
 # Clear cache before config:set so old base URLs from dump are not used
 redis-cli flushall
