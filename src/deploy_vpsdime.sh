@@ -1,13 +1,27 @@
 #!/bin/bash
 deployLock="/var/www/pagseguro-docker/src/var/.deploy.lock"
 magentoDir="/var/www/pagseguro-docker/src"
+
+# Remove deploy.lock if it's older than 1 day
 if [ -f $deployLock ]
 then
-	echo "Deploy is locked by another process."
-	exit 1
+	lockAge=$(($(date +%s) - $(stat -f%m $deployLock)))
+	if [ $lockAge -gt 86400 ]
+	then
+		echo "Deploy lock is older than 1 day. Removing stale lock file."
+		rm -f $deployLock
+	else
+		echo "Deploy is locked by another process."
+		exit 1
+	fi
 fi
 
 touch $deployLock
+
+echo "=========================================="
+echo "Deploy iniciado em: $(date '+%Y-%m-%d %H:%M:%S')"
+echo "=========================================="
+
 cd $magentoDir
 bin/magento maintenance:enable
 git fetch origin
@@ -73,11 +87,16 @@ bin/magento setup:static-content:deploy pt_BR en_US --force
 # Remove old product image cache (wrong version) so images use correct paths
 rm -rf pub/media/catalog/product/cache
 # Regenerate product images in sync mode (-a = async requires queue consumer; sync generates during deploy)
-bin/magento catalog:images:resize
+bin/magento catalog:images:resize -a
 # Ensure web server can write to var (logs) and pub/media (image cache generation)
 chmod -R 775 var pub/media generated 2>/dev/null || true
 bin/magento maintenance:disable
 bin/magento cache:enable
 # Reset OPcache (no sudo: clears CLI opcache; FPM workers keep their cache until restart)
 /usr/bin/php8.3 -r "if (function_exists('opcache_reset')) { opcache_reset(); }" 2>/dev/null || true
+
+echo "=========================================="
+echo "Deploy finalizado em: $(date '+%Y-%m-%d %H:%M:%S')"
+echo "=========================================="
+
 rm -f $deployLock
