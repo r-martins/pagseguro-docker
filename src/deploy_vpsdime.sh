@@ -5,7 +5,7 @@ magentoDir="/var/www/pagseguro-docker/src"
 # Remove deploy.lock if it's older than 1 day
 if [ -f $deployLock ]
 then
-	lockAge=$(($(date +%s) - $(stat -f%m $deployLock)))
+	lockAge=$(($(date +%s) - $(stat -f%m "$deployLock" 2>/dev/null || stat -c %Y "$deployLock")))
 	if [ $lockAge -gt 86400 ]
 	then
 		echo "Deploy lock is older than 1 day. Removing stale lock file."
