@@ -34,7 +34,7 @@ redis-cli flushall
 bin/magento cache:flush 2>/dev/null || true
 #mysql -u pagbank_m2 -ppagbank_m2_pass -D pagbank_m2 -e  "INSERT INTO core_config_data (path, value) VALUES ('catalog/search/engine','opensearch');"
 ../n98-magerun2.phar db:query "REPLACE INTO core_config_data SET scope = 'default', scope_id = 0, path = 'payment/ricardomartins_pagbank/public_key', value = 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr+ZqgD892U9/HXsa7XqBZUayPquAfh9xx4iwUbTSUAvTlmiXFQNTp0Bvt/5vK2FhMj39qSv1zi2OuBjvW38q1E374nzx6NNBL5JosV0+SDINTlCG0cmigHuBOyWzYmjgca+mtQu4WczCaApNaSuVqgb8u7Bd9GCOL4YJotvV5+81frlSwQXralhwRzGhj/A57CGPgGKiuPT+AOGmykIGEZsSD9RKkyoKIoc0OS8CPIzdBOtTQCIwrLn2FxI83Clcg55W8gkFSOS6rWNbG5qFZWMll6yl02HtunalHmUlRUL66YeGXdMDC2PuRcmZbGO5a/2tbVppW6mfSWG3NPRpgwIDAQAB', updated_at = '2025-04-15 01:28:41';"
-../n98-magerun2.phar db:query "REPLACE INTO core_config_data SET scope = 'default', scope_id = 0, path = 'payment/ricardomartins_pagbank/connect_key', value = 'CONSANDBOX795E98520284853531616BF851FF2B', updated_at = '2025-11-10 22:26:15';"
+../n98-magerun2.phar db:query "REPLACE INTO core_config_data SET scope = 'default', scope_id = 0, path = 'payment/ricardomartins_pagbank/connect_key', value = 'CONVDSANDBOX3056B1FEE99ECD02B5F9E60C2EC9', updated_at = '2025-11-10 22:26:15';"
 
 rm -rf vendor
 /usr/bin/php8.3 -dmemory_limit=-1 /usr/local/bin/composer install --ignore-platform-reqs
